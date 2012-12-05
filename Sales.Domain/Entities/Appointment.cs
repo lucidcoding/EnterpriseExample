@@ -6,13 +6,9 @@ namespace Sales.Domain.Entities
 {
     public class Appointment : Entity<Guid>
     {
-        public virtual Guid ConsultantId { get; set; }
         public virtual DateTime Start { get; set; }
         public virtual DateTime End { get; set; }
-        public virtual string LeadName { get; set; }
-        public virtual string Address { get; set; }
-        public virtual bool Invalidated { get; set; }
-        public virtual string InvalidatedMessage { get; set; }
+        public virtual Lead Lead { get; set; }
 
         public virtual DateTime Date
         {

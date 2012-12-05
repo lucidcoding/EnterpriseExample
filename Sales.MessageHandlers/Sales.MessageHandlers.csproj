@@ -69,10 +69,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Calendar.Messages\Calendar.Messages.csproj">
-      <Project>{9FE0EFE5-F5D2-4F5F-8FA0-3F821AA30FD4}</Project>
-      <Name>Calendar.Messages</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sales.Application\Sales.Application.csproj">
       <Project>{AD735CA4-F617-40CC-A1F1-DE3F608A6C9D}</Project>
       <Name>Sales.Application</Name>
