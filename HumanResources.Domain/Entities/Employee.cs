@@ -32,5 +32,11 @@ namespace HumanResources.Domain.Entities
 
             DomainEvents.Raise(new EmployeeRegisteredEvent(employee));
         }
+
+        public virtual void MarkAsLeft()
+        {
+            Left = DateTime.Now;
+            DomainEvents.Raise(new EmployeeLeftEvent(this));
+        }
     }
 }

@@ -72,6 +72,10 @@
       <Project>{6693ECEC-BC88-49CE-9E40-9A70AB0C954E}</Project>
       <Name>HumanResources.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HumanResources.Messages\HumanResources.Messages.csproj">
+      <Project>{8B5B36C1-85A9-4FB2-B20A-A8E690CAFB9D}</Project>
+      <Name>HumanResources.Messages</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

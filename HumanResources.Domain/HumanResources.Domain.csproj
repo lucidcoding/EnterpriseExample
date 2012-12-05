@@ -50,6 +50,7 @@
     <Compile Include="Common\ValidationMessageCollection.cs" />
     <Compile Include="Entities\Department.cs" />
     <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Events\EmployeeLeftEvent.cs" />
     <Compile Include="Events\EmployeeRegisteredEvent.cs" />
     <Compile Include="Global\Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

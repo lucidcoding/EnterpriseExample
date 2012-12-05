@@ -23,7 +23,7 @@ namespace HumanResources.UI.Controllers
 
         public ActionResult Index(Guid? employeeId)
         {
-            var employees = _employeeService.GetAll();
+            var employees = _employeeService.GetCurrent();
 
             var viewModel = employees.Select(x => new IndexEmployeesViewModel
                                                       {
@@ -36,6 +36,22 @@ namespace HumanResources.UI.Controllers
                                                       }).ToList();
 
             return View(viewModel);
+        }
+
+        public ActionResult Register()
+        {
+            return View("ComingSoon");
+        }
+
+        public ActionResult Edit()
+        {
+            return View("ComingSoon");
+        }
+
+        public ActionResult MarkAsLeft(Guid id)
+        {
+            _employeeService.MarkAsLeft(id);
+            return RedirectToAction("Index");
         }
     }
 }

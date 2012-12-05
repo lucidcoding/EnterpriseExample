@@ -7,7 +7,7 @@
 <h2>Employees</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Register New", "Register")
 </p>
 <table>
     <tr>
@@ -36,8 +36,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Mark As Left", "MarkAsLeft", new { id=item.Id })
         </td>
     </tr>
 }

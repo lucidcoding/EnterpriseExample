@@ -30,7 +30,7 @@ namespace HumanResources.WCF
             {
                 using (var transactionScope = new TransactionScope())
                 {
-                    var employeeDtos = new EmployeeDtoMapper().Map(_employeeService.GetAll().ToArray());
+                    var employeeDtos = new EmployeeDtoMapper().Map(_employeeService.GetCurrent().ToArray());
                     transactionScope.Complete();
                     return employeeDtos;
                 }

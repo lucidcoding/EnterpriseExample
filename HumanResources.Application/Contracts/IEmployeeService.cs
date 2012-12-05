@@ -6,7 +6,8 @@ namespace HumanResources.Application.Contracts
 {
     public interface IEmployeeService
     {
-        List<Employee> GetAll();
+        IList<Employee> GetCurrent();
         Employee GetById(Guid id);
+        void MarkAsLeft(Guid id);
     }
 }
