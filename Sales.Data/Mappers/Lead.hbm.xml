@@ -10,6 +10,6 @@
     <property name="Address1" />
 	<property name="Address2" />
 	<property name="Address3" />
-    <property name="ConsultantIdAssignedTo" />
+    <property name="AssignedToConsultantId" />
   </class>
 </hibernate-mapping>

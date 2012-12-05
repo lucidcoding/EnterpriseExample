@@ -1,0 +1,13 @@
+﻿using Sales.Domain.Common;
+using Sales.Domain.Entities;
+
+namespace Sales.Domain.Events
+{
+    public class LeadAddedEvent : DomainEvent<Lead>
+    {
+        public LeadAddedEvent(Lead lead)
+            : base(lead)
+        {
+        }
+    }
+}

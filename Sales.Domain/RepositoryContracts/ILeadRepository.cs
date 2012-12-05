@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using Sales.Domain.Common;
 using Sales.Domain.Entities;
 
 namespace Sales.Domain.RepositoryContracts
 {
-    public interface IAppointmentRepository : IRepository<Appointment, Guid>
+    public interface ILeadRepository : IRepository<Lead, Guid>
     {
+        IList<Lead> GetUnsigned();
     }
 }

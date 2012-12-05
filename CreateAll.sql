@@ -64,22 +64,22 @@ USE [Sales]
 GO
 
 IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES
-	WHERE TABLE_NAME = 'Appointment')
+	WHERE TABLE_NAME = 'Visit')
 BEGIN
-	CREATE TABLE [dbo].[Appointment](
+	CREATE TABLE [dbo].[Visit](
 		[Id] uniqueidentifier NOT NULL,
 		[ConsultantId] uniqueidentifier NULL,
 		[Start] datetime  NOT NULL,
 		[End] datetime NOT NULL,
 		[LeadId] uniqueidentifier NULL
-		CONSTRAINT [PK_Holiday] PRIMARY KEY CLUSTERED 
+		CONSTRAINT [PK_Visit] PRIMARY KEY CLUSTERED 
 		(
 			[Id] ASC
 		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 	) ON [PRIMARY]
 
-	INSERT INTO [Appointment] ([Id], [Start], [End], [LeadId]) VALUES ('c81a69b9-40be-4553-abbf-e334b64e5f8a', '2012-08-07 10:00:00', '2012-08-07 11:00:00', 'c81a69b9-40be-4553-abbf-e334b64e5f8a')
-	INSERT INTO [Appointment] ([Id], [Start], [End], [LeadId]) VALUES ('f346bcc5-b2d1-4b4e-9359-f810d1880fcb', '2012-08-07 10:00:00', '2012-08-07 11:00:00', 'f346bcc5-b2d1-4b4e-9359-f810d1880fcb')
+	INSERT INTO [Visit] ([Id], [Start], [End], [LeadId]) VALUES ('c81a69b9-40be-4553-abbf-e334b64e5f8a', '2012-08-07 10:00:00', '2012-08-07 11:00:00', 'c81a69b9-40be-4553-abbf-e334b64e5f8a')
+	INSERT INTO [Visit] ([Id], [Start], [End], [LeadId]) VALUES ('f346bcc5-b2d1-4b4e-9359-f810d1880fcb', '2012-08-07 10:00:00', '2012-08-07 11:00:00', 'f346bcc5-b2d1-4b4e-9359-f810d1880fcb')
 END
 GO
 
@@ -92,15 +92,47 @@ BEGIN
 		[Address1] nvarchar(100) NULL,
 		[Address2] nvarchar(100) NULL,
 		[Address3] nvarchar(100) NULL,
-		[ConsultantIdAssignedTo] uniqueidentifier NULL
+		[AssignedToConsultantId] uniqueidentifier NULL,
+		[SignedUp] bit NOT NULL,
 		CONSTRAINT [PK_Lead] PRIMARY KEY CLUSTERED 
 		(
 			[Id] ASC
 		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 	) ON [PRIMARY]
 
-	INSERT INTO [Lead] ([Id], [Name], [Address1], [Address2], [ConsultantIdAssignedTo]) VALUES ('c81a69b9-40be-4553-abbf-e334b64e5f8a', 'The Orange Company', '6 Orange Road, Orangeborough', 'Orangeshire', '54b26de9-2dae-4168-a66c-281b6f03f1b5')
-	INSERT INTO [Lead] ([Id], [Name], [Address1], [Address2], [ConsultantIdAssignedTo]) VALUES ('f346bcc5-b2d1-4b4e-9359-f810d1880fcb', 'Purple Inc.', '1 Purple Street, Purpleton', 'Purpleshire', '54b26de9-2dae-4168-a66c-281b6f03f1b5')
+	INSERT INTO [Lead] ([Id], [Name], [Address1], [Address2], [AssignedToConsultantId], [SignedUp]) VALUES ('c81a69b9-40be-4553-abbf-e334b64e5f8a', 'The Orange Company', '6 Orange Road, Orangeborough', 'Orangeshire', '54b26de9-2dae-4168-a66c-281b6f03f1b5', 0)
+	INSERT INTO [Lead] ([Id], [Name], [Address1], [Address2], [AssignedToConsultantId], [SignedUp]) VALUES ('f346bcc5-b2d1-4b4e-9359-f810d1880fcb', 'Purple Inc.', '1 Purple Street, Purpleton', 'Purpleshire', '54b26de9-2dae-4168-a66c-281b6f03f1b5', 0)
 END
 GO
 
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES
+	WHERE TABLE_NAME = 'Deal')
+BEGIN
+	CREATE TABLE [dbo].[Deal](
+		[Id] uniqueidentifier NOT NULL,
+		[LeadId] uniqueidentifier NULL,
+		[MadeByConsultantId] uniqueidentifier NULL,
+		[Value] int NULL,
+		[Commission] int NULL
+		CONSTRAINT [PK_Deal] PRIMARY KEY CLUSTERED 
+		(
+			[Id] ASC
+		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+END
+GO
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES
+	WHERE TABLE_NAME = 'DealService')
+BEGIN
+	CREATE TABLE [dbo].[DealService](
+		[Id] uniqueidentifier NOT NULL,
+		[DealId] uniqueidentifier NULL,
+		[ServiceId] uniqueidentifier NULL
+		CONSTRAINT [PK_DealService] PRIMARY KEY CLUSTERED 
+		(
+			[Id] ASC
+		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+END
+GO

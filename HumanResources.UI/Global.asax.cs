@@ -43,6 +43,7 @@ namespace HumanResources.UI
                 .MsmqTransport()
                     .IsTransactional(false)
                     .PurgeOnStartup(false)
+                .MsmqSubscriptionStorage()
                 .DoNotCreateQueues()
                 .UnicastBus()
                     .ImpersonateSender(false)

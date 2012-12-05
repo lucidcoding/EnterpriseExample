@@ -6,9 +6,9 @@ using Sales.Domain.RepositoryContracts;
 
 namespace Sales.Data.Repositories
 {
-    public class  AppointmentRepository : Repository<Appointment, Guid>, IAppointmentRepository
+    public class  VisitRepository : Repository<Visit, Guid>, IVisitRepository
     {
-        public AppointmentRepository(ISessionProvider sessionProvider) :
+        public VisitRepository(ISessionProvider sessionProvider) :
             base(sessionProvider)
         {
         }

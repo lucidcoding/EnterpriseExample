@@ -19,19 +19,19 @@ namespace Sales.Application.Implementations
     {
         private readonly ISessionFactory _sessionFactory;
         private readonly IBus _bus;
-        private readonly IAppointmentRepository _appointmentRepository;
+        private readonly IVisitRepository _appointmentRepository;
 
         public AppointmentService(
             ISessionFactory sessionFactory,
             IBus bus,
-            IAppointmentRepository appointmentRepository)
+            IVisitRepository appointmentRepository)
         {
             _sessionFactory = sessionFactory;
             _bus = bus;
             _appointmentRepository = appointmentRepository;
         }
 
-        public Appointment GetById(Guid id)
+        public Visit GetById(Guid id)
         {
             using (var transactionScope = new TransactionScope())
             {
@@ -41,7 +41,7 @@ namespace Sales.Application.Implementations
             }
         }
 
-        public IList<Appointment> GetByIds(List<Guid> ids)
+        public IList<Visit> GetByIds(List<Guid> ids)
         {
             using (var transactionScope = new TransactionScope())
             {
@@ -55,7 +55,7 @@ namespace Sales.Application.Implementations
         {
             using (var transactionScope = new TransactionScope())
             {
-                var validationMessages = Appointment.ValidateBook(
+                var validationMessages = Visit.ValidateBook(
                     request.ConsultantId,
                     request.Date,
                     request.StartTime,
@@ -72,14 +72,14 @@ namespace Sales.Application.Implementations
         {
             using (var transactionScope = new TransactionScope())
             {
-                DomainEvents.Register<AppointmentBookedEvent>(AppointmentBooked);
-                Appointment.Book(request.ConsultantId, request.Id, request.Date, request.StartTime, request.EndTime, request.LeadName, request.Address);
+                DomainEvents.Register<LeadAddedEvent>(AppointmentBooked);
+                Visit.Book(request.ConsultantId, request.Id, request.Date, request.StartTime, request.EndTime, request.LeadName, request.Address);
                 _appointmentRepository.Flush();
                 transactionScope.Complete();
             }
         }
 
-        private void AppointmentBooked(AppointmentBookedEvent @event)
+        private void AppointmentBooked(LeadAddedEvent @event)
         {
             _appointmentRepository.Save(@event.Source);
 

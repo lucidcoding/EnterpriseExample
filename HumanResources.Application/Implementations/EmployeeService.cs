@@ -66,7 +66,7 @@ namespace HumanResources.Application.Implementations
                 DepartmentId = @event.Source.Department != null ? @event.Source.Department.Id : default(Guid?)
             };
 
-            //_bus.Publish(makeBookingCommand);
+            _bus.Publish(makeBookingCommand);
         }
     }
 }

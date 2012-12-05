@@ -59,8 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IAppointmentService.cs" />
+    <Compile Include="Contracts\ILeadService.cs" />
     <Compile Include="Core\ApplicationRegistry.cs" />
     <Compile Include="Implementations\AppointmentService.cs" />
+    <Compile Include="Implementations\LeadService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BookAppointmentRequest.cs" />
     <Compile Include="Requests\BookTimeAllocationRequest.cs" />

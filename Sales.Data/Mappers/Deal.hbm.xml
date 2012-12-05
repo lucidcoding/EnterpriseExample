@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="Sales.Domain.Entities"
+                   assembly="Sales.Domain">
+	<class name="Deal" table="`Deal`">
+		<id name="Id" column="Id" type="guid">
+			<generator class="assigned"/>
+		</id>
+		<many-to-one name="Lead" class="Lead" column="LeadId" />
+		<property name="MadeByConsultantId" />
+		<property name="Value" column="`Value`" />
+		<property name="Commission" />
+		<bag name="Services" table="DealService" >
+			<key column="DealId"></key>
+			<one-to-many class="DealService" />
+		</bag>
+	</class>
+</hibernate-mapping>
