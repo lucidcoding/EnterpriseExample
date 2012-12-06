@@ -44,16 +44,16 @@ namespace Sales.Data.Common
             return _sessionProvider.GetCurrent().Load<TEntity>(id);
         }
 
-        public virtual List<TEntity> GetAll()
+        public virtual IList<TEntity> GetAll()
         {
             var criteriaQuery = _sessionProvider.GetCurrent().CreateCriteria(typeof(TEntity));
             return (List<TEntity>)criteriaQuery.List<TEntity>();
         }
 
-        public List<TEntity> GetByIds(List<TId> ids)
+        public IList<TEntity> GetByIds(IList<TId> ids)
         {
             return _sessionProvider.GetCurrent().CreateCriteria<TEntity>()
-                .Add(Expression.In("Id", ids))
+                .Add(Expression.In("Id", ids.ToArray()))
                 .List<TEntity>()
                 .ToList();
         }

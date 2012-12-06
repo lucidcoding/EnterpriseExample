@@ -11,7 +11,7 @@ namespace Sales.Application.Core
         {
             Configure(x =>
             {
-                For<IAppointmentService>().Use<AppointmentService>();
+                For<ILeadService>().Use<LeadService>();
                 x.ImportRegistry(typeof(DataRegistry));
             });
         }

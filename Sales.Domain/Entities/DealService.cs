@@ -5,6 +5,6 @@ namespace Sales.Domain.Entities
 {
     public class DealService : Entity<Guid>
     {
-        public Guid ServiceId { get; set; }
+        public virtual Guid ServiceId { get; set; }
     }
 }

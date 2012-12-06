@@ -238,6 +238,9 @@ namespace Sales.UI.HumanResources.WCF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAll", ReplyAction="http://tempuri.org/IEmployeeService/GetAllResponse")]
         Sales.UI.HumanResources.WCF.EmployeeDto[] GetAll();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetByIds", ReplyAction="http://tempuri.org/IEmployeeService/GetByIdsResponse")]
+        Sales.UI.HumanResources.WCF.EmployeeDto[] GetByIds(System.Guid[] ids);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetById", ReplyAction="http://tempuri.org/IEmployeeService/GetByIdResponse")]
         Sales.UI.HumanResources.WCF.EmployeeDto GetById(System.Guid id);
     }
@@ -271,6 +274,10 @@ namespace Sales.UI.HumanResources.WCF {
         
         public Sales.UI.HumanResources.WCF.EmployeeDto[] GetAll() {
             return base.Channel.GetAll();
+        }
+        
+        public Sales.UI.HumanResources.WCF.EmployeeDto[] GetByIds(System.Guid[] ids) {
+            return base.Channel.GetByIds(ids);
         }
         
         public Sales.UI.HumanResources.WCF.EmployeeDto GetById(System.Guid id) {

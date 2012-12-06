@@ -34,6 +34,16 @@ namespace HumanResources.Application.Implementations
             }
         }
 
+        public IList<Employee> GetByIds(IList<Guid> ids)
+        {
+            using (var transactionScope = new TransactionScope())
+            {
+                var employees = _employeeRepository.GetByIds(ids);
+                transactionScope.Complete();
+                return employees;
+            }
+        }
+
         public Employee GetById(Guid id)
         {
             using (var transactionScope = new TransactionScope())

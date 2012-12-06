@@ -11,8 +11,8 @@ namespace Sales.Domain.Common
         void Update(TEntity obj);
         TEntity GetById(TId id);
         TEntity LoadById(TId id);
-        List<TEntity> GetAll();
-        List<TEntity> GetByIds(List<TId> ids);
+        IList<TEntity> GetAll();
+        IList<TEntity> GetByIds(IList<TId> ids);
         void Flush();
     }
 }

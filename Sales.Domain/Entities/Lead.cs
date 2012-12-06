@@ -10,7 +10,7 @@ namespace Sales.Domain.Entities
         public virtual string Address1 { get; set; }
         public virtual string Address2 { get; set; }
         public virtual string Address3 { get; set; }
-        public virtual Guid AssignedToConsultantId { get; set; }
+        public virtual Guid? AssignedToConsultantId { get; set; }
         public virtual bool SignedUp { get; set; }
 
         public static void Add(string name, string address1, string address2, string address3, Guid assignedToConsultantId)
@@ -29,7 +29,7 @@ namespace Sales.Domain.Entities
             DomainEvents.Raise(new LeadAddedEvent(lead));
         }
 
-        internal virtual void MarkAsSignedUp()
+        public virtual void MarkAsSignedUp()
         {
             SignedUp = true;
         }

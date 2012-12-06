@@ -19,7 +19,7 @@ namespace Sales.Data.Repositories
             return _sessionProvider
                 .GetCurrent()
                 .CreateCriteria<Lead>()
-                .Add(Restrictions.Not(Restrictions.Eq("SignedUp", false)))
+                .Add(Restrictions.Eq("SignedUp", false))
                 .List<Lead>();
         }
     }

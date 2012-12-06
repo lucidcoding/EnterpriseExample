@@ -11,6 +11,9 @@ namespace HumanResources.WCF
         EmployeeDto[] GetAll();
 
         [OperationContract]
+        EmployeeDto[] GetByIds(Guid[] ids);
+
+        [OperationContract]
         EmployeeDto GetById(Guid id);
     }
 }

@@ -11,6 +11,7 @@ namespace HumanResources.WCF.Core
             Configure(x =>
                           {
                               For<IBus>().Use(Global.Bus);
+                              For<IEmployeeService>().Use<EmployeeService>();
                               x.ImportRegistry(typeof (ApplicationRegistry));
                           });
         }
