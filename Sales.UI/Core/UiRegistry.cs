@@ -14,7 +14,6 @@ namespace Sales.UI.Core
             Configure(x =>
             {
                 For<IBus>().Use(MvcApplication.Bus);
-                For<ILeadRepository>().Use<LeadRepository>();
                 For<IEmployeeService>().Use(new EmployeeServiceClient());
                 x.ImportRegistry(typeof(DataRegistry));
             });

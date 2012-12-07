@@ -8,7 +8,7 @@ using Sales.UI.ViewModels;
 
 namespace Sales.UI.Controllers
 {
-    public class DealController : Controller
+    public class DealController : AsyncController
     {
         private readonly IBus _bus;
 
@@ -28,5 +28,10 @@ namespace Sales.UI.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        public void RegisterAsync(RegisterDealViewModel viewModel)
+        {
+            
+        }
     }
 }

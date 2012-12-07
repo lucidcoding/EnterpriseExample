@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using System.Web.Mvc;
-using System.Web.Mvc.Async;
-using HumanResources.Application.Contracts;
+using HumanResources.Domain.Entities;
+using HumanResources.Domain.RepositoryContracts;
 using HumanResources.Messages.Commands;
 using HumanResources.Messages.Replies;
 using HumanResources.UI.ViewModels;
@@ -19,17 +21,23 @@ namespace HumanResources.UI.Controllers
     public class EmployeeController : AsyncController
     {
         private readonly IBus _bus;
-        private readonly IEmployeeService _employeeService;
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public EmployeeController(IBus bus, IEmployeeService employeeService)
+        public EmployeeController(IBus bus, IEmployeeRepository employeeRepository)
         {
             _bus = bus;
-            _employeeService = employeeService;
+            _employeeRepository = employeeRepository;
         }
 
         public ActionResult Index(Guid? employeeId)
         {
-            var employees = _employeeService.GetCurrent();
+            IList<Employee> employees;
+            
+            using (var transactionScope = new TransactionScope())
+            {
+                employees = _employeeRepository.GetCurrent();
+                transactionScope.Complete();
+            }
 
             var viewModel = employees.Select(x => new IndexEmployeesRecordViewModel
                                                       {

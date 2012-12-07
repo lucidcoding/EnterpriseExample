@@ -1,5 +1,4 @@
-﻿using HumanResources.Application.Core;
-using NServiceBus;
+﻿using HumanResources.Data.Core;
 using StructureMap.Configuration.DSL;
 
 namespace HumanResources.UI.Core
@@ -11,7 +10,7 @@ namespace HumanResources.UI.Core
             Configure(x =>
             {
                 //For<IBus>().Use(MvcApplication.Bus);
-                x.ImportRegistry(typeof(ApplicationRegistry));
+                x.ImportRegistry(typeof(DataRegistry));
             });
         }
     }

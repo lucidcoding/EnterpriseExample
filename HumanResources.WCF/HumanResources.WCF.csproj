@@ -98,10 +98,6 @@
     <Folder Include="Common\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HumanResources.Application\HumanResources.Application.csproj">
-      <Project>{0F39916A-A264-4412-BC4C-E8B4551599D9}</Project>
-      <Name>HumanResources.Application</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HumanResources.Data\HumanResources.Data.csproj">
       <Project>{477EDE18-1D79-46E9-95F1-345A34F390A6}</Project>
       <Name>HumanResources.Data</Name>

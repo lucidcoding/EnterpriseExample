@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Transactions;
 using HumanResources.Data.Common;
+using HumanResources.Domain.RepositoryContracts;
 using HumanResources.WCF.Core;
 using HumanResources.WCF.DataTransferObjects;
 using HumanResources.WCF.Mappers;
@@ -15,14 +16,14 @@ namespace HumanResources.WCF
 {
     public class EmployeeService : IEmployeeService
     {
-        private readonly Application.Contracts.IEmployeeService _employeeService;
+        private readonly IEmployeeRepository _employeeRepository;
         private readonly ISessionProvider _sessionProvider;
 
         //todo: there is a better way to do IOC with WCF, but haven't got it working.
         public EmployeeService()
         {
             ObjectFactory.Container.Configure(x => x.AddRegistry<WcfRegistry>());
-            _employeeService = ObjectFactory.GetInstance<Application.Contracts.IEmployeeService>();
+            _employeeRepository = ObjectFactory.GetInstance<IEmployeeRepository>();
             _sessionProvider = ObjectFactory.GetInstance<ISessionProvider>();
         }
 
@@ -32,7 +33,7 @@ namespace HumanResources.WCF
             {
                 using (var transactionScope = new TransactionScope())
                 {
-                    var employeeDtos = new EmployeeDtoMapper().Map(_employeeService.GetCurrent().ToArray());
+                    var employeeDtos = new EmployeeDtoMapper().Map(_employeeRepository.GetCurrent().ToArray());
                     transactionScope.Complete();
                     return employeeDtos;
                 }
@@ -49,7 +50,7 @@ namespace HumanResources.WCF
             {
                 using (var transactionScope = new TransactionScope())
                 {
-                    var employeeDtos = new EmployeeDtoMapper().Map(_employeeService.GetByIds(ids.ToList()).ToArray());
+                    var employeeDtos = new EmployeeDtoMapper().Map(_employeeRepository.GetByIds(ids.ToList()).ToArray());
                     transactionScope.Complete();
                     return employeeDtos;
                 }
@@ -66,7 +67,7 @@ namespace HumanResources.WCF
             {
                 using (var transactionScope = new TransactionScope())
                 {
-                    var employeeDtos = new EmployeeDtoMapper().Map(_employeeService.GetById(id));
+                    var employeeDtos = new EmployeeDtoMapper().Map(_employeeRepository.GetById(id));
                     transactionScope.Complete();
                     return employeeDtos;
                 }
