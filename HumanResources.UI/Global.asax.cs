@@ -12,7 +12,7 @@ namespace HumanResources.UI
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        public static IBus Bus { get; private set; }
+        //public static IBus Bus { get; private set; }
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
@@ -34,8 +34,10 @@ namespace HumanResources.UI
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            RegisterGlobalFilters(GlobalFilters.Filters);
+            RegisterRoutes(RouteTable.Routes);
 
-            Bus = Configure.With()
+            Configure.WithWeb()
                 .StructureMapBuilder()
                 .ForMvc()
                 .JsonSerializer()
@@ -44,16 +46,33 @@ namespace HumanResources.UI
                     .IsTransactional(false)
                     .PurgeOnStartup(false)
                 .MsmqSubscriptionStorage()
-                .DoNotCreateQueues()
+                //.DoNotCreateQueues()
                 .UnicastBus()
                     .ImpersonateSender(false)
                 .CreateBus()
                 .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
 
+
+            //var config = Configure.With();
+            //config = config.StructureMapBuilder();
+            //config = config.ForMvc();
+            //config = config.JsonSerializer();
+            //config = config.Log4Net();
+
+            //config = config.MsmqTransport()
+            //    .IsTransactional(false)
+            //    .PurgeOnStartup(false);
+
+            //config = config.MsmqSubscriptionStorage();
+            //    //.DoNotCreateQueues()
+            //config = config.UnicastBus();
+            //    //    .ImpersonateSender(false)
+
+            //var bus = config.CreateBus();
+            //bus.Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+
             ObjectFactory.Container.Configure(x => x.AddRegistry<UiRegistry>());
             ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerActivator());
-            RegisterGlobalFilters(GlobalFilters.Filters);
-            RegisterRoutes(RouteTable.Routes);
         }
     }
 }

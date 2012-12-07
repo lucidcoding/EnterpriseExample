@@ -10,7 +10,7 @@ namespace HumanResources.UI.Core
         {
             Configure(x =>
             {
-                For<IBus>().Use(MvcApplication.Bus);
+                //For<IBus>().Use(MvcApplication.Bus);
                 x.ImportRegistry(typeof(ApplicationRegistry));
             });
         }

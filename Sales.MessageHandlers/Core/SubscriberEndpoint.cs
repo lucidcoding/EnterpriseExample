@@ -1,4 +1,4 @@
-﻿using Calendar.Messages.Events;
+﻿using HumanResources.Messages.Events;
 using NServiceBus;
 
 namespace Sales.MessageHandlers.Core
@@ -14,12 +14,12 @@ namespace Sales.MessageHandlers.Core
 
         public void Run()
         {
-            //_bus.Subscribe<BookingMade>();
+            _bus.Subscribe<EmployeeLeft>();
         }
 
         public void Stop()
         {
-            //_bus.Unsubscribe<BookingMade>();
+            _bus.Unsubscribe<EmployeeLeft>();
         }
     }
 }

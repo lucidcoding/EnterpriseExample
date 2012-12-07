@@ -9,6 +9,6 @@ namespace HumanResources.Application.Contracts
         IList<Employee> GetCurrent();
         IList<Employee> GetByIds(IList<Guid> ids);
         Employee GetById(Guid id);
-        void MarkAsLeft(Guid id);
+        //void MarkAsLeft(Guid id);
     }
 }

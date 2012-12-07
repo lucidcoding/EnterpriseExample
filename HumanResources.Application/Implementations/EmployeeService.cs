@@ -54,29 +54,39 @@ namespace HumanResources.Application.Implementations
             }
         }
 
-        public void MarkAsLeft(Guid id)
-        {
-            using (var transactionScope = new TransactionScope())
-            {
-                DomainEvents.Register<EmployeeLeftEvent>(EmployeeLeftHandler);
-                var employee = _employeeRepository.GetById(id);
-                employee.MarkAsLeft();
-                transactionScope.Complete();
-            }
-        }
+        //public void MarkAsLeft(Guid id)
+        //{
+        //    using (var transactionScope = new TransactionScope())
+        //    {
+        //        DomainEvents.Register<EmployeeLeftEvent>(EmployeeLeftHandler);
+        //        var employee = _employeeRepository.GetById(id);
+        //        employee.MarkAsLeft();
+        //        _employeeRepository.Flush();
+        //        transactionScope.Complete();
+        //    }
+        //}
 
-        private void EmployeeLeftHandler(EmployeeLeftEvent @event)
-        {
-            _employeeRepository.Save(@event.Source);
+        //private void EmployeeLeftHandler(EmployeeLeftEvent @event)
+        //{
+        //    _employeeRepository.Save(@event.Source);
 
-            var makeBookingCommand = new EmployeeLeft
-            {
-                Id = @event.Source.Id.Value,
-                Left = @event.Source.Left,
-                DepartmentId = @event.Source.Department != null ? @event.Source.Department.Id : default(Guid?)
-            };
+        //    var makeBookingCommand = new EmployeeLeft
+        //    {
+        //        Id = @event.Source.Id.Value,
+        //        Left = @event.Source.Left,
+        //        DepartmentId = @event.Source.Department != null ? @event.Source.Department.Id : default(Guid?)
+        //    };
 
-            _bus.Publish(makeBookingCommand);
-        }
+        //    _bus.Publish(makeBookingCommand);
+
+        //    //var makeBookingCommand = new HumanResources.Messages.Commands.MarkEmployeeAsLeft
+        //    //{
+        //    //    Id = @event.Source.Id.Value,
+        //    //    Left = @event.Source.Left,
+        //    //    DepartmentId = @event.Source.Department != null ? @event.Source.Department.Id : default(Guid?)
+        //    //};
+
+        //    //_bus.Send(makeBookingCommand);
+        //}
     }
 }

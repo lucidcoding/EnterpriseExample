@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Web.Mvc;
 using HumanResources.Application.Contracts;
+using HumanResources.Messages.Commands;
 using HumanResources.UI.ViewModels;
+using NServiceBus;
 
 namespace HumanResources.UI.Controllers
 {
@@ -14,10 +16,12 @@ namespace HumanResources.UI.Controllers
     /// </remarks>
     public class EmployeeController : Controller
     {
+        private readonly IBus _bus;
         private readonly IEmployeeService _employeeService;
 
-        public EmployeeController(IEmployeeService employeeService)
+        public EmployeeController(IBus bus, IEmployeeService employeeService)
         {
+            _bus = bus;
             _employeeService = employeeService;
         }
 
@@ -50,7 +54,7 @@ namespace HumanResources.UI.Controllers
 
         public ActionResult MarkAsLeft(Guid id)
         {
-            _employeeService.MarkAsLeft(id);
+            _bus.Send(new MarkEmployeeAsLeft {Id = id});
             return RedirectToAction("Index");
         }
     }
