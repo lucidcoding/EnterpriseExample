@@ -2,12 +2,10 @@
 
 namespace Sales.UI.ViewModels
 {
-    public class LogVisitViewModel
+    public class IndexVisitsRecordViewModel
     {
         public Guid Id { get; set; }
-        public Guid LeadId { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        public bool ResultedInDeal { get; set; }
     }
 }

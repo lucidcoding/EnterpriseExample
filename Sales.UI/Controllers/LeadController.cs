@@ -36,7 +36,7 @@ namespace Sales.UI.Controllers
                               .Select(x => x.AssignedToConsultantId.Value)
                               .ToArray());
 
-            var viewModel = leads.Select(x => new IndexLeadsViewModel
+            var viewModel = leads.Select(x => new IndexLeadsRecordViewModel
                                                   {
                                                       Id = x.Id.Value,
                                                       Name = x.Name,

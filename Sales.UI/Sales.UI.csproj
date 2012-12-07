@@ -82,6 +82,7 @@
     <Compile Include="Common\NServiceBusControllerActivator.cs" />
     <Compile Include="Common\NServiceBusDependencyResolverAdapter.cs" />
     <Compile Include="Common\StructureMapControllerActivator.cs.cs" />
+    <Compile Include="Controllers\DealController.cs" />
     <Compile Include="Controllers\LeadController.cs" />
     <Compile Include="Controllers\VisitController.cs" />
     <Compile Include="Core\UiRegistry.cs" />
@@ -95,8 +96,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\IndexLeadsViewModel.cs" />
+    <Compile Include="ViewModels\IndexLeadsRecordViewModel.cs" />
+    <Compile Include="ViewModels\IndexVisitsRecordViewModel.cs" />
+    <Compile Include="ViewModels\IndexVisitsViewModel.cs.cs" />
     <Compile Include="ViewModels\LogVisitViewModel.cs" />
+    <Compile Include="ViewModels\RegisterDealViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -159,6 +163,8 @@
     </None>
     <Content Include="Views\Lead\Index.cshtml" />
     <Content Include="Views\Visit\Log.cshtml" />
+    <Content Include="Views\Visit\Index.cshtml" />
+    <Content Include="Views\Deal\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

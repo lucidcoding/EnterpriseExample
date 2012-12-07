@@ -26,7 +26,7 @@ namespace Sales.MessageHandlers.Core
 
         public void HandleError()
         {
-            Cleardown();
+            //Cleardown();
         }
 
         private void Cleardown()

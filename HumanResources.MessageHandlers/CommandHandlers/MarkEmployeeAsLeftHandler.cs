@@ -11,10 +11,12 @@ namespace HumanResources.MessageHandlers.CommandHandlers
 {
     public class MarkEmployeeAsLeftHandler : IHandleMessages<MarkEmployeeAsLeft>
     {
-        public IBus _bus;
+        private readonly IBus _bus;
         private readonly IEmployeeRepository _employeeRepository;
 
-        public MarkEmployeeAsLeftHandler(IBus bus, IEmployeeRepository employeeRepository)
+        public MarkEmployeeAsLeftHandler(
+            IBus bus, 
+            IEmployeeRepository employeeRepository)
         {
             _bus = bus;
             _employeeRepository = employeeRepository;

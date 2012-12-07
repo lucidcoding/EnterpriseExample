@@ -2,7 +2,7 @@
 
 namespace Sales.UI.ViewModels
 {
-    public class IndexLeadsViewModel
+    public class IndexLeadsRecordViewModel
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

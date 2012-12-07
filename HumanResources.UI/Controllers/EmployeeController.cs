@@ -31,7 +31,7 @@ namespace HumanResources.UI.Controllers
         {
             var employees = _employeeService.GetCurrent();
 
-            var viewModel = employees.Select(x => new IndexEmployeesViewModel
+            var viewModel = employees.Select(x => new IndexEmployeesRecordViewModel
                                                       {
                                                           Id = x.Id.Value,
                                                           FullName = x.FullName,

@@ -13,12 +13,13 @@ namespace Sales.Domain.Entities
         public virtual int Value { get; set; }
         public virtual int Commission { get; set; }
 
-        public static void Register(Lead lead, Guid madeByConsultantId, IList<Guid> serviceIds, int value)
+        //TODO: validate this - that lead is assigned or will error?
+        public static void Register(Lead lead, IList<Guid> serviceIds, int value)
         {
             var deal = new Deal
                            {
                                Id = Guid.NewGuid(),
-                               MadeByConsultantId = madeByConsultantId,
+                               MadeByConsultantId = lead.AssignedToConsultantId.Value,
                                Value = value,
                                Services = new List<DealService>(),
                                Commission = value/10

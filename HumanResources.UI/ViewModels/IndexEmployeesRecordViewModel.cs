@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace HumanResources.UI.ViewModels
 {
-    public class IndexEmployeesViewModel
+    public class IndexEmployeesRecordViewModel
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }
