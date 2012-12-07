@@ -13,7 +13,7 @@ namespace Sales.Domain.Entities
         public virtual int Value { get; set; }
         public virtual int Commission { get; set; }
 
-        public static void RecordWasSigned(Lead lead, Guid madeByConsultantId, IList<Guid> serviceIds, int value)
+        public static void Register(Lead lead, Guid madeByConsultantId, IList<Guid> serviceIds, int value)
         {
             var deal = new Deal
                            {

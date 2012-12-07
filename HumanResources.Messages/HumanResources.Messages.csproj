@@ -46,6 +46,7 @@
     <Compile Include="Commands\MarkEmployeeAsLeft.cs" />
     <Compile Include="Events\EmployeeLeft.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Replies\ReturnCode.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

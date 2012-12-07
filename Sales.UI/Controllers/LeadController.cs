@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Transactions;
 using System.Web.Mvc;
-using Sales.Application.Contracts;
+using Sales.Domain.Entities;
+using Sales.Domain.RepositoryContracts;
 using Sales.UI.HumanResources.WCF;
 using Sales.UI.ViewModels;
 
@@ -11,18 +11,24 @@ namespace Sales.UI.Controllers
 {
     public class LeadController : Controller
     {
-        private readonly ILeadService _leadService;
+        private readonly ILeadRepository _leadRepository;
         private readonly IEmployeeService _employeeService;
 
-        public LeadController(ILeadService leadService, IEmployeeService employeeService)
+        public LeadController(ILeadRepository leadRepository, IEmployeeService employeeService)
         {
-            _leadService = leadService;
+            _leadRepository = leadRepository;
             _employeeService = employeeService;
         }
 
         public ActionResult Index()
         {
-            var leads = _leadService.GetUnsigned();
+            IList<Lead> leads;
+
+            using (var transactionScope = new TransactionScope())
+            {
+                leads = _leadRepository.GetUnsigned();
+                transactionScope.Complete();
+            }
 
             var consultants = _employeeService
                 .GetByIds(leads
@@ -46,6 +52,5 @@ namespace Sales.UI.Controllers
 
             return View(viewModel);
         }
-
     }
 }

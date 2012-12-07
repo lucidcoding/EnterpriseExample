@@ -28,7 +28,6 @@ namespace HumanResources.UI
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Employee", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
-
         }
 
         protected void Application_Start()
@@ -37,7 +36,7 @@ namespace HumanResources.UI
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-            Configure.WithWeb()
+            Configure.With()
                 .StructureMapBuilder()
                 .ForMvc()
                 .JsonSerializer()
@@ -51,25 +50,6 @@ namespace HumanResources.UI
                     .ImpersonateSender(false)
                 .CreateBus()
                 .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
-
-
-            //var config = Configure.With();
-            //config = config.StructureMapBuilder();
-            //config = config.ForMvc();
-            //config = config.JsonSerializer();
-            //config = config.Log4Net();
-
-            //config = config.MsmqTransport()
-            //    .IsTransactional(false)
-            //    .PurgeOnStartup(false);
-
-            //config = config.MsmqSubscriptionStorage();
-            //    //.DoNotCreateQueues()
-            //config = config.UnicastBus();
-            //    //    .ImpersonateSender(false)
-
-            //var bus = config.CreateBus();
-            //bus.Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
 
             ObjectFactory.Container.Configure(x => x.AddRegistry<UiRegistry>());
             ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerActivator());

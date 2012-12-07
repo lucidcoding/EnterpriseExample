@@ -1,5 +1,7 @@
 ﻿using NServiceBus;
-using Sales.Application.Core;
+using Sales.Data.Core;
+using Sales.Data.Repositories;
+using Sales.Domain.RepositoryContracts;
 using Sales.UI.HumanResources.WCF;
 using StructureMap.Configuration.DSL;
 
@@ -12,8 +14,9 @@ namespace Sales.UI.Core
             Configure(x =>
             {
                 For<IBus>().Use(MvcApplication.Bus);
+                For<ILeadRepository>().Use<LeadRepository>();
                 For<IEmployeeService>().Use(new EmployeeServiceClient());
-                x.ImportRegistry(typeof(ApplicationRegistry));
+                x.ImportRegistry(typeof(DataRegistry));
             });
         }
     }

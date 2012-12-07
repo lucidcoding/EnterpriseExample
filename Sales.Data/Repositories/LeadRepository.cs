@@ -22,5 +22,15 @@ namespace Sales.Data.Repositories
                 .Add(Restrictions.Eq("SignedUp", false))
                 .List<Lead>();
         }
+
+        public IList<Lead> GetUnsignedByAssignedToConsultantId(Guid consultantId)
+        {
+            return _sessionProvider
+                .GetCurrent()
+                .CreateCriteria<Lead>()
+                .Add(Restrictions.Eq("SignedUp", false))
+                .Add(Restrictions.Eq("AssignedToConsultantId", consultantId))
+                .List<Lead>();
+        }
     }
 }

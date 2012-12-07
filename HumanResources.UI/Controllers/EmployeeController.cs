@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Mvc.Async;
 using HumanResources.Application.Contracts;
 using HumanResources.Messages.Commands;
+using HumanResources.Messages.Replies;
 using HumanResources.UI.ViewModels;
 using NServiceBus;
 
@@ -14,7 +16,7 @@ namespace HumanResources.UI.Controllers
     /// when getting the list of employees, it gets all calendar entries for each one. This can be avoided but I'm leaving
     /// it for the sake of speed and simplicity. It's EDA I'm demonstrating here, not fine tuning NHibernate behavior.
     /// </remarks>
-    public class EmployeeController : Controller
+    public class EmployeeController : AsyncController
     {
         private readonly IBus _bus;
         private readonly IEmployeeService _employeeService;
@@ -52,9 +54,14 @@ namespace HumanResources.UI.Controllers
             return View("ComingSoon");
         }
 
-        public ActionResult MarkAsLeft(Guid id)
+        public void MarkAsLeftAsync(Guid id)
         {
-            _bus.Send(new MarkEmployeeAsLeft {Id = id});
+            var command = new MarkEmployeeAsLeft {Id = id};
+            _bus.Send(command).Register<ReturnCode>(status => AsyncManager.Parameters["returnCode"] = status);
+        }
+
+        public ActionResult MarkAsLeftCompleted(ReturnCode returnCode)
+        {
             return RedirectToAction("Index");
         }
     }

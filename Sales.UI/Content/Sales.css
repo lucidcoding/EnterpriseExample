@@ -86,3 +86,21 @@ textarea
     width: 200px;
     margin-right: 20px;
 }
+
+table {
+    background-color:indianred;
+    border-spacing:1px;
+}
+
+th {
+    color: white;
+    margin: 0px;
+    padding: 5px;
+}
+
+td {
+    background-color:white;
+    color: black;
+    margin: 0px;
+    padding: 5px;
+}

@@ -4,6 +4,7 @@ using HumanResources.Domain.Events;
 using HumanResources.Domain.RepositoryContracts;
 using HumanResources.Messages.Commands;
 using HumanResources.Messages.Events;
+using HumanResources.Messages.Replies;
 using NServiceBus;
 
 namespace HumanResources.MessageHandlers.CommandHandlers
@@ -21,13 +22,14 @@ namespace HumanResources.MessageHandlers.CommandHandlers
 
         public void Handle(MarkEmployeeAsLeft message)
         {
-            DomainEvents.Register<EmployeeLeftEvent>(EmployeeLeftHandler);
+            DomainEvents.Register<EmployeeLeftEvent>(EmployeeLeftEventHandler);
             var employee = _employeeRepository.GetById(message.Id);
             employee.MarkAsLeft();
             _employeeRepository.Flush();
+            _bus.Return(ReturnCode.OK);
         }
 
-        private void EmployeeLeftHandler(EmployeeLeftEvent @event)
+        private void EmployeeLeftEventHandler(EmployeeLeftEvent @event)
         {
             _employeeRepository.Save(@event.Source);
 

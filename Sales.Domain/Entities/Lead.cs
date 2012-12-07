@@ -33,5 +33,10 @@ namespace Sales.Domain.Entities
         {
             SignedUp = true;
         }
+
+        public virtual void Unassign()
+        {
+            AssignedToConsultantId = null;
+        }
     }
 }

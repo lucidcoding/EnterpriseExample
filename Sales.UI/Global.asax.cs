@@ -10,6 +10,8 @@ namespace Sales.UI
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
+    //todo: ensure sessions are closed. See project template and current project.
+
     public class MvcApplication : System.Web.HttpApplication
     {
         public static IBus Bus { get; private set; }

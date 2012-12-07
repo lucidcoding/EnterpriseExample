@@ -25,11 +25,11 @@ namespace Sales.Domain.Entities
             get { return End.TimeOfDay; }
         }
 
-        public static void RecordWasMade(Lead lead, DateTime start, DateTime end)
+        public static void Log(Guid id, Lead lead, DateTime start, DateTime end)
         {
             var visit = new Visit
                             {
-                                Id = Guid.NewGuid(),
+                                Id = id,
                                 Lead = lead,
                                 Start = start,
                                 End = end

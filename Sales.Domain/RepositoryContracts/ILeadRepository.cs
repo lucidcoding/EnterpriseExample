@@ -8,5 +8,6 @@ namespace Sales.Domain.RepositoryContracts
     public interface ILeadRepository : IRepository<Lead, Guid>
     {
         IList<Lead> GetUnsigned();
+        IList<Lead> GetUnsignedByAssignedToConsultantId(Guid consultantId);
     }
 }

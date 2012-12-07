@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\LogVisitHandler.cs" />
     <Compile Include="Core\MessageModule.cs" />
     <Compile Include="Core\MessageHandlersRegistry.cs" />
     <Compile Include="EventHandlers\EmployeeLeftHandler.cs" />
@@ -73,10 +74,6 @@
     <ProjectReference Include="..\HumanResources.Messages\HumanResources.Messages.csproj">
       <Project>{8B5B36C1-85A9-4FB2-B20A-A8E690CAFB9D}</Project>
       <Name>HumanResources.Messages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sales.Application\Sales.Application.csproj">
-      <Project>{AD735CA4-F617-40CC-A1F1-DE3F608A6C9D}</Project>
-      <Name>Sales.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sales.Data\Sales.Data.csproj">
       <Project>{8BB52A7E-8A11-42AF-8E0A-78770130CA9E}</Project>
@@ -99,9 +96,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CommandHandlers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
