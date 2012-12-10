@@ -18,6 +18,9 @@ GO
 CREATE DATABASE [Sales] 
 GO
 
+CREATE DATABASE [ClientServices]
+GO
+
 USE [HumanResources]
 GO
 
@@ -134,5 +137,26 @@ BEGIN
 			[Id] ASC
 		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 	) ON [PRIMARY]
+END
+GO
+
+USE [ClientServices]
+GO
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES
+	WHERE TABLE_NAME = 'Service')
+BEGIN
+	CREATE TABLE [dbo].[Service](
+		[Id] uniqueidentifier NOT NULL,
+		[Name] nvarchar(100) NULL
+		CONSTRAINT [PK_Service] PRIMARY KEY CLUSTERED 
+		(
+			[Id] ASC
+		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+
+	INSERT INTO [Service] ([Id], [Name]) VALUES ('d83db4f2-940c-4c26-bc7c-8ec2f5bbb994', 'Service 1')
+	INSERT INTO [Service] ([Id], [Name]) VALUES ('80650c0e-7b7f-438b-9fd0-8efa303d72b4', 'Service 2')
+	INSERT INTO [Service] ([Id], [Name]) VALUES ('3ae2c980-b88e-4401-bedc-20e8a8da14b2', 'Service 3')
 END
 GO

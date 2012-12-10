@@ -4,33 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
-using HumanResources.WCF.Core;
-using NServiceBus;
+using ClientServices.WCF.Core;
 using StructureMap;
 
-namespace HumanResources.WCF
+namespace ClientServices.WCF
 {
-    //TODO: This can go?
-    public class Global : HttpApplication
+    public class Global : System.Web.HttpApplication
     {
-        public static IBus Bus { get; private set; }
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            Bus = Configure.With()
-                .StructureMapBuilder()
-                //For WCF?
-                .JsonSerializer()
-                .Log4Net()
-                .MsmqTransport()
-                    .IsTransactional(false)
-                    .PurgeOnStartup(false)
-                .DoNotCreateQueues()
-                .UnicastBus()
-                    .ImpersonateSender(false)
-                .CreateBus()
-                .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
-
             ObjectFactory.Container.Configure(x => x.AddRegistry<WcfRegistry>());
         }
 

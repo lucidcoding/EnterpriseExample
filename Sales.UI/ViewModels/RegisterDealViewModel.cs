@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Sales.UI.ViewModels
 {
@@ -7,7 +7,8 @@ namespace Sales.UI.ViewModels
     {
         public Guid Id { get; set; }
         public Guid LeadId { get; set; }
-        public IList<Guid> ServiceIds { get; set; }
+        public SelectList Services { get; set; }
+        public Guid? ServiceId { get; set; }
         public int Value { get; set; }
     }
 }

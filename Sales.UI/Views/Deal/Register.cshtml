@@ -13,14 +13,8 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>RegisterDealViewModel</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LeadId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LeadId)
-            @Html.ValidationMessageFor(model => model.LeadId)
-        </div>
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.LeadId)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Value)
@@ -29,7 +23,13 @@
             @Html.EditorFor(model => model.Value)
             @Html.ValidationMessageFor(model => model.Value)
         </div>
-
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Services)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Services, Model.)
+            @Html.ValidationMessageFor(model => model.Value)
+        </div>
         <p>
             <input type="submit" value="Create" />
         </p>

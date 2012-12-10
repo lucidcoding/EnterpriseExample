@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{69BA86BB-76E8-4F71-9356-1FBD846DF988}</ProjectGuid>
+    <ProjectGuid>{A896093E-F28A-4356-A5A3-27DFAFC3752D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sales.Domain</RootNamespace>
-    <AssemblyName>Sales.Domain</AssemblyName>
+    <RootNamespace>ClientServices.Domain</RootNamespace>
+    <AssemblyName>ClientServices.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,20 +48,10 @@
     <Compile Include="Common\ValidationException.cs" />
     <Compile Include="Common\ValidationMessage.cs" />
     <Compile Include="Common\ValidationMessageCollection.cs" />
-    <Compile Include="Entities\Deal.cs" />
-    <Compile Include="Entities\DealService.cs" />
-    <Compile Include="Entities\Visit.cs" />
-    <Compile Include="Entities\Lead.cs" />
-    <Compile Include="Events\LeadUnassignedEvent.cs" />
-    <Compile Include="Events\DealSignedEvent.cs" />
-    <Compile Include="Events\VisitMadeEvent.cs" />
-    <Compile Include="Events\LeadAddedEvent.cs" />
+    <Compile Include="Entities\Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryContracts\IDealRepository.cs" />
-    <Compile Include="RepositoryContracts\ILeadRepository.cs" />
-    <Compile Include="RepositoryContracts\IVisitRepository.cs" />
+    <Compile Include="RepositoryContracts\IServiceRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

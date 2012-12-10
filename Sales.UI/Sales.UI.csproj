@@ -91,6 +91,11 @@
     </Compile>
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ClientServices.WCF\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\HumanResources.WCF\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -137,6 +142,19 @@
     </Content>
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.17.custom.min.js" />
+    <None Include="Service References\ClientServices.WCF\Sales.UI.ClientServices.WCF.ServiceDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ClientServices.WCF\ServiceService.wsdl" />
+    <None Include="Service References\ClientServices.WCF\ServiceService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ClientServices.WCF\ServiceService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ClientServices.WCF\ServiceService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\HumanResources.WCF\EmployeeService.disco" />
     <None Include="Service References\HumanResources.WCF\configuration91.svcinfo" />
     <None Include="Service References\HumanResources.WCF\configuration.svcinfo" />
@@ -144,6 +162,13 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\HumanResources.WCF\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ClientServices.WCF\ServiceService.disco" />
+    <None Include="Service References\ClientServices.WCF\configuration91.svcinfo" />
+    <None Include="Service References\ClientServices.WCF\configuration.svcinfo" />
+    <None Include="Service References\ClientServices.WCF\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -190,6 +215,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ClientServices.WCF\" />
     <WCFMetadataStorage Include="Service References\HumanResources.WCF\" />
   </ItemGroup>
   <ItemGroup>
