@@ -6,13 +6,9 @@
 		<id name="Id" column="Id" type="guid">
 			<generator class="assigned"/>
 		</id>
-		<many-to-one name="Lead" class="Lead" column="LeadId" />
+		<many-to-one name="Lead" class="Lead" column="LeadId" cascade="all" />
 		<property name="MadeByConsultantId" />
 		<property name="Value" column="`Value`" />
 		<property name="Commission" />
-		<bag name="Services" table="DealService" >
-			<key column="DealId"></key>
-			<one-to-many class="DealService" />
-		</bag>
 	</class>
 </hibernate-mapping>

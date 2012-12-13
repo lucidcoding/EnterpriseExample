@@ -49,7 +49,6 @@
     <Compile Include="Common\ValidationMessage.cs" />
     <Compile Include="Common\ValidationMessageCollection.cs" />
     <Compile Include="Entities\Deal.cs" />
-    <Compile Include="Entities\DealService.cs" />
     <Compile Include="Entities\Visit.cs" />
     <Compile Include="Entities\Lead.cs" />
     <Compile Include="Events\LeadUnassignedEvent.cs" />

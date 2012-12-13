@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientServices.Data", "Clie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientServices.WCF", "ClientServices.WCF\ClientServices.WCF.csproj", "{17E633F6-C5B2-4782-8870-E99EBBE4FA83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientServices.Messages", "ClientServices.Messages\ClientServices.Messages.csproj", "{3032E714-A212-4EDD-BC97-D917498AFF02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +108,10 @@ Global
 		{17E633F6-C5B2-4782-8870-E99EBBE4FA83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17E633F6-C5B2-4782-8870-E99EBBE4FA83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17E633F6-C5B2-4782-8870-E99EBBE4FA83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3032E714-A212-4EDD-BC97-D917498AFF02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3032E714-A212-4EDD-BC97-D917498AFF02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3032E714-A212-4EDD-BC97-D917498AFF02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3032E714-A212-4EDD-BC97-D917498AFF02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,5 +131,6 @@ Global
 		{A896093E-F28A-4356-A5A3-27DFAFC3752D} = {D9F24238-25BC-4ECE-8354-51D7384BD1B4}
 		{43F827F7-5FDE-4080-B84C-00BA6D97D2EE} = {D9F24238-25BC-4ECE-8354-51D7384BD1B4}
 		{17E633F6-C5B2-4782-8870-E99EBBE4FA83} = {D9F24238-25BC-4ECE-8354-51D7384BD1B4}
+		{3032E714-A212-4EDD-BC97-D917498AFF02} = {D9F24238-25BC-4ECE-8354-51D7384BD1B4}
 	EndGlobalSection
 EndGlobal

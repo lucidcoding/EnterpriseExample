@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandlers\LogVisitHandler.cs" />
+    <Compile Include="CommandHandlers\RegisterDealHandler.cs" />
     <Compile Include="Core\MessageModule.cs" />
     <Compile Include="Core\MessageHandlersRegistry.cs" />
     <Compile Include="EventHandlers\EmployeeLeftHandler.cs" />

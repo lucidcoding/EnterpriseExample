@@ -48,10 +48,18 @@
     <Compile Include="Common\ValidationException.cs" />
     <Compile Include="Common\ValidationMessage.cs" />
     <Compile Include="Common\ValidationMessageCollection.cs" />
+    <Compile Include="Entities\Agreement.cs" />
+    <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Service.cs" />
+    <Compile Include="Enumerations\AgreementStatus.cs" />
+    <Compile Include="Events\AgreementActivated.cs" />
+    <Compile Include="Events\ClientInitialized.cs" />
+    <Compile Include="Events\ClientDetailsConfirmed.cs" />
+    <Compile Include="Events\AgreementCancelled.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryContracts\IServiceRepository.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -75,7 +75,7 @@ namespace Sales.UI.Controllers
 
             _bus.Send(command).Register<ReturnCode>(status =>
                                                         {
-                                                            AsyncManager.Parameters["params"] = status;
+                                                            AsyncManager.Parameters["returnCode"] = status;
                                                             AsyncManager.Parameters["resultedInDeal"] =
                                                                 viewModel.ResultedInDeal;
                                                             AsyncManager.Parameters["leadId"] =

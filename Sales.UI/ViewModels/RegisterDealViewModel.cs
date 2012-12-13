@@ -7,8 +7,8 @@ namespace Sales.UI.ViewModels
     {
         public Guid Id { get; set; }
         public Guid LeadId { get; set; }
-        public SelectList Services { get; set; }
-        public Guid? ServiceId { get; set; }
+        public MultiSelectList Services { get; set; }
+        public Guid[] ServiceIds { get; set; }
         public int Value { get; set; }
     }
 }

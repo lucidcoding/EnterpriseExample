@@ -27,7 +27,7 @@
             @Html.LabelFor(model => model.Services)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.Services, Model.)
+            @Html.ListBox("ServiceIds", Model.Services)
             @Html.ValidationMessageFor(model => model.Value)
         </div>
         <p>

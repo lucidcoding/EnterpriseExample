@@ -10,6 +10,7 @@
     <property name="Address1" />
 	<property name="Address2" />
 	<property name="Address3" />
+	<property name="PhoneNumber" />
     <property name="AssignedToConsultantId" />
 	<property name="SignedUp" />
   </class>

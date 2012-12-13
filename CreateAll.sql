@@ -95,6 +95,7 @@ BEGIN
 		[Address1] nvarchar(100) NULL,
 		[Address2] nvarchar(100) NULL,
 		[Address3] nvarchar(100) NULL,
+		[PhoneNumber] nvarchar(100) NULL,
 		[AssignedToConsultantId] uniqueidentifier NULL,
 		[SignedUp] bit NOT NULL,
 		CONSTRAINT [PK_Lead] PRIMARY KEY CLUSTERED 
@@ -103,8 +104,8 @@ BEGIN
 		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 	) ON [PRIMARY]
 
-	INSERT INTO [Lead] ([Id], [Name], [Address1], [Address2], [Address3], [AssignedToConsultantId], [SignedUp]) VALUES ('c81a69b9-40be-4553-abbf-e334b64e5f8a', 'The Orange Company', '6 Orange Road', 'Orangeborough', 'Orangeshire', '54b26de9-2dae-4168-a66c-281b6f03f1b5', 0)
-	INSERT INTO [Lead] ([Id], [Name], [Address1], [Address2], [Address3], [AssignedToConsultantId], [SignedUp]) VALUES ('f346bcc5-b2d1-4b4e-9359-f810d1880fcb', 'Purple Inc.', '1 Purple Street', 'Purpleton', 'Purpleshire', '54b26de9-2dae-4168-a66c-281b6f03f1b5', 0)
+	INSERT INTO [Lead] ([Id], [Name], [Address1], [Address2], [Address3], [PhoneNumber], [AssignedToConsultantId], [SignedUp]) VALUES ('c81a69b9-40be-4553-abbf-e334b64e5f8a', 'The Orange Company', '6 Orange Road', 'Orangeborough', 'Orangeshire', '01234 567890', '54b26de9-2dae-4168-a66c-281b6f03f1b5', 0)
+	INSERT INTO [Lead] ([Id], [Name], [Address1], [Address2], [Address3], [PhoneNumber], [AssignedToConsultantId], [SignedUp]) VALUES ('f346bcc5-b2d1-4b4e-9359-f810d1880fcb', 'Purple Inc.', '1 Purple Street', 'Purpleton', 'Purpleshire', '07890 123456', '54b26de9-2dae-4168-a66c-281b6f03f1b5', 0)
 END
 GO
 
@@ -118,21 +119,6 @@ BEGIN
 		[Value] int NULL,
 		[Commission] int NULL
 		CONSTRAINT [PK_Deal] PRIMARY KEY CLUSTERED 
-		(
-			[Id] ASC
-		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-	) ON [PRIMARY]
-END
-GO
-
-IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES
-	WHERE TABLE_NAME = 'DealService')
-BEGIN
-	CREATE TABLE [dbo].[DealService](
-		[Id] uniqueidentifier NOT NULL,
-		[DealId] uniqueidentifier NULL,
-		[ServiceId] uniqueidentifier NULL
-		CONSTRAINT [PK_DealService] PRIMARY KEY CLUSTERED 
 		(
 			[Id] ASC
 		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
