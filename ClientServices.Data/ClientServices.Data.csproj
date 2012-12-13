@@ -77,7 +77,9 @@
     <Compile Include="Common\SessionProvider.cs" />
     <Compile Include="Core\DataRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\DealRepository.cs" />
+    <Compile Include="Repositories\ClientRepository.cs" />
+    <Compile Include="Repositories\AgreementRepository.cs" />
+    <Compile Include="Repositories\ServiceRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -35,14 +35,14 @@ namespace HumanResources.MessageHandlers.CommandHandlers
         {
             _employeeRepository.Save(@event.Source);
 
-            var makeBookingCommand = new EmployeeLeft
+            var employeeLeft = new EmployeeLeft
             {
                 Id = @event.Source.Id.Value,
                 Left = @event.Source.Left,
                 DepartmentId = @event.Source.Department != null ? @event.Source.Department.Id : default(Guid?)
             };
 
-            _bus.Publish(makeBookingCommand);
+            _bus.Publish(employeeLeft);
         }
     }
 }

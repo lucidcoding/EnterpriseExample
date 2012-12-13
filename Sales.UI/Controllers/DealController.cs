@@ -45,7 +45,6 @@ namespace Sales.UI.Controllers
 
                                   Id = viewModel.Id,
                                   LeadId = viewModel.LeadId,
-                                  ServiceIds = viewModel.ServiceIds,
                                   Value = viewModel.Value
                               };
 

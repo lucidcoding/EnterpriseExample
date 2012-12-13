@@ -28,7 +28,7 @@ namespace Sales.MessageHandlers.CommandHandlers
         {
             DomainEvents.Register<DealSignedEvent>(DealSignedEventHandler);
             var lead = _leadRepository.GetById(message.LeadId);
-            Deal.Register(message.Id, lead, message.ServiceIds, message.Value);
+            Deal.Register(message.Id, lead, message.Value);
             _dealRepository.Flush();
             _bus.Return(ReturnCode.OK);
         }

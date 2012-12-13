@@ -42,13 +42,13 @@ namespace ClientServices.Domain.Entities
         public virtual void Activate()
         {
             Status = AgreementStatus.Activated;
-            DomainEvents.Raise(new AgreementActivated(this));
+            DomainEvents.Raise(new AgreementActivatedEvent(this));
         }
 
         public virtual void Cancel()
         {
             Status = AgreementStatus.Cancelled;
-            DomainEvents.Raise(new AgreementCancelled(this));
+            DomainEvents.Raise(new AgreementCancelledEvent(this));
         }
     }
 }

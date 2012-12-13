@@ -3,9 +3,9 @@ using ClientServices.Domain.Entities;
 
 namespace ClientServices.Domain.Events
 {
-    public class ClientDetailsConfirmed : DomainEvent<Client>
+    public class ClientInitializedEvent : DomainEvent<Client>
     {
-        public ClientDetailsConfirmed(Client client)
+        public ClientInitializedEvent(Client client)
             : base(client)
         {
         }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ClientServices.Domain.Common;
+using ClientServices.Domain.Enumerations;
 using ClientServices.Domain.Events;
 
 namespace ClientServices.Domain.Entities
@@ -40,10 +42,10 @@ namespace ClientServices.Domain.Entities
                 agreementValue,
                 agreementServices));
 
-            DomainEvents.Raise(new ClientInitialized(client));
+            DomainEvents.Raise(new ClientInitializedEvent(client));
         }
 
-        public virtual void ConfirmDetails(
+        public virtual void Activate(
             string name,
             string reference,
             string address1,
@@ -57,7 +59,13 @@ namespace ClientServices.Domain.Entities
             Address2 = address2;
             Address3 = address3;
             PhoneNumber = phoneNumber;
-            DomainEvents.Raise(new ClientDetailsConfirmed(this));
+
+            foreach (var agreement in Agreements.Where(curStatus => curStatus.Status == AgreementStatus.Initialized))
+            {
+                agreement.Activate();
+            }
+
+            DomainEvents.Raise(new ClientActivatedEvent(this));
         }
     }
 }

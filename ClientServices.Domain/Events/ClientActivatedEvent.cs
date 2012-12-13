@@ -3,10 +3,10 @@ using ClientServices.Domain.Entities;
 
 namespace ClientServices.Domain.Events
 {
-    public class AgreementActivated : DomainEvent<Agreement>
+    public class ClientActivatedEvent : DomainEvent<Client>
     {
-        public AgreementActivated(Agreement agreement)
-            : base(agreement)
+        public ClientActivatedEvent(Client client)
+            : base(client)
         {
         }
     }

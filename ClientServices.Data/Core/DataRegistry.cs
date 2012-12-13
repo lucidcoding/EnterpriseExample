@@ -13,6 +13,8 @@ namespace ClientServices.Data.Core
             Configure(x =>
             {
                 For<IServiceRepository>().Use<ServiceRepository>();
+                For<IClientRepository>().Use<ClientRepository>();
+                For<IAgreementRepository>().Use<AgreementRepository>();
                 For<ISessionProvider>().Use<SessionProvider>();
                 For<ISessionFactory>().Singleton().Use(SessionFactoryFactory.GetSessionFactory());
             });
