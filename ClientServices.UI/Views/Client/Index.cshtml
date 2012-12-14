@@ -1,0 +1,126 @@
+﻿@model ClientServices.UI.ViewModels.IndexClientsViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Clients Requiring Activation</h2>
+
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Reference
+        </th>
+        <th>
+            Address1
+        </th>
+        <th>
+            Address2
+        </th>
+        <th>
+            Address3
+        </th>
+        <th>
+            PhoneNumber
+        </th>
+        <th>
+            Liason
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.InitializedClients) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Liason)
+            </td>
+            <td>
+                @Html.ActionLink("Activate", "Activate", new { clientId = item.Id }) 
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<h2>Active Clients</h2>
+
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Reference
+        </th>
+        <th>
+            Address1
+        </th>
+        <th>
+            Address2
+        </th>
+        <th>
+            Address3
+        </th>
+        <th>
+            PhoneNumber
+        </th>
+        <th>
+            Liason
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ActiveClients) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Liason)
+            </td>
+            <td>
+                @Html.ActionLink("Agreements", "Index", "Agreement", new { clientId = item.Id }, null) 
+            </td>
+        </tr>
+    }
+
+</table>
+
+

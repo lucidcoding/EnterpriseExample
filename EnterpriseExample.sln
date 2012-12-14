@@ -48,6 +48,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientServices.Messages", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientServices.MessageHandlers", "ClientServices.MessageHandlers\ClientServices.MessageHandlers.csproj", "{A1437127-A097-4DDE-BDDE-79B35E330EEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientServices.UI", "ClientServices.UI\ClientServices.UI.csproj", "{48BC8C1E-2282-481F-BAF6-8BB1EC411D32}"
+	ProjectSection(ProjectDependencies) = postProject
+		{26173092-00B7-49F0-8D50-D35798DC5D0C} = {26173092-00B7-49F0-8D50-D35798DC5D0C}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -118,6 +123,10 @@ Global
 		{A1437127-A097-4DDE-BDDE-79B35E330EEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1437127-A097-4DDE-BDDE-79B35E330EEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1437127-A097-4DDE-BDDE-79B35E330EEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48BC8C1E-2282-481F-BAF6-8BB1EC411D32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48BC8C1E-2282-481F-BAF6-8BB1EC411D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48BC8C1E-2282-481F-BAF6-8BB1EC411D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48BC8C1E-2282-481F-BAF6-8BB1EC411D32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -139,5 +148,6 @@ Global
 		{17E633F6-C5B2-4782-8870-E99EBBE4FA83} = {D9F24238-25BC-4ECE-8354-51D7384BD1B4}
 		{3032E714-A212-4EDD-BC97-D917498AFF02} = {D9F24238-25BC-4ECE-8354-51D7384BD1B4}
 		{A1437127-A097-4DDE-BDDE-79B35E330EEA} = {D9F24238-25BC-4ECE-8354-51D7384BD1B4}
+		{48BC8C1E-2282-481F-BAF6-8BB1EC411D32} = {D9F24238-25BC-4ECE-8354-51D7384BD1B4}
 	EndGlobalSection
 EndGlobal

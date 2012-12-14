@@ -10,6 +10,7 @@ namespace ClientServices.Domain.Entities
     //Todo: for now, no address and phone is on startup, but when uses activates account, controller gets then from Sales and user confirms.
     //Todo: in the future, find a way of sales passing this info when account is opened.
     //Todo: should somehow pass in name?
+    //Todo: unassign client when employee leaves.
     public class Client : Entity<Guid>
     {
         public virtual string Name { get; set; }
@@ -18,7 +19,8 @@ namespace ClientServices.Domain.Entities
         public virtual string Address2 { get; set; }
         public virtual string Address3 { get; set; }
         public virtual string PhoneNumber { get; set; }
-        public virtual IList<Agreement> Agreements { get; set; }
+        public virtual Guid? LiasonEmployeeId { get; set; }
+        public virtual Agreement CurrentAgreement { get; set; }
  
         public static void Initialize(
             Guid clientId,
@@ -30,17 +32,16 @@ namespace ClientServices.Domain.Entities
         {
             var client = new Client
                              {
-                                 Id = clientId,
-                                 Agreements = new List<Agreement>()
+                                 Id = clientId
                              };
 
-            client.Agreements.Add(Agreement.Initialize(
+            client.CurrentAgreement = Agreement.Initialize(
                 agreementId,
                 client,
                 agreementCommencement,
                 agreementExpiry,
                 agreementValue,
-                agreementServices));
+                agreementServices);
 
             DomainEvents.Raise(new ClientInitializedEvent(client));
         }
@@ -51,7 +52,8 @@ namespace ClientServices.Domain.Entities
             string address1,
             string address2,
             string address3,
-            string phoneNumber)
+            string phoneNumber,
+            Guid? liasonEmployeeId)
         {
             Name = name;
             Reference = reference;
@@ -59,12 +61,8 @@ namespace ClientServices.Domain.Entities
             Address2 = address2;
             Address3 = address3;
             PhoneNumber = phoneNumber;
-
-            foreach (var agreement in Agreements.Where(curStatus => curStatus.Status == AgreementStatus.Initialized))
-            {
-                agreement.Activate();
-            }
-
+            LiasonEmployeeId = liasonEmployeeId;
+            CurrentAgreement.Activate();
             DomainEvents.Raise(new ClientActivatedEvent(this));
         }
     }

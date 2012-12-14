@@ -41,7 +41,7 @@ namespace ClientServices.Domain.Entities
 
         public virtual void Activate()
         {
-            Status = AgreementStatus.Activated;
+            Status = AgreementStatus.Active;
             DomainEvents.Raise(new AgreementActivatedEvent(this));
         }
 

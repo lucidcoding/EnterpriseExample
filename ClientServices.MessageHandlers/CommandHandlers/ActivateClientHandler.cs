@@ -33,7 +33,8 @@ namespace ClientServices.MessageHandlers.CommandHandlers
                 message.Address1,
                 message.Address2,
                 message.Address3,
-                message.PhoneNumber);
+                message.PhoneNumber,
+                message.LiasonEmployeeId);
 
             _clientRepository.Flush();
             _bus.Return(ReturnCode.OK);

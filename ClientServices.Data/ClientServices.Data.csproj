@@ -81,7 +81,11 @@
     <Compile Include="Repositories\AgreementRepository.cs" />
     <Compile Include="Repositories\ServiceRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Mappers\Agreement.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClientServices.Domain\ClientServices.Domain.csproj">
       <Project>{A896093E-F28A-4356-A5A3-27DFAFC3752D}</Project>
@@ -89,7 +93,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mappers\DealService.hbm.xml">
+    <EmbeddedResource Include="Mappers\Client.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mappers\Service.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

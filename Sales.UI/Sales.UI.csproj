@@ -200,6 +200,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClientServices.Messages\ClientServices.Messages.csproj">
+      <Project>{3032E714-A212-4EDD-BC97-D917498AFF02}</Project>
+      <Name>ClientServices.Messages</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sales.Data\Sales.Data.csproj">
       <Project>{8BB52A7E-8A11-42AF-8E0A-78770130CA9E}</Project>
       <Name>Sales.Data</Name>

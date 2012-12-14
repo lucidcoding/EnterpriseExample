@@ -12,5 +12,6 @@ namespace ClientServices.Messages.Commands
         public string Address2 { get; set; }
         public string Address3 { get; set; }
         public string PhoneNumber { get; set; }
+        public Guid? LiasonEmployeeId { get; set; }
     }
 }

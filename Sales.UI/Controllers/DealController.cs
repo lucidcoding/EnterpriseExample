@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using ClientServices.Messages.Commands;
 using NServiceBus;
 using Sales.Messages.Commands;
-using Sales.Messages.Replies;
 using Sales.UI.ClientServices.WCF;
 using Sales.UI.ViewModels;
+using ClientServiceReplies = ClientServices.Messages.Replies;
+using SalesReplies = Sales.Messages.Replies;
 
 namespace Sales.UI.Controllers
 {
@@ -40,26 +42,43 @@ namespace Sales.UI.Controllers
         [HttpPost]
         public void RegisterAsync(RegisterDealViewModel viewModel)
         {
-            var command = new RegisterDeal
-                              {
+            //Todo: send InitialiseClient command here and wait for both before calling RegisterCompleted. 
+            //need to pass in clientId, agreementId, serviceIds, commencement, expiry, value, 
 
+            AsyncManager.Parameters["leadId"] = viewModel.LeadId;
+
+            var registerDeal = new RegisterDeal
+                              {
                                   Id = viewModel.Id,
                                   LeadId = viewModel.LeadId,
                                   Value = viewModel.Value
                               };
 
-            AsyncManager.OutstandingOperations.Increment();
+            var initializeClient = new InitializeClient
+                                       {
+                                           AgreementId = viewModel.Id,
+                                           AgreementCommencement = viewModel.Commencement,
+                                           AgreementExpiry = viewModel.Expiry,
+                                           AgreementServiceIds = viewModel.ServiceIds,
+                                           AgreementValue = viewModel.Value,
+                                           ClientId = viewModel.LeadId
+                                       };
 
-            _bus.Send(command).Register<ReturnCode>(status =>
-                                                        {
-                                                            AsyncManager.Parameters["returnCode"] = status;
-                                                            AsyncManager.Parameters["leadId"] =
-                                                                viewModel.LeadId;
-                                                            AsyncManager.OutstandingOperations.Decrement();
-                                                        });
+            _bus.Send(registerDeal).Register<SalesReplies.ReturnCode>(status =>
+                                                                          {
+                                                                              AsyncManager.Parameters["registerDealReturnCode"] = status;
+                                                                          });
+
+            _bus.Send(initializeClient).Register<ClientServiceReplies.ReturnCode>(status =>
+                                                                                      {
+                                                                                          AsyncManager.Parameters["initializeClientReturnCode"] = status;
+                                                                                      });
         }
 
-        public ActionResult RegisterCompleted(ReturnCode returnCode, Guid leadId)
+        public ActionResult RegisterCompleted(
+            Guid leadId,
+            SalesReplies.ReturnCode registerDealReturnCode,
+            ClientServiceReplies.ReturnCode initializeClientReturnCode)
         {
             return RedirectToAction("Index", new { leadId });
         }
