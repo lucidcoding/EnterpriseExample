@@ -1,16 +1,32 @@
 ﻿USE [Master]
 
-IF EXISTS (SELECT * FROM sysdatabases WHERE name='HumanResources') 
-BEGIN 
-	DROP DATABASE [HumanResources] 
+IF EXISTS (SELECT * FROM sys.databases WHERE NAME = 'HumanResources')
+BEGIN
+	EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'HumanResources'
+	ALTER DATABASE [HumanResources] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
+	DROP DATABASE [HumanResources]
 END
-GO
 
-IF EXISTS (SELECT * FROM sysdatabases WHERE name='Sales') 
-BEGIN 
-	DROP DATABASE [Sales] 
+IF EXISTS (SELECT * FROM sys.databases WHERE NAME = 'Sales')
+BEGIN
+	EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'Sales'
+	ALTER DATABASE [Sales] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
+	DROP DATABASE [Sales]
 END
-GO
+
+IF EXISTS (SELECT * FROM sys.databases WHERE NAME = 'ClientServices')
+BEGIN
+	EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'ClientServices'
+	ALTER DATABASE [ClientServices] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
+	DROP DATABASE [ClientServices]
+END
+
+IF EXISTS (SELECT * FROM sys.databases WHERE NAME = 'Finance')
+BEGIN
+	EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'Finance'
+	ALTER DATABASE [Finance] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
+	DROP DATABASE [Finance]
+END
 
 CREATE DATABASE [HumanResources] 
 GO
@@ -19,6 +35,9 @@ CREATE DATABASE [Sales]
 GO
 
 CREATE DATABASE [ClientServices]
+GO
+
+CREATE DATABASE [Finance]
 GO
 
 USE [HumanResources]
@@ -198,6 +217,44 @@ BEGIN
 		(
 			[AgreementId] ASC,
 			[ServiceId] ASC
+		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+END
+GO
+
+USE [Finance]
+GO
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES
+	WHERE TABLE_NAME = 'Account')
+BEGIN
+	CREATE TABLE [dbo].[Account](
+		[Id] uniqueidentifier NOT NULL,
+		[ClientId] uniqueidentifier NULL,
+		[AgreementId] uniqueidentifier NULL,
+		[Expiry] datetime NULL,
+		[Value] int NULL,
+		[Status] int NULL
+		CONSTRAINT [PK_Account] PRIMARY KEY CLUSTERED 
+		(
+			[Id] ASC
+		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+END
+GO
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES
+	WHERE TABLE_NAME = 'Installment')
+BEGIN
+	CREATE TABLE [dbo].[Installment](
+		[Id] uniqueidentifier NOT NULL,
+		[AccountId] uniqueidentifier NULL,
+		[DueDate] datetime NULL,
+		[Amount] int NULL,
+		[Paid] bit NULL
+		CONSTRAINT [PK_Installment] PRIMARY KEY CLUSTERED 
+		(
+			[Id] ASC
 		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 	) ON [PRIMARY]
 END

@@ -2,34 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
-using System.Web;
 using System.Web.Mvc;
+using NServiceBus;
 using Sales.Domain.Entities;
 using Sales.Domain.RepositoryContracts;
 using Sales.Messages.Commands;
 using Sales.Messages.Replies;
 using Sales.UI.ViewModels;
-using NServiceBus;
 
 namespace Sales.UI.Controllers
 {
     public class VisitController : AsyncController
     {
         private readonly IBus _bus;
+        private readonly ILeadRepository _leadRepository;
         private readonly IVisitRepository _visitRepository;
 
-        public VisitController(IBus bus, IVisitRepository visitRepository)
+        public VisitController(
+            IBus bus, 
+            ILeadRepository leadRepository,
+            IVisitRepository visitRepository)
         {
             _bus = bus;
+            _leadRepository = leadRepository;
             _visitRepository = visitRepository;
         }
 
         public ActionResult Index(Guid leadId)
         {
+            Lead lead;
             IList<Visit> visits;
 
             using (var transactionScope = new TransactionScope())
             {
+                lead = _leadRepository.GetById(leadId);
                 visits = _visitRepository.GetByLeadId(leadId);
                 transactionScope.Complete();
             }
@@ -37,6 +43,7 @@ namespace Sales.UI.Controllers
             var viewModel = new IndexVisitsViewModel
                                 {
                                     LeadId = leadId,
+                                    LeadName = lead.Name,
                                     Records = visits.Select(visit => new IndexVisitsRecordViewModel
                                                                          {
                                                                              Id = visit.Id.Value,

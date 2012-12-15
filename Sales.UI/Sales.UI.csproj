@@ -192,6 +192,8 @@
     <Content Include="Views\Visit\Log.cshtml" />
     <Content Include="Views\Visit\Index.cshtml" />
     <Content Include="Views\Deal\Register.cshtml" />
+    <Content Include="Views\Deal\Index.cshtml" />
+    <Content Include="Views\Shared\ComingSoon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

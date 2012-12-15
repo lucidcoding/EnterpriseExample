@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Transactions;
 using System.Web.Mvc;
+using ClientServices.Domain.Entities;
 using ClientServices.Domain.RepositoryContracts;
 using ClientServices.UI.HumanResources.WCF;
 using ClientServices.UI.ViewModels;
@@ -25,8 +25,15 @@ namespace ClientServices.UI.Controllers
         public ActionResult Index()
         {
             //Todo: want to somehow bring through name, adress etc of client from sales.
-            var initializedClients = _clientRepository.GetInitialized();
-            var activeClients = _clientRepository.GetActive();
+            IList<Client> initializedClients;
+            IList<Client> activeClients;
+
+            using (var transactionScope = new TransactionScope())
+            {
+                initializedClients = _clientRepository.GetInitialized();
+                activeClients = _clientRepository.GetActive();
+                transactionScope.Complete();
+            }
 
             var employees = _employeeService.GetByIds(activeClients
                                                           .Where(client => client.LiasonEmployeeId.HasValue)

@@ -52,5 +52,10 @@ namespace Sales.UI.Controllers
 
             return View(viewModel);
         }
+
+        public ActionResult Add()
+        {
+            return View("ComingSoon");
+        }
     }
 }
