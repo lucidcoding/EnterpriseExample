@@ -50,6 +50,7 @@ namespace ClientServices.MessageHandlers.CommandHandlers
             var agreementActivated = new AgreementActivated
                                          {
                                              Id = @event.Source.Id.Value,
+                                             ClientId = @event.Source.Client.Id.Value,
                                              Commencement = @event.Source.Commencement,
                                              Expiry = @event.Source.Expiry,
                                              Value = @event.Source.Value

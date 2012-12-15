@@ -6,6 +6,7 @@ using Sales.Domain.RepositoryContracts;
 
 namespace Sales.MessageHandlers.EventHandlers
 {
+    //Todo: do this too for client services.
     public class EmployeeLeftHandler : IHandleMessages<EmployeeLeft>
     {
         private readonly ILeadRepository _leadRepository;

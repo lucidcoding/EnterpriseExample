@@ -6,5 +6,6 @@ namespace Finance.Domain.RepositoryContracts
 {
     public interface IAccountRepository : IRepository<Account, Guid>
     {
+        Account GetByAgreementId(Guid agreementId);
     }
 }

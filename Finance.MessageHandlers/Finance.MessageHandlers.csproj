@@ -58,12 +58,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\MarkInstallmentAsPaidHandler.cs" />
     <Compile Include="CommandHandlers\SuspendAccountHandler.cs" />
+    <Compile Include="EventHandlers\AgreementActivatedHandler.cs" />
+    <Compile Include="EventHandlers\AgreementCancelledHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EventHandlers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ClientServices.Messages\ClientServices.Messages.csproj">
       <Project>{3032E714-A212-4EDD-BC97-D917498AFF02}</Project>
