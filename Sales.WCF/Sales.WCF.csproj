@@ -6,12 +6,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{26173092-00B7-49F0-8D50-D35798DC5D0C}</ProjectGuid>
+    <ProjectGuid>{BC1A4EC3-77D4-4660-B6D6-46D8DC2F1FAA}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HumanResources.WCF</RootNamespace>
-    <AssemblyName>HumanResources.WCF</AssemblyName>
+    <RootNamespace>Sales.WCF</RootNamespace>
+    <AssemblyName>Sales.WCF</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -56,11 +56,11 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EmployeeService.svc" />
     <Content Include="Global.asax" />
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="LeadService.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -71,17 +71,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\WcfRegistry.cs" />
-    <Compile Include="DataTransferObjects\DepartmentDto.cs" />
-    <Compile Include="DataTransferObjects\EmployeeDto.cs" />
-    <Compile Include="EmployeeService.svc.cs">
-      <DependentUpon>EmployeeService.svc</DependentUpon>
-    </Compile>
+    <Compile Include="DataTransferObjects\LeadDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IEmployeeService.cs" />
-    <Compile Include="Mappers\DepartmentDtoMapper.cs" />
-    <Compile Include="Mappers\EmployeeDtoMapper.cs" />
+    <Compile Include="ILeadService.cs" />
+    <Compile Include="LeadService.svc.cs">
+      <DependentUpon>LeadService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Mappers\LeadDtoMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,13 +87,13 @@
     <Folder Include="Common\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HumanResources.Data\HumanResources.Data.csproj">
-      <Project>{477EDE18-1D79-46E9-95F1-345A34F390A6}</Project>
-      <Name>HumanResources.Data</Name>
+    <ProjectReference Include="..\Sales.Data\Sales.Data.csproj">
+      <Project>{8BB52A7E-8A11-42AF-8E0A-78770130CA9E}</Project>
+      <Name>Sales.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HumanResources.Domain\HumanResources.Domain.csproj">
-      <Project>{6693ECEC-BC88-49CE-9E40-9A70AB0C954E}</Project>
-      <Name>HumanResources.Domain</Name>
+    <ProjectReference Include="..\Sales.Domain\Sales.Domain.csproj">
+      <Project>{69BA86BB-76E8-4F71-9356-1FBD846DF988}</Project>
+      <Name>Sales.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -106,7 +104,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>62771</DevelopmentServerPort>
+          <DevelopmentServerPort>53093</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

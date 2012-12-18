@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using ClientServices.Domain.Entities;
 using ClientServices.Domain.RepositoryContracts;
 using ClientServices.UI.HumanResources.WCF;
+using ClientServices.UI.Sales.WCF;
 using ClientServices.UI.ViewModels;
 
 namespace ClientServices.UI.Controllers
@@ -13,13 +14,16 @@ namespace ClientServices.UI.Controllers
     {
         private readonly IClientRepository _clientRepository;
         private readonly IEmployeeService _employeeService;
+        private readonly ILeadService _leadService;
 
         public ClientController(
             IClientRepository clientRepository,
-            IEmployeeService employeeService)
+            IEmployeeService employeeService,
+            ILeadService leadService)
         {
             _clientRepository = clientRepository;
             _employeeService = employeeService;
+            _leadService = leadService;
         }
 
         public ActionResult Index()
@@ -35,6 +39,11 @@ namespace ClientServices.UI.Controllers
                 transactionScope.Complete();
             }
 
+            var initializedClientsDetails = _leadService.GetByIds(initializedClients
+                .Where(client => client.Id.HasValue)
+                .Select(client => client.Id.Value)
+                .ToArray());
+
             var employees = _employeeService.GetByIds(activeClients
                                                           .Where(client => client.LiasonEmployeeId.HasValue)
                                                           .Select(client => client.LiasonEmployeeId.Value)
@@ -46,7 +55,11 @@ namespace ClientServices.UI.Controllers
                                         initializedClients.Select(client => new IndexClientsRecordViewModel
                                                                                 {
                                                                                     Id = client.Id.Value,
-                                                                                    Name = client.Name
+                                                                                    Name = initializedClientsDetails.Single(x => x.Id == client.Id).Name,
+                                                                                    Address1 = initializedClientsDetails.Single(x => x.Id == client.Id).Address1,
+                                                                                    Address2 = initializedClientsDetails.Single(x => x.Id == client.Id).Address2,
+                                                                                    Address3 = initializedClientsDetails.Single(x => x.Id == client.Id).Address3,
+                                                                                    PhoneNumber = initializedClientsDetails.Single(x => x.Id == client.Id).PhoneNumber
                                                                                 }).ToList(),
                                     ActiveClients = activeClients.Select(client => new IndexClientsRecordViewModel
                                                                                        {

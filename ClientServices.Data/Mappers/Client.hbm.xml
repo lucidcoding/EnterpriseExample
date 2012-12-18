@@ -13,6 +13,6 @@
 		<property name="Address3" />
 		<property name="PhoneNumber" />
 		<property name="LiasonEmployeeId" />
-		<many-to-one name="CurrentAgreement" class="Agreement" column="CurrentAgreementId" />
+		<many-to-one name="CurrentAgreement" class="Agreement" column="CurrentAgreementId" cascade="all" />
 	</class>
 </hibernate-mapping>

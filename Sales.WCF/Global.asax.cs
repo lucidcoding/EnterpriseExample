@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Web;
-using HumanResources.WCF.Core;
+using Sales.WCF.Core;
 using StructureMap;
 
-namespace HumanResources.WCF
+namespace Sales.WCF
 {
-    public class Global : HttpApplication
+    public class Global : System.Web.HttpApplication
     {
         protected void Application_Start(object sender, EventArgs e)
         {

@@ -33,15 +33,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NServiceBus">
-      <HintPath>..\Library\NServiceBus.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\Library\NServiceBus.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.StructureMap">
-      <HintPath>..\Library\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
-    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\Library\StructureMap.dll</HintPath>
     </Reference>

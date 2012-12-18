@@ -88,6 +88,10 @@
       <Project>{3032E714-A212-4EDD-BC97-D917498AFF02}</Project>
       <Name>ClientServices.Messages</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HumanResources.Messages\HumanResources.Messages.csproj">
+      <Project>{8B5B36C1-85A9-4FB2-B20A-A8E690CAFB9D}</Project>
+      <Name>HumanResources.Messages</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

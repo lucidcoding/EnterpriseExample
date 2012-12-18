@@ -20,7 +20,8 @@ namespace ClientServices.Data.Repositories
             return _sessionProvider
                 .GetCurrent()
                 .CreateCriteria<Client>()
-                .Add(Restrictions.Eq("CurrentAgreement.Status", AgreementStatus.Initialized))
+                .CreateAlias("CurrentAgreement", "currentAgreement")
+                .Add(Restrictions.Eq("currentAgreement.Status", AgreementStatus.Initialized))
                 .List<Client>();
         }
 
@@ -29,7 +30,8 @@ namespace ClientServices.Data.Repositories
             return _sessionProvider
                 .GetCurrent()
                 .CreateCriteria<Client>()
-                .Add(Restrictions.Eq("CurrentAgreement.Status", AgreementStatus.Active))
+                .CreateAlias("CurrentAgreement", "currentAgreement")
+                .Add(Restrictions.Eq("currentAgreement.Status", AgreementStatus.Active))
                 .List<Client>();
         }
     }

@@ -1,7 +1,7 @@
-﻿using HumanResources.Data.Core;
+﻿using Sales.Data.Core;
 using StructureMap.Configuration.DSL;
 
-namespace HumanResources.WCF.Core
+namespace Sales.WCF.Core
 {
     public class WcfRegistry : Registry
     {
@@ -9,7 +9,6 @@ namespace HumanResources.WCF.Core
         {
             Configure(x =>
                           {
-                              For<IEmployeeService>().Use<EmployeeService>();
                               x.ImportRegistry(typeof (DataRegistry));
                           });
         }

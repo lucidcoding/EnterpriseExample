@@ -30,7 +30,7 @@ namespace ClientServices.UI
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Lead", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "Client", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
         }

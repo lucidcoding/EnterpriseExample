@@ -91,6 +91,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\Sales.WCF\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\IndexClientsRecordViewModel.cs" />
     <Compile Include="ViewModels\IndexClientsViewModel.cs" />
   </ItemGroup>
@@ -124,6 +129,9 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\ClientServices.css" />
+    <Content Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\ClientServices.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.17.custom.min.js" />
@@ -134,6 +142,16 @@
     <None Include="Service References\HumanResources.WCF\configuration91.svcinfo" />
     <None Include="Service References\HumanResources.WCF\configuration.svcinfo" />
     <None Include="Service References\HumanResources.WCF\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\Sales.WCF\ClientServices.UI.Sales.WCF.LeadDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sales.WCF\LeadService.disco" />
+    <None Include="Service References\Sales.WCF\configuration91.svcinfo" />
+    <None Include="Service References\Sales.WCF\configuration.svcinfo" />
+    <None Include="Service References\Sales.WCF\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -149,6 +167,19 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
+    <None Include="Service References\Sales.WCF\LeadService.wsdl" />
+    <None Include="Service References\Sales.WCF\LeadService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Sales.WCF\LeadService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Sales.WCF\LeadService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Sales.WCF\LeadService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -175,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\HumanResources.WCF\" />
+    <WCFMetadataStorage Include="Service References\Sales.WCF\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\HumanResources.WCF\EmployeeService.wsdl" />

@@ -13,7 +13,7 @@
         NHibernate.Driver.SqlClientDriver
       </property>
       <property name="connection.connection_string">
-        Data Source=localhost\sql2008r2;Initial Catalog=HumanResources;Integrated Security=true
+        Data Source=localhost\sql2008r2;Initial Catalog=Finance;Integrated Security=true
       </property>
       <property name="dialect">
         NHibernate.Dialect.MsSql2005Dialect
@@ -25,8 +25,8 @@
         NHibernate.ByteCode.Castle.ProxyFactoryFactory, NHibernate.ByteCode.Castle
       </property>
       <property name="current_session_context_class">
-		  NHibernate.Context.WcfOperationSessionContext
-	  </property>
+        NHibernate.Context.ThreadStaticSessionContext
+      </property>
     </session-factory>
   </hibernate-configuration>
 </configuration>

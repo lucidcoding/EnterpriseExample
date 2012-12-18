@@ -1,5 +1,4 @@
 ﻿using ClientServices.Data.Core;
-using NServiceBus;
 using StructureMap.Configuration.DSL;
 
 namespace ClientServices.WCF.Core
