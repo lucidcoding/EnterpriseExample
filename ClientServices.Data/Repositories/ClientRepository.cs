@@ -34,5 +34,14 @@ namespace ClientServices.Data.Repositories
                 .Add(Restrictions.Eq("currentAgreement.Status", AgreementStatus.Active))
                 .List<Client>();
         }
+
+        public IList<Client> GetByLiasonEmployeeId(Guid liasonEmployeeId)
+        {
+            return _sessionProvider
+                .GetCurrent()
+                .CreateCriteria<Client>()
+                .Add(Restrictions.Eq("LiasonEmployeeId", liasonEmployeeId))
+                .List<Client>();
+        }
     }
 }

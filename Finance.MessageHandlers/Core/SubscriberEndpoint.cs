@@ -1,6 +1,7 @@
-﻿using NServiceBus;
+﻿using ClientServices.Messages.Events;
+using NServiceBus;
 
-namespace Sales.MessageHandlers.Core
+namespace Finance.MessageHandlers.Core
 {
     public class SubscriberEndpoint : IWantToRunAtStartup
     {
@@ -13,10 +14,12 @@ namespace Sales.MessageHandlers.Core
 
         public void Run()
         {
+            _bus.Subscribe<AgreementActivated>();
         }
 
         public void Stop()
         {
+            _bus.Unsubscribe<AgreementActivated>();
         }
     }
 }

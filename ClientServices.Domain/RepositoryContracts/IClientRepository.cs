@@ -9,5 +9,6 @@ namespace ClientServices.Domain.RepositoryContracts
     {
         IList<Client> GetInitialized();
         IList<Client> GetActive();
+        IList<Client> GetByLiasonEmployeeId(Guid liasonEmployeeId);
     }
 }

@@ -27,9 +27,9 @@ namespace ClientServices.WCF
             {
                 using (var transactionScope = new TransactionScope())
                 {
-                    var employeeDtos = new ServiceDtoMapper().Map(_serviceRepository.GetAll().ToArray());
+                    var serviceDtos = new ServiceDtoMapper().Map(_serviceRepository.GetAll().ToArray());
                     transactionScope.Complete();
-                    return employeeDtos;
+                    return serviceDtos;
                 }
             }
             finally

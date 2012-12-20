@@ -96,6 +96,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ActivateClientViewModel.cs" />
     <Compile Include="ViewModels\IndexClientsRecordViewModel.cs" />
     <Compile Include="ViewModels\IndexClientsViewModel.cs" />
   </ItemGroup>

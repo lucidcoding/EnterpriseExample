@@ -65,5 +65,11 @@ namespace ClientServices.Domain.Entities
             CurrentAgreement.Activate();
             DomainEvents.Raise(new ClientActivatedEvent(this));
         }
+
+        public virtual void UnassignLiason()
+        {
+            LiasonEmployeeId = null;
+            DomainEvents.Raise(new ClientLiasonUnassignedEvent(this));
+        }
     }
 }

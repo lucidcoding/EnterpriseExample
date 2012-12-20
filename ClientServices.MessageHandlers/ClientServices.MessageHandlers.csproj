@@ -64,6 +64,7 @@
     <Compile Include="Core\MessageHandlersRegistry.cs" />
     <Compile Include="Core\MessageModule.cs" />
     <Compile Include="Core\SubscriberEndpoint.cs" />
+    <Compile Include="EventHandlers\EmployeeLeftHandler.cs" />
     <Compile Include="MessageEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
