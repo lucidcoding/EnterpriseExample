@@ -4,24 +4,31 @@ using System.Linq;
 using System.Transactions;
 using System.Web.Mvc;
 using ClientServices.Domain.Entities;
+using ClientServices.Domain.Globals;
 using ClientServices.Domain.RepositoryContracts;
+using ClientServices.Messages.Commands;
+using ClientServices.Messages.Replies;
 using ClientServices.UI.HumanResources.WCF;
 using ClientServices.UI.Sales.WCF;
 using ClientServices.UI.ViewModels;
+using NServiceBus;
 
 namespace ClientServices.UI.Controllers
 {
-    public class ClientController : Controller
+    public class ClientController : AsyncController
     {
+        private readonly IBus _bus;
         private readonly IClientRepository _clientRepository;
         private readonly IEmployeeService _employeeService;
         private readonly ILeadService _leadService;
 
         public ClientController(
+            IBus bus,
             IClientRepository clientRepository,
             IEmployeeService employeeService,
             ILeadService leadService)
         {
+            _bus = bus;
             _clientRepository = clientRepository;
             _employeeService = employeeService;
             _leadService = leadService;
@@ -29,7 +36,6 @@ namespace ClientServices.UI.Controllers
 
         public ActionResult Index()
         {
-            //Todo: want to somehow bring through name, adress etc of client from sales.
             IList<Client> initializedClients;
             IList<Client> activeClients;
 
@@ -82,7 +88,55 @@ namespace ClientServices.UI.Controllers
 
         public ActionResult Activate(Guid clientId)
         {
-            return null;
+            Client initializedClient;
+
+            using (var transactionScope = new TransactionScope())
+            {
+                initializedClient = _clientRepository.GetById(clientId);
+                transactionScope.Complete();
+            }
+
+            var initializedClientDetails = _leadService.GetById(clientId);
+            var employees = _employeeService.GetCurrentByDepartmentId(Constants.ClientServicesDepartmentId);
+
+            var viewModel = new ActivateClientViewModel
+                                {
+                                    Id = initializedClient.Id.Value,
+                                    Name = initializedClientDetails.Name,
+                                    Address1 = initializedClientDetails.Address1,
+                                    Address2 = initializedClientDetails.Address2,
+                                    Address3 = initializedClientDetails.Address3,
+                                    PhoneNumber = initializedClientDetails.PhoneNumber,
+                                    Employees = new SelectList(employees, "Id", "FullName")
+                                };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public void ActivateAsync(ActivateClientViewModel viewModel)
+        {
+            var command = new ActivateClient
+                              {
+                                  Id = viewModel.Id,
+                                  Name = viewModel.Name,
+                                  Reference = viewModel.Reference,
+                                  Address1 = viewModel.Address1,
+                                  Address2 = viewModel.Address2,
+                                  Address3 = viewModel.Address3,
+                                  PhoneNumber = viewModel.PhoneNumber,
+                                  LiasonEmployeeId = viewModel.LiasonEmployeeId
+                              };
+
+            _bus.Send(command).Register<ReturnCode>(status =>
+                                                    {
+                                                        AsyncManager.Parameters["returnCode"] = status;
+                                                    });
+        }
+
+        public ActionResult ActivateCompleted()
+        {
+            return RedirectToAction("Index");
         }
     }
 }

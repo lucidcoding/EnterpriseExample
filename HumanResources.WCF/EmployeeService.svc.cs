@@ -15,7 +15,6 @@ namespace HumanResources.WCF
         private readonly IEmployeeRepository _employeeRepository;
         private readonly ISessionProvider _sessionProvider;
 
-        //todo: there is a better way to do IOC with WCF, but haven't got it working.
         public EmployeeService()
         {
             ObjectFactory.Container.Configure(x => x.AddRegistry<WcfRegistry>());
@@ -64,6 +63,23 @@ namespace HumanResources.WCF
                 using (var transactionScope = new TransactionScope())
                 {
                     var employeeDtos = new EmployeeDtoMapper().Map(_employeeRepository.GetById(id));
+                    transactionScope.Complete();
+                    return employeeDtos;
+                }
+            }
+            finally
+            {
+                _sessionProvider.CloseCurrent();
+            }
+        }
+
+        public EmployeeDto[] GetCurrentByDepartmentId(Guid departmentId)
+        {
+            try
+            {
+                using (var transactionScope = new TransactionScope())
+                {
+                    var employeeDtos = new EmployeeDtoMapper().Map(_employeeRepository.GetCurrentByDepartmentId(departmentId).ToArray());
                     transactionScope.Complete();
                     return employeeDtos;
                 }

@@ -6,7 +6,6 @@ using NServiceBus;
 
 namespace ClientServices.MessageHandlers.EventHandlers
 {
-    //Todo: do this too for client services.
     public class EmployeeLeftHandler : IHandleMessages<EmployeeLeft>
     {
         private readonly IClientRepository _clientRepository;
@@ -18,8 +17,6 @@ namespace ClientServices.MessageHandlers.EventHandlers
 
         public void Handle(EmployeeLeft @event)
         {
-            //TODO: This send an email to the manager to warn that clients have been unassigned.
-
             DomainEvents.Register<ClientLiasonUnassignedEvent>(ClientLiasonUnassignedEventHandler);
             var clients = _clientRepository.GetByLiasonEmployeeId(@event.Id);
 

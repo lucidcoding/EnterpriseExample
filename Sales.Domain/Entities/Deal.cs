@@ -11,7 +11,6 @@ namespace Sales.Domain.Entities
         public virtual int Value { get; set; }
         public virtual int Commission { get; set; }
 
-        //TODO: validate this - that lead is assigned or will error?
         public static void Register(Guid id, Lead lead, int value)
         {
             var deal = new Deal

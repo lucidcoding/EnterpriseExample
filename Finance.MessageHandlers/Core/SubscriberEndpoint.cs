@@ -15,11 +15,13 @@ namespace Finance.MessageHandlers.Core
         public void Run()
         {
             _bus.Subscribe<AgreementActivated>();
+            _bus.Subscribe<AgreementCancelled>();
         }
 
         public void Stop()
         {
             _bus.Unsubscribe<AgreementActivated>();
+            _bus.Unsubscribe<AgreementCancelled>();
         }
     }
 }

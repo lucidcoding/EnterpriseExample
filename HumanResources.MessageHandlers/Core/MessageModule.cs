@@ -29,8 +29,6 @@ namespace HumanResources.MessageHandlers.Core
 
         public void HandleError()
         {
-            //TODO: work out how to handle errors. Is this the correct place for this?
-            //_bus.Return(ReturnCode.Error);
         }
 
         private void Cleardown()

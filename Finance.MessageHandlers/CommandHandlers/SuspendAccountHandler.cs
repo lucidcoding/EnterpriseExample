@@ -8,7 +8,6 @@ using NServiceBus;
 
 namespace Finance.MessageHandlers.CommandHandlers
 {
-    //todo: client services to handle this.
     public class SuspendAccountHandler : IHandleMessages<SuspendAccount>
     {
         private readonly IBus _bus;
@@ -34,7 +33,7 @@ namespace Finance.MessageHandlers.CommandHandlers
         public void AccountSuspendedEventHandler(AccountSuspendedEvent @event)
         {
             _accountRepository.Save(@event.Source);
-            _bus.Publish(new AccountSuspended { Id = @event.Source.Id.Value });
+            _bus.Publish(new AccountSuspended { Id = @event.Source.AgreementId });
         }
     }
 }

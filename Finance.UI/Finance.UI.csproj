@@ -84,6 +84,7 @@
     <Compile Include="Common\NServiceBusDependencyResolverAdapter.cs" />
     <Compile Include="Common\StructureMapControllerActivator.cs.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\InstallmentController.cs" />
     <Compile Include="Core\UiRegistry.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -95,6 +96,8 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\IndexAccountsViewModel.cs" />
+    <Compile Include="ViewModel\IndexInstallmentsRecordViewModel.cs" />
+    <Compile Include="ViewModel\IndexInstallmentsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Finance.css" />
@@ -164,6 +167,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Installment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

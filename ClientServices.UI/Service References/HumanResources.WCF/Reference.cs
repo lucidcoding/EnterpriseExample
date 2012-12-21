@@ -243,6 +243,9 @@ namespace ClientServices.UI.HumanResources.WCF {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetById", ReplyAction="http://tempuri.org/IEmployeeService/GetByIdResponse")]
         ClientServices.UI.HumanResources.WCF.EmployeeDto GetById(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetCurrentByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetCurrentByDepartmentIdResponse")]
+        ClientServices.UI.HumanResources.WCF.EmployeeDto[] GetCurrentByDepartmentId(System.Guid departmentId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -282,6 +285,10 @@ namespace ClientServices.UI.HumanResources.WCF {
         
         public ClientServices.UI.HumanResources.WCF.EmployeeDto GetById(System.Guid id) {
             return base.Channel.GetById(id);
+        }
+        
+        public ClientServices.UI.HumanResources.WCF.EmployeeDto[] GetCurrentByDepartmentId(System.Guid departmentId) {
+            return base.Channel.GetCurrentByDepartmentId(departmentId);
         }
     }
 }

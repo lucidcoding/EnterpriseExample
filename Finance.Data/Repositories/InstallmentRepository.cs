@@ -20,6 +20,7 @@ namespace Finance.Data.Repositories
                 .GetCurrent()
                 .CreateCriteria<Installment>()
                 .Add(Restrictions.Eq("Account.Id", accountId))
+                .AddOrder(new Order("DueDate", true))
                 .List<Installment>();
         }
     }

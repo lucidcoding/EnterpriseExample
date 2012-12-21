@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Web.Routing;
+using HumanResources.Data.Common;
 using HumanResources.UI.Common;
 using HumanResources.UI.Core;
 using NServiceBus;
@@ -7,13 +9,8 @@ using StructureMap;
 
 namespace HumanResources.UI
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : System.Web.HttpApplication
     {
-        //public static IBus Bus { get; private set; }
-
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
@@ -53,6 +50,12 @@ namespace HumanResources.UI
 
             ObjectFactory.Container.Configure(x => x.AddRegistry<UiRegistry>());
             ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerActivator());
+        }
+
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+            var sessionProvider = ObjectFactory.GetInstance<ISessionProvider>();
+            sessionProvider.CloseCurrent();
         }
     }
 }

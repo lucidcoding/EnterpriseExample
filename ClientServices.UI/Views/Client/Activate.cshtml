@@ -1,0 +1,73 @@
+﻿@model ClientServices.UI.ViewModels.ActivateClientViewModel
+@{
+    ViewBag.Title = "Activate";
+}
+<h2>
+    Activate Client</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Id)
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Name)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Reference)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Reference)
+        @Html.ValidationMessageFor(model => model.Reference)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Address1)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Address1)
+        @Html.ValidationMessageFor(model => model.Address1)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Address2)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Address2)
+        @Html.ValidationMessageFor(model => model.Address2)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Address3)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Address3)
+        @Html.ValidationMessageFor(model => model.Address3)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.PhoneNumber)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.PhoneNumber)
+        @Html.ValidationMessageFor(model => model.PhoneNumber)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.LiasonEmployeeId)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.LiasonEmployeeId, Model.Employees, "[Please Select...]")
+        @Html.ValidationMessageFor(model => model.LiasonEmployeeId)
+    </div>
+
+    <p>
+        <input type="submit" value="Activate" />
+    </p>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

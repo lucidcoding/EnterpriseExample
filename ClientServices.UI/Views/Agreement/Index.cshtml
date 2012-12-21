@@ -1,18 +1,16 @@
-﻿@model IEnumerable<Finance.UI.ViewModel.IndexAccountsViewModel>
+﻿@model ClientServices.UI.ViewModels.IndexAgreementsViewModel
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Accounts</h2>
+<h2>Aggreements</h2>
 
+@Html.HiddenFor(model => model.ClientId)
 <table>
     <tr>
         <th>
-            ClientReference
-        </th>
-        <th>
-            ClientName
+            Commencement
         </th>
         <th>
             Expiry
@@ -26,13 +24,10 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Records) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ClientReference)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ClientName)
+            @Html.DisplayFor(modelItem => item.Commencement)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Expiry)
@@ -44,8 +39,7 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ActionLink("View Installments", "Index", "Installment", new { accountId = item.Id }, null) | 
-            @Html.ActionLink("Suspend", "Suspend", new { accountId = item.Id })
+            @Html.ActionLink("Cancel", "Cancel", new { agreementId = item.Id, clientId = Model.ClientId }) 
         </td>
     </tr>
 }

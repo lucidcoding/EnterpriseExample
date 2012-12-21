@@ -3,6 +3,7 @@ using ClientServices.Domain.Events;
 using ClientServices.Domain.RepositoryContracts;
 using ClientServices.Messages.Commands;
 using ClientServices.Messages.Events;
+using ClientServices.Messages.Replies;
 using NServiceBus;
 
 namespace ClientServices.MessageHandlers.CommandHandlers
@@ -26,6 +27,7 @@ namespace ClientServices.MessageHandlers.CommandHandlers
             var agreement = _agreementRepository.GetById(message.Id);
             agreement.Cancel();
             _agreementRepository.Flush();
+            _bus.Return(ReturnCode.OK);
         }
 
         public void AgreementCancelledEventHandler(AgreementCancelledEvent @event)

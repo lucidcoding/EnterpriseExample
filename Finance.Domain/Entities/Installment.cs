@@ -4,7 +4,6 @@ using Finance.Domain.Enumerations;
 
 namespace Finance.Domain.Entities
 {
-    //Todo: issue an invoice?
     public class Installment : Entity<Guid>
     {
         public virtual DateTime DueDate { get; set; }
@@ -36,6 +35,11 @@ namespace Finance.Domain.Entities
                 if (Paid)
                 {
                     return InstallmentStatus.Paid;
+                }
+
+                if(Account.Status == AccountStatus.Closed)
+                {
+                    return InstallmentStatus.NotRequired;
                 }
 
                 if (DateTime.Now > DueDate.AddDays(10))

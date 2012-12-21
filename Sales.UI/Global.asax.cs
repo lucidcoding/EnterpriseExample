@@ -1,17 +1,14 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using NServiceBus;
+using Sales.Data.Common;
 using Sales.UI.Common;
 using Sales.UI.Core;
 using StructureMap;
+using System;
 
 namespace Sales.UI
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
-    //todo: ensure sessions are closed. See project template and current project.
-
     public class MvcApplication : System.Web.HttpApplication
     {
         public static IBus Bus { get; private set; }
@@ -30,7 +27,6 @@ namespace Sales.UI
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Lead", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
-
         }
 
         protected void Application_Start()
@@ -56,5 +52,11 @@ namespace Sales.UI
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
+
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+            var sessionProvider = ObjectFactory.GetInstance<ISessionProvider>();
+            sessionProvider.CloseCurrent();
+        }  
     }
 }

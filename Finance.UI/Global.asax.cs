@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Web.Routing;
+using Finance.Data.Common;
 using Finance.UI.Common;
 using Finance.UI.Core;
 using NServiceBus;
@@ -25,7 +27,6 @@ namespace Finance.UI
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Account", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
-
         }
 
         protected void Application_Start()
@@ -51,6 +52,12 @@ namespace Finance.UI
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+        }
+
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+            var sessionProvider = ObjectFactory.GetInstance<ISessionProvider>();
+            sessionProvider.CloseCurrent();
         }
     }
 }

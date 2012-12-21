@@ -10,7 +10,7 @@
 		<property name="AgreementId" />
 		<property name="Expiry" />
 		<property name="Value" />
-		<bag name="Installments" cascade="all" inverse="true">
+		<bag name="Installments" cascade="all">
 			<key column="AccountId"/>
 			<one-to-many class="Installment" />
 		</bag>

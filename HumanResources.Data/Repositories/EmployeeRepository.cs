@@ -22,5 +22,15 @@ namespace HumanResources.Data.Repositories
                 .Add(Restrictions.IsNull("Left"))
                 .List<Employee>();
         }
+
+        public IList<Employee> GetCurrentByDepartmentId(Guid departmentId)
+        {
+            return _sessionProvider
+                .GetCurrent()
+                .CreateCriteria<Employee>()
+                .Add(Restrictions.IsNull("Left"))
+                .Add(Restrictions.Eq("Department.Id", departmentId))
+                .List<Employee>();
+        }
     }
 }

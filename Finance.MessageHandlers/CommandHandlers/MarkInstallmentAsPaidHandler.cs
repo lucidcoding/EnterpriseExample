@@ -2,7 +2,6 @@
 using Finance.Domain.Events;
 using Finance.Domain.RepositoryContracts;
 using Finance.Messages.Commands;
-using Finance.Messages.Events;
 using Finance.Messages.Replies;
 using NServiceBus;
 
@@ -33,7 +32,6 @@ namespace Finance.MessageHandlers.CommandHandlers
         public void InstallmentPaidEventHandler(InstallmentPaidEvent @event)
         {
             _installmentRepository.Save(@event.Source);
-            _bus.Publish(new AccountSuspended { Id = @event.Source.Id.Value });
         }
     }
 }

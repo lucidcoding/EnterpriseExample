@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using Finance.Messages.Events;
+using NServiceBus;
 using HumanResources.Messages.Events;
 
 namespace ClientServices.MessageHandlers.Core
@@ -15,11 +16,13 @@ namespace ClientServices.MessageHandlers.Core
         public void Run()
         {
             _bus.Subscribe<EmployeeLeft>();
+            _bus.Subscribe<AccountSuspended>();
         }
 
         public void Stop()
         {
             _bus.Unsubscribe<EmployeeLeft>();
+            _bus.Unsubscribe<AccountSuspended>();
         }
     }
 }

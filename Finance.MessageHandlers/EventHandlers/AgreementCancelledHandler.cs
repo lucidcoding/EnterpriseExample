@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ClientServices.Messages.Events;
+﻿using ClientServices.Messages.Events;
 using Finance.Domain.Common;
 using Finance.Domain.Events;
 using Finance.Domain.RepositoryContracts;
@@ -12,14 +8,10 @@ namespace Finance.MessageHandlers.EventHandlers
 {
     public class AgreementCancelledHandler : IHandleMessages<AgreementCancelled>
     {
-        private readonly IBus _bus;
         private readonly IAccountRepository _accountRepository;
 
-        public AgreementCancelledHandler(
-            IBus bus,
-            IAccountRepository accountRepository)
+        public AgreementCancelledHandler(IAccountRepository accountRepository)
         {
-            _bus = bus;
             _accountRepository = accountRepository;
         }
 

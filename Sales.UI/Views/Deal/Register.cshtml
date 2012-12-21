@@ -7,44 +7,41 @@
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
-    <fieldset>
-        <legend>RegisterDealViewModel</legend>
-        @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model => model.LeadId)
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Value)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Value)
-            @Html.ValidationMessageFor(model => model.Value)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Commencement)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Commencement)
-            (dd/mm/yyyy hh:mm:ss)
-            @Html.ValidationMessageFor(model => model.Commencement)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Expiry)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Expiry)
-            (dd/mm/yyyy hh:mm:ss)
-            @Html.ValidationMessageFor(model => model.Expiry)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Services)
-        </div>
-        <div class="editor-field">
-            @Html.ListBox("ServiceIds", Model.Services)
-            @Html.ValidationMessageFor(model => model.Value)
-        </div>
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.LeadId)
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Value)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Value)
+        @Html.ValidationMessageFor(model => model.Value)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Commencement)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Commencement)
+        (dd/mm/yyyy hh:mm:ss)
+        @Html.ValidationMessageFor(model => model.Commencement)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Expiry)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Expiry)
+        (dd/mm/yyyy hh:mm:ss)
+        @Html.ValidationMessageFor(model => model.Expiry)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Services)
+    </div>
+    <div class="editor-field">
+        @Html.ListBox("ServiceIds", Model.Services)
+        @Html.ValidationMessageFor(model => model.Value)
+    </div>
+    <p>
+        <input type="submit" value="Create" />
+    </p>
 }
 <div>
     @Html.ActionLink("Back to List", "Index")

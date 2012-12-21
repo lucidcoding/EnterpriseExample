@@ -8,5 +8,6 @@ namespace HumanResources.Domain.RepositoryContracts
     public interface IEmployeeRepository : IRepository<Employee, Guid>
     {
         IList<Employee> GetCurrent();
+        IList<Employee> GetCurrentByDepartmentId(Guid departmentId);
     }
 }

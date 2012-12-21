@@ -52,7 +52,6 @@
     <Compile Include="Entities\Employee.cs" />
     <Compile Include="Events\EmployeeLeftEvent.cs" />
     <Compile Include="Events\EmployeeRegisteredEvent.cs" />
-    <Compile Include="Global\Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryContracts\IEmployeeRepository.cs" />
   </ItemGroup>

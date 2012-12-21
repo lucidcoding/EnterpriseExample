@@ -6,8 +6,6 @@ using ClientServices.Domain.Events;
 
 namespace ClientServices.Domain.Entities
 {
-    //Todo: need to take value out of here, not relevant to this domain, just got it so can pass to accounts.
-    //Todo: needs a continuous process to set Status to expired when passed the expiry date.
     public class Agreement : Entity<Guid>
     {
         public virtual Client Client { get; set; }
@@ -49,6 +47,12 @@ namespace ClientServices.Domain.Entities
         {
             Status = AgreementStatus.Cancelled;
             DomainEvents.Raise(new AgreementCancelledEvent(this));
+        }
+
+        public virtual void Suspend()
+        {
+            Status = AgreementStatus.Suspended;
+            DomainEvents.Raise(new AgreementSuspendedEvent(this));
         }
     }
 }

@@ -71,7 +71,6 @@ namespace Sales.UI.Controllers
             return View(viewModel);
         }
 
-        //TODO: deal needs to lod start and end date of deal and send it to CS along with serviceIds.
         public ActionResult Register(Guid leadId)
         {
             var services = _serviceService
@@ -91,9 +90,6 @@ namespace Sales.UI.Controllers
         [HttpPost]
         public void RegisterAsync(RegisterDealViewModel viewModel)
         {
-            //Todo: send InitialiseClient command here and wait for both before calling RegisterCompleted. 
-            //need to pass in clientId, agreementId, serviceIds, commencement, expiry, value, 
-
             AsyncManager.Parameters["leadId"] = viewModel.LeadId;
 
             var registerDeal = new RegisterDeal

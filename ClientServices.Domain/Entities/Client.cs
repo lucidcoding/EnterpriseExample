@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using ClientServices.Domain.Common;
-using ClientServices.Domain.Enumerations;
 using ClientServices.Domain.Events;
 
 namespace ClientServices.Domain.Entities
 {
-    //Todo: for now, no address and phone is on startup, but when uses activates account, controller gets then from Sales and user confirms.
-    //Todo: in the future, find a way of sales passing this info when account is opened.
-    //Todo: should somehow pass in name?
-    //Todo: unassign client when employee leaves.
     public class Client : Entity<Guid>
     {
         public virtual string Name { get; set; }

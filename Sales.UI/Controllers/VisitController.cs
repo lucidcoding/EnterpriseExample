@@ -70,6 +70,9 @@ namespace Sales.UI.Controllers
         [HttpPost]
         public void LogAsync(LogVisitViewModel viewModel)
         {
+            AsyncManager.Parameters["resultedInDeal"] = viewModel.ResultedInDeal;
+            AsyncManager.Parameters["leadId"] = viewModel.LeadId;
+
             var command = new LogVisit
                               {
                                   Id = viewModel.Id,
@@ -78,16 +81,9 @@ namespace Sales.UI.Controllers
                                   End = viewModel.End
                               };
 
-            AsyncManager.OutstandingOperations.Increment();
-
             _bus.Send(command).Register<ReturnCode>(status =>
                                                         {
                                                             AsyncManager.Parameters["returnCode"] = status;
-                                                            AsyncManager.Parameters["resultedInDeal"] =
-                                                                viewModel.ResultedInDeal;
-                                                            AsyncManager.Parameters["leadId"] =
-                                                                viewModel.LeadId;
-                                                            AsyncManager.OutstandingOperations.Decrement();
                                                         });
         }
 

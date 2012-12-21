@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Web.Routing;
+using ClientServices.Data.Common;
 using ClientServices.UI.Common;
 using ClientServices.UI.Core;
 using NServiceBus;
@@ -25,7 +27,6 @@ namespace ClientServices.UI
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Client", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
-
         }
 
         protected void Application_Start()
@@ -50,6 +51,12 @@ namespace ClientServices.UI
             ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerActivator());
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+        }
+
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+            var sessionProvider = ObjectFactory.GetInstance<ISessionProvider>();
+            sessionProvider.CloseCurrent();
         }
     }
 }
