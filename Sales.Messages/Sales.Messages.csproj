@@ -45,12 +45,11 @@
   <ItemGroup>
     <Compile Include="Commands\LogVisit.cs" />
     <Compile Include="Commands\RegisterDeal.cs" />
+    <Compile Include="Events\LeadSignedUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Replies\ReturnCode.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Events\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

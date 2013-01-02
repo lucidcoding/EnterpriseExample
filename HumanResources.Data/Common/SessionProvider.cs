@@ -25,8 +25,12 @@ namespace HumanResources.Data.Common
         public void CloseCurrent()
         {
             ISession currentSession = CurrentSessionContext.Unbind(_sessionFactory);
-            currentSession.Close();
-            currentSession.Dispose();
+
+            if (currentSession != null)
+            {
+                currentSession.Close();
+                currentSession.Dispose();
+            }
         }
     }
 }

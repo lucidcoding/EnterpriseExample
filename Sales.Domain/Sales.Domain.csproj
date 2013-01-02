@@ -51,6 +51,7 @@
     <Compile Include="Entities\Deal.cs" />
     <Compile Include="Entities\Visit.cs" />
     <Compile Include="Entities\Lead.cs" />
+    <Compile Include="Events\LeadSignedUpEvent.cs" />
     <Compile Include="Events\LeadUnassignedEvent.cs" />
     <Compile Include="Events\DealSignedEvent.cs" />
     <Compile Include="Events\VisitMadeEvent.cs" />

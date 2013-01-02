@@ -6,6 +6,7 @@ namespace ClientServices.Messages.Commands
 {
     public class InitializeClient : IMessage
     {
+        public Guid CorrelationId { get; set; }
         public Guid ClientId { get; set; }
         public Guid AgreementId { get; set; }
         public DateTime AgreementCommencement { get; set; }

@@ -18,6 +18,11 @@ namespace ClientServices.Domain.Entities
  
         public static void Initialize(
             Guid clientId,
+            string clientName,
+            string clientAddress1,
+            string clientAddress2,
+            string clientAddress3,
+            string clientPhoneNumber,
             Guid agreementId,
             DateTime agreementCommencement,
             DateTime agreementExpiry,
@@ -26,7 +31,12 @@ namespace ClientServices.Domain.Entities
         {
             var client = new Client
                              {
-                                 Id = clientId
+                                 Id = clientId,
+                                 Name = clientName,
+                                 Address1 = clientAddress1,
+                                 Address2 = clientAddress2,
+                                 Address3 = clientAddress3,
+                                 PhoneNumber = clientPhoneNumber
                              };
 
             client.CurrentAgreement = Agreement.Initialize(

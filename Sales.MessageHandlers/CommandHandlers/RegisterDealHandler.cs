@@ -1,9 +1,11 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 using Sales.Domain.Common;
 using Sales.Domain.Entities;
 using Sales.Domain.Events;
 using Sales.Domain.RepositoryContracts;
 using Sales.Messages.Commands;
+using Sales.Messages.Events;
 using Sales.Messages.Replies;
 
 namespace Sales.MessageHandlers.CommandHandlers
@@ -13,6 +15,7 @@ namespace Sales.MessageHandlers.CommandHandlers
         private readonly IBus _bus;
         private readonly IDealRepository _dealRepository;
         private readonly ILeadRepository _leadRepository;
+        private Guid _correlationId;
 
         public RegisterDealHandler(
             IBus bus, 
@@ -27,8 +30,10 @@ namespace Sales.MessageHandlers.CommandHandlers
         public void Handle(RegisterDeal message)
         {
             DomainEvents.Register<DealSignedEvent>(DealSignedEventHandler);
+            DomainEvents.Register<LeadSignedUpEventEvent>(LeadSignedUpEventHandler);
+            _correlationId = message.CorrelationId;
             var lead = _leadRepository.GetById(message.LeadId);
-            Deal.Register(message.Id, lead, message.Value);
+            Deal.Register(message.DealId, lead, message.Value);
             _dealRepository.Flush();
             _bus.Return(ReturnCode.OK);
         }
@@ -36,6 +41,20 @@ namespace Sales.MessageHandlers.CommandHandlers
         private void DealSignedEventHandler(DealSignedEvent @event)
         {
             _dealRepository.Save(@event.Source);
+        }
+
+        private void LeadSignedUpEventHandler(LeadSignedUpEventEvent @event)
+        {
+            _bus.Publish(new LeadSignedUp
+                             {
+                                 CorrelationId = _correlationId,
+                                 LeadId = @event.Source.Id.Value,
+                                 Name = @event.Source.Name,
+                                 Address1 = @event.Source.Address1,
+                                 Address2 = @event.Source.Address2,
+                                 Address3 = @event.Source.Address3,
+                                 PhoneNumber = @event.Source.PhoneNumber
+                             });
         }
     }
 }

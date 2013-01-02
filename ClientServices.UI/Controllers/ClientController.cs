@@ -9,7 +9,6 @@ using ClientServices.Domain.RepositoryContracts;
 using ClientServices.Messages.Commands;
 using ClientServices.Messages.Replies;
 using ClientServices.UI.HumanResources.WCF;
-using ClientServices.UI.Sales.WCF;
 using ClientServices.UI.ViewModels;
 using NServiceBus;
 
@@ -20,18 +19,15 @@ namespace ClientServices.UI.Controllers
         private readonly IBus _bus;
         private readonly IClientRepository _clientRepository;
         private readonly IEmployeeService _employeeService;
-        private readonly ILeadService _leadService;
 
         public ClientController(
             IBus bus,
             IClientRepository clientRepository,
-            IEmployeeService employeeService,
-            ILeadService leadService)
+            IEmployeeService employeeService)
         {
             _bus = bus;
             _clientRepository = clientRepository;
             _employeeService = employeeService;
-            _leadService = leadService;
         }
 
         public ActionResult Index()
@@ -46,11 +42,6 @@ namespace ClientServices.UI.Controllers
                 transactionScope.Complete();
             }
 
-            var initializedClientsDetails = _leadService.GetByIds(initializedClients
-                .Where(client => client.Id.HasValue)
-                .Select(client => client.Id.Value)
-                .ToArray());
-
             var employees = _employeeService.GetByIds(activeClients
                                                           .Where(client => client.LiasonEmployeeId.HasValue)
                                                           .Select(client => client.LiasonEmployeeId.Value)
@@ -62,11 +53,11 @@ namespace ClientServices.UI.Controllers
                                         initializedClients.Select(client => new IndexClientsRecordViewModel
                                                                                 {
                                                                                     Id = client.Id.Value,
-                                                                                    Name = initializedClientsDetails.Single(x => x.Id == client.Id).Name,
-                                                                                    Address1 = initializedClientsDetails.Single(x => x.Id == client.Id).Address1,
-                                                                                    Address2 = initializedClientsDetails.Single(x => x.Id == client.Id).Address2,
-                                                                                    Address3 = initializedClientsDetails.Single(x => x.Id == client.Id).Address3,
-                                                                                    PhoneNumber = initializedClientsDetails.Single(x => x.Id == client.Id).PhoneNumber
+                                                                                    Name = client.Name,
+                                                                                    Address1 = client.Address1,
+                                                                                    Address2 = client.Address2,
+                                                                                    Address3 = client.Address3,
+                                                                                    PhoneNumber = client.PhoneNumber
                                                                                 }).ToList(),
                                     ActiveClients = activeClients.Select(client => new IndexClientsRecordViewModel
                                                                                        {
@@ -96,17 +87,16 @@ namespace ClientServices.UI.Controllers
                 transactionScope.Complete();
             }
 
-            var initializedClientDetails = _leadService.GetById(clientId);
             var employees = _employeeService.GetCurrentByDepartmentId(Constants.ClientServicesDepartmentId);
 
             var viewModel = new ActivateClientViewModel
                                 {
                                     Id = initializedClient.Id.Value,
-                                    Name = initializedClientDetails.Name,
-                                    Address1 = initializedClientDetails.Address1,
-                                    Address2 = initializedClientDetails.Address2,
-                                    Address3 = initializedClientDetails.Address3,
-                                    PhoneNumber = initializedClientDetails.PhoneNumber,
+                                    Name = initializedClient.Name,
+                                    Address1 = initializedClient.Address1,
+                                    Address2 = initializedClient.Address2,
+                                    Address3 = initializedClient.Address3,
+                                    PhoneNumber = initializedClient.PhoneNumber,
                                     Employees = new SelectList(employees, "Id", "FullName")
                                 };
 

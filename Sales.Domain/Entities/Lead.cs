@@ -33,6 +33,7 @@ namespace Sales.Domain.Entities
         public virtual void MarkAsSignedUp()
         {
             SignedUp = true;
+            DomainEvents.Raise(new LeadSignedUpEventEvent(this));
         }
 
         public virtual void Unassign()

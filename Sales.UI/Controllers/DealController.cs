@@ -91,16 +91,19 @@ namespace Sales.UI.Controllers
         public void RegisterAsync(RegisterDealViewModel viewModel)
         {
             AsyncManager.Parameters["leadId"] = viewModel.LeadId;
+            var correlationId = Guid.NewGuid();
 
             var registerDeal = new RegisterDeal
                               {
-                                  Id = viewModel.Id,
+                                  CorrelationId = correlationId,
+                                  DealId = viewModel.Id,
                                   LeadId = viewModel.LeadId,
                                   Value = viewModel.Value
                               };
 
             var initializeClient = new InitializeClient
                                        {
+                                           CorrelationId = correlationId,
                                            AgreementId = viewModel.Id,
                                            AgreementCommencement = viewModel.Commencement,
                                            AgreementExpiry = viewModel.Expiry,
@@ -114,16 +117,12 @@ namespace Sales.UI.Controllers
                                                                               AsyncManager.Parameters["registerDealReturnCode"] = status;
                                                                           });
 
-            _bus.Send(initializeClient).Register<ClientServiceReplies.ReturnCode>(status =>
-                                                                                      {
-                                                                                          AsyncManager.Parameters["initializeClientReturnCode"] = status;
-                                                                                      });
+            _bus.Send(initializeClient);
         }
 
         public ActionResult RegisterCompleted(
             Guid leadId,
-            SalesReplies.ReturnCode registerDealReturnCode,
-            ClientServiceReplies.ReturnCode initializeClientReturnCode)
+            SalesReplies.ReturnCode registerDealReturnCode)
         {
             return RedirectToAction("Index", new { leadId });
         }

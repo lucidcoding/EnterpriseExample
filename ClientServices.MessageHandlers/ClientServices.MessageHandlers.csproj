@@ -60,14 +60,16 @@
   <ItemGroup>
     <Compile Include="CommandHandlers\ActivateClientHandler.cs" />
     <Compile Include="CommandHandlers\CancelAgreementHandler.cs" />
-    <Compile Include="CommandHandlers\InitializeClientHandler.cs" />
     <Compile Include="Core\MessageHandlersRegistry.cs" />
     <Compile Include="Core\MessageModule.cs" />
     <Compile Include="Core\SubscriberEndpoint.cs" />
     <Compile Include="EventHandlers\AccountSuspendedHandler.cs" />
+    <Compile Include="EventHandlers\LeadSignedUpHandler.cs" />
     <Compile Include="EventHandlers\EmployeeLeftHandler.cs" />
     <Compile Include="MessageEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SagaData\InitializeClientSagaData.cs" />
+    <Compile Include="Sagas\InitializeClientSaga.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="hibernate.cfg.xml">
@@ -97,6 +99,10 @@
     <ProjectReference Include="..\HumanResources.Messages\HumanResources.Messages.csproj">
       <Project>{8B5B36C1-85A9-4FB2-B20A-A8E690CAFB9D}</Project>
       <Name>HumanResources.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sales.Messages\Sales.Messages.csproj">
+      <Project>{9A2441B1-F3BA-4E9E-A21D-2D0DB61E86EA}</Project>
+      <Name>Sales.Messages</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

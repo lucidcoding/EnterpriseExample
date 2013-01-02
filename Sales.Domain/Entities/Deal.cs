@@ -22,8 +22,7 @@ namespace Sales.Domain.Entities
                                Commission = value/10
                            };
 
-            lead.SignedUp = true;
-
+            lead.MarkAsSignedUp();
             DomainEvents.Raise(new DealSignedEvent(deal));
         }
     }

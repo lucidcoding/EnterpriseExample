@@ -8,14 +8,16 @@ namespace ClientServices.MessageHandlers
     {
         public void Init()
         {
+            ObjectFactory.Container.Configure(x => x.AddRegistry<MessageHandlersRegistry>());
+
             Configure.With()
                 .StructureMapBuilder()
                 .JsonSerializer()
-                .MsmqSubscriptionStorage()
+                .MsmqSubscriptionStorage() 
+                .Sagas()  
+                .InMemorySagaPersister()
                 .UnicastBus()
                     .DoNotAutoSubscribe();
-
-            ObjectFactory.Container.Configure(x => x.AddRegistry<MessageHandlersRegistry>());
         }
     }
 }

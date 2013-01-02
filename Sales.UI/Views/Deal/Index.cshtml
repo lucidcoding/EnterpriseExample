@@ -9,12 +9,6 @@
 <table>
     <tr>
         <th>
-            Start
-        </th>
-        <th>
-            End
-        </th>
-        <th>
             MadeByConsultant
         </th>
         <th>
@@ -24,12 +18,6 @@
 
 @foreach (var item in Model.Records) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Start)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.End)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.MadeByConsultant)
         </td>
