@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using ClientServices.Domain.RepositoryContracts;
+using NServiceBus;
 using ClientServices.MessageHandlers.Core;
 using StructureMap;
 

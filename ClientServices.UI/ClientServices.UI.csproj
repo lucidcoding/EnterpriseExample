@@ -92,11 +92,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\Sales.WCF\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\ActivateClientViewModel.cs" />
     <Compile Include="ViewModels\IndexAgreementsRecordViewModel.cs" />
     <Compile Include="ViewModels\IndexAgreementsViewModel.cs" />
@@ -149,17 +144,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\Sales.WCF\ClientServices.UI.Sales.WCF.LeadDto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Sales.WCF\LeadService.disco" />
-    <None Include="Service References\Sales.WCF\configuration91.svcinfo" />
-    <None Include="Service References\Sales.WCF\configuration.svcinfo" />
-    <None Include="Service References\Sales.WCF\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -171,19 +158,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
-    <None Include="Service References\Sales.WCF\LeadService.wsdl" />
-    <None Include="Service References\Sales.WCF\LeadService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Sales.WCF\LeadService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Sales.WCF\LeadService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Sales.WCF\LeadService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Client\Activate.cshtml" />
     <Content Include="Views\Agreement\Index.cshtml" />
   </ItemGroup>
@@ -212,7 +186,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\HumanResources.WCF\" />
-    <WCFMetadataStorage Include="Service References\Sales.WCF\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\HumanResources.WCF\EmployeeService.wsdl" />

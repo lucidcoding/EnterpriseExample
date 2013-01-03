@@ -6,7 +6,6 @@ using ClientServices.MessageHandlers.SagaData;
 using ClientServices.Messages.Commands;
 using NServiceBus.Saga;
 using Sales.Messages.Events;
-using StructureMap;
 
 namespace ClientServices.MessageHandlers.Sagas
 {
@@ -15,15 +14,8 @@ namespace ClientServices.MessageHandlers.Sagas
         ISagaStartedBy<LeadSignedUp>,
         ISagaStartedBy<InitializeClient>
     {
-        private readonly IClientRepository _clientRepository;
-        private readonly IServiceRepository _serviceRepository;
-
-        public InitializeClientSaga()
-        {
-            //ToDo: find a better way of doing dependency injection.
-            _clientRepository = ObjectFactory.GetInstance<IClientRepository>();
-            _serviceRepository = ObjectFactory.GetInstance<IServiceRepository>();
-        }
+        public IClientRepository ClientRepository { get; set; }
+        public IServiceRepository ServiceRepository { get; set; }
 
         public override void ConfigureHowToFindSaga()
         {
@@ -67,7 +59,7 @@ namespace ClientServices.MessageHandlers.Sagas
             if(Data.LeadSignedUpReceived && Data.InitializeClientReceived)
             {
                 DomainEvents.Register<ClientInitializedEvent>(ClientInitializedEventHandler);
-                var services = _serviceRepository.GetByIds(Data.AgreementServiceIds);
+                var services = ServiceRepository.GetByIds(Data.AgreementServiceIds);
 
                 Client.Initialize(
                     Data.ClientId,
@@ -83,13 +75,13 @@ namespace ClientServices.MessageHandlers.Sagas
                     services);
 
                 MarkAsComplete();
-                _clientRepository.Flush();
+                ClientRepository.Flush();
             }
         }
 
         private void ClientInitializedEventHandler(ClientInitializedEvent @event)
         {
-            _clientRepository.Save(@event.Source);
+            ClientRepository.Save(@event.Source);
         }
     }
 }
