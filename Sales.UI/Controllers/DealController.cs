@@ -101,14 +101,14 @@ namespace Sales.UI.Controllers
                                   Value = viewModel.Value
                               };
 
-            var initializeClient = new InitializeClient
+            var initializeClient = new InitializeAgreement
                                        {
                                            CorrelationId = correlationId,
-                                           AgreementId = viewModel.Id,
-                                           AgreementCommencement = viewModel.Commencement,
-                                           AgreementExpiry = viewModel.Expiry,
-                                           AgreementServiceIds = viewModel.ServiceIds,
-                                           AgreementValue = viewModel.Value,
+                                           DealId = viewModel.Id,
+                                           Commencement = viewModel.Commencement,
+                                           Expiry = viewModel.Expiry,
+                                           ServiceIds = viewModel.ServiceIds,
+                                           Value = viewModel.Value,
                                            ClientId = viewModel.LeadId
                                        };
 

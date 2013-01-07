@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Commands\ActivateClient.cs" />
     <Compile Include="Commands\CancelAgreement.cs" />
-    <Compile Include="Commands\InitializeClient.cs" />
+    <Compile Include="Commands\InitializeAgreement.cs" />
     <Compile Include="Events\AgreementActivated.cs" />
     <Compile Include="Events\AgreementCancelled.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

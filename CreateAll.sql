@@ -195,9 +195,9 @@ BEGIN
 	CREATE TABLE [dbo].[Agreement](
 		[Id] uniqueidentifier NOT NULL,
 		[ClientId] uniqueidentifier NULL,
+		[DealId] uniqueidentifier NULL,
 		[Commencement] datetime NULL,
 		[Expiry] datetime NULL,
-		[Value] int NULL,
 		[Status] int NULL
 		CONSTRAINT [PK_Agreement] PRIMARY KEY CLUSTERED 
 		(

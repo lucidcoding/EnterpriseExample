@@ -44,7 +44,6 @@ namespace ClientServices.UI.Controllers
                                                                                      Id = agreement.Id.Value,
                                                                                      Commencement = agreement.Commencement,
                                                                                      Expiry = agreement.Expiry,
-                                                                                     Value = agreement.Value,
                                                                                      Status = agreement.Status
                                                                                  }).ToList()
                                 };

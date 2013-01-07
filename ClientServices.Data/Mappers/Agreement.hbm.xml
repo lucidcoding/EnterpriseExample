@@ -7,9 +7,9 @@
 			<generator class="assigned"/>
 		</id>
 		<many-to-one name="Client" class="Client" column="ClientId" />
+		<property name="DealId" />
 		<property name="Commencement" />
 		<property name="Expiry" />
-		<property name="Value" />
 		<bag name="Services" table="AgreementService" cascade="all">
 			<key column="AgreementId"/>
 			<many-to-many class="Service" column="ServiceId" />

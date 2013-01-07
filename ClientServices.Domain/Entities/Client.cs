@@ -23,10 +23,9 @@ namespace ClientServices.Domain.Entities
             string clientAddress2,
             string clientAddress3,
             string clientPhoneNumber,
-            Guid agreementId,
+            Guid dealId,
             DateTime agreementCommencement,
             DateTime agreementExpiry,
-            int agreementValue, 
             IList<Service> agreementServices)
         {
             var client = new Client
@@ -40,11 +39,10 @@ namespace ClientServices.Domain.Entities
                              };
 
             client.CurrentAgreement = Agreement.Initialize(
-                agreementId,
+                dealId,
                 client,
                 agreementCommencement,
                 agreementExpiry,
-                agreementValue,
                 agreementServices);
 
             DomainEvents.Raise(new ClientInitializedEvent(client));

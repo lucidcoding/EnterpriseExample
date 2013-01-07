@@ -1,5 +1,6 @@
 ﻿using ClientServices.Messages.Events;
 using NServiceBus;
+using Sales.Messages.Events;
 
 namespace Finance.MessageHandlers.Core
 {
@@ -16,12 +17,14 @@ namespace Finance.MessageHandlers.Core
         {
             _bus.Subscribe<AgreementActivated>();
             _bus.Subscribe<AgreementCancelled>();
+            _bus.Subscribe<DealRegistered>();
         }
 
         public void Stop()
         {
             _bus.Unsubscribe<AgreementActivated>();
             _bus.Unsubscribe<AgreementCancelled>();
+            _bus.Unsubscribe<DealRegistered>();
         }
     }
 }

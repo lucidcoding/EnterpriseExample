@@ -8,14 +8,16 @@ namespace Finance.MessageHandlers
     {
         public void Init()
         {
+            ObjectFactory.Container.Configure(x => x.AddRegistry<MessageHandlersRegistry>());
+
             Configure.With()
                 .StructureMapBuilder()
                 .JsonSerializer()
                 .MsmqSubscriptionStorage()
+                .Sagas()
+                .InMemorySagaPersister()
                 .UnicastBus()
                     .DoNotAutoSubscribe();
-
-            ObjectFactory.Container.Configure(x => x.AddRegistry<MessageHandlersRegistry>());
         }
     }
 }

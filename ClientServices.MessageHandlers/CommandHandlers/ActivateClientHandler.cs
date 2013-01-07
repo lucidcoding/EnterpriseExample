@@ -50,10 +50,10 @@ namespace ClientServices.MessageHandlers.CommandHandlers
             var agreementActivated = new AgreementActivated
                                          {
                                              Id = @event.Source.Id.Value,
+                                             DealId = @event.Source.DealId,
                                              ClientId = @event.Source.Client.Id.Value,
                                              Commencement = @event.Source.Commencement,
-                                             Expiry = @event.Source.Expiry,
-                                             Value = @event.Source.Value
+                                             Expiry = @event.Source.Expiry
                                          };
 
             _bus.Publish(agreementActivated);

@@ -12,7 +12,7 @@ namespace ClientServices.MessageHandlers.Sagas
     public class InitializeClientSaga : 
         Saga<InitializeClientSagaData>,
         ISagaStartedBy<LeadSignedUp>,
-        ISagaStartedBy<InitializeClient>
+        ISagaStartedBy<InitializeAgreement>
     {
         public IClientRepository ClientRepository { get; set; }
         public IServiceRepository ServiceRepository { get; set; }
@@ -23,7 +23,7 @@ namespace ClientServices.MessageHandlers.Sagas
                 saga => saga.CorrelationId,
                 message => message.CorrelationId);
 
-            ConfigureMapping<InitializeClient>(
+            ConfigureMapping<InitializeAgreement>(
                 saga => saga.CorrelationId,
                 message => message.CorrelationId);
         }
@@ -41,16 +41,16 @@ namespace ClientServices.MessageHandlers.Sagas
             CompleteIfPossible();
         }
 
-        public void Handle(InitializeClient message)
+        public void Handle(InitializeAgreement message)
         {
             Data.CorrelationId = message.CorrelationId;
             Data.InitializeClientReceived = true;
             Data.ClientId = message.ClientId;
-            Data.AgreementId = message.AgreementId;
-            Data.AgreementCommencement = message.AgreementCommencement;
-            Data.AgreementExpiry = message.AgreementExpiry;
-            Data.AgreementValue = message.AgreementValue;
-            Data.AgreementServiceIds = message.AgreementServiceIds;
+            Data.DealId = message.DealId;
+            Data.AgreementCommencement = message.Commencement;
+            Data.AgreementExpiry = message.Expiry;
+            Data.AgreementValue = message.Value;
+            Data.AgreementServiceIds = message.ServiceIds;
             CompleteIfPossible();
         }
 
@@ -68,10 +68,9 @@ namespace ClientServices.MessageHandlers.Sagas
                     Data.ClientAddress2,
                     Data.ClientAddress3,
                     Data.ClientPhoneNumber,
-                    Data.AgreementId,
+                    Data.DealId,
                     Data.AgreementCommencement,
                     Data.AgreementExpiry,
-                    Data.AgreementValue,
                     services);
 
                 MarkAsComplete();

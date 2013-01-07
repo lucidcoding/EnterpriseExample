@@ -18,7 +18,7 @@ namespace ClientServices.MessageHandlers.SagaData
         public virtual string ClientAddress2 { get; set; }
         public virtual string ClientAddress3 { get; set; }
         public virtual string ClientPhoneNumber { get; set; }
-        public virtual Guid AgreementId { get; set; }
+        public virtual Guid DealId { get; set; }
         public virtual DateTime AgreementCommencement { get; set; }
         public virtual DateTime AgreementExpiry { get; set; }
         public virtual int AgreementValue { get; set; }

@@ -41,6 +41,15 @@ namespace Sales.MessageHandlers.CommandHandlers
         private void DealSignedEventHandler(DealSignedEvent @event)
         {
             _dealRepository.Save(@event.Source);
+
+            _bus.Publish(new DealRegistered
+                             {
+                                 Id = @event.Source.Id.Value,
+                                 LeadId = @event.Source.Lead.Id.Value,
+                                 MadeByConsultantId = @event.Source.MadeByConsultantId,
+                                 Value = @event.Source.Value,
+                                 Commission = @event.Source.Value
+                             });
         }
 
         private void LeadSignedUpEventHandler(LeadSignedUpEventEvent @event)
