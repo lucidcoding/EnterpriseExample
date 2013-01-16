@@ -3,9 +3,9 @@ using Sales.Domain.Entities;
 
 namespace Sales.Domain.Events
 {
-    public class VisitMadeEvent : DomainEvent<Visit>
+    public class VisitCompletedEvent : DomainEvent<Visit>
     {
-        public VisitMadeEvent(Visit visit)
+        public VisitCompletedEvent(Visit visit)
             : base(visit)
         {
         }

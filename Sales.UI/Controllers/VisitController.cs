@@ -5,9 +5,11 @@ using System.Transactions;
 using System.Web.Mvc;
 using NServiceBus;
 using Sales.Domain.Entities;
+using Sales.Domain.Globals;
 using Sales.Domain.RepositoryContracts;
 using Sales.Messages.Commands;
 using Sales.Messages.Replies;
+using Sales.UI.HumanResources.WCF;
 using Sales.UI.ViewModels;
 
 namespace Sales.UI.Controllers
@@ -17,68 +19,110 @@ namespace Sales.UI.Controllers
         private readonly IBus _bus;
         private readonly ILeadRepository _leadRepository;
         private readonly IVisitRepository _visitRepository;
+        private readonly IEmployeeService _employeeService;
 
         public VisitController(
             IBus bus, 
             ILeadRepository leadRepository,
-            IVisitRepository visitRepository)
+            IVisitRepository visitRepository,
+            IEmployeeService employeeService)
         {
             _bus = bus;
             _leadRepository = leadRepository;
             _visitRepository = visitRepository;
+            _employeeService = employeeService;
         }
 
         public ActionResult Index(Guid leadId)
         {
             Lead lead;
-            IList<Visit> visits;
+            IList<Visit> bookedVisits;
+            IList<Visit> completedVisits;
 
             using (var transactionScope = new TransactionScope())
             {
                 lead = _leadRepository.GetById(leadId);
-                visits = _visitRepository.GetByLeadId(leadId);
+                bookedVisits = _visitRepository.GetBookedByLeadId(leadId);
+                completedVisits = _visitRepository.GetCompletedByLeadId(leadId);
                 transactionScope.Complete();
             }
+
+            var consultantIds = bookedVisits
+                .Union(completedVisits)
+                .Where(x => x.ConsultantId.HasValue)
+                .Select(x => x.ConsultantId.Value)
+                .ToArray();
+
+            var consultants = _employeeService.GetByIds(consultantIds);
 
             var viewModel = new IndexVisitsViewModel
                                 {
                                     LeadId = leadId,
                                     LeadName = lead.Name,
-                                    Records = visits.Select(visit => new IndexVisitsRecordViewModel
-                                                                         {
-                                                                             Id = visit.Id.Value,
-                                                                             Start = visit.Start,
-                                                                             End = visit.End,
-                                                                         }).ToList()
+                                    BookedVisits = bookedVisits.Select(visit => new IndexVisitsRecordViewModel
+                                                                                    {
+                                                                                        Id = visit.Id.Value,
+                                                                                        Start = visit.Start,
+                                                                                        End = visit.End,
+                                                                                        ConsultantName =
+                                                                                            visit.ConsultantId.HasValue
+                                                                                                ? consultants.Single(
+                                                                                                    x =>
+                                                                                                    x.Id ==
+                                                                                                    visit.
+                                                                                                        ConsultantId)
+                                                                                                      .
+                                                                                                      FullName
+                                                                                                : null
+                                                                                    }).ToList(),
+                                    CompletedVisits = completedVisits.Select(visit => new IndexVisitsRecordViewModel
+                                                                                          {
+                                                                                              Id = visit.Id.Value,
+                                                                                              Start = visit.Start,
+                                                                                              End = visit.End,
+                                                                                              ConsultantName =
+                                                                                                  visit.ConsultantId.
+                                                                                                      HasValue
+                                                                                                      ? consultants.
+                                                                                                            Single(
+                                                                                                                x =>
+                                                                                                                x.Id ==
+                                                                                                                visit.
+                                                                                                                    ConsultantId)
+                                                                                                            .FullName
+                                                                                                      : null
+                                                                                          }).ToList(),
                                 };
                 
-
             return View(viewModel);
         }
 
-        public ActionResult Log(Guid leadId)
+        public ActionResult Book(Guid leadId)
         {
-            var viewModel = new LogVisitViewModel
+            var consultants = _employeeService.GetCurrentByDepartmentId(Constants.SalesDepartmentId);
+
+            var viewModel = new BookVisitViewModel
                                 {
                                     Id = Guid.NewGuid(),
-                                    LeadId = leadId
+                                    LeadId = leadId,
+                                    Consultants = new SelectList(consultants, "Id", "FullName")
                                 };
 
             return View(viewModel);
         }
 
         [HttpPost]
-        public void LogAsync(LogVisitViewModel viewModel)
+        public void BookAsync(BookVisitViewModel viewModel)
         {
-            AsyncManager.Parameters["resultedInDeal"] = viewModel.ResultedInDeal;
             AsyncManager.Parameters["leadId"] = viewModel.LeadId;
 
-            var command = new LogVisit
+            var command = new BookVisit
                               {
                                   Id = viewModel.Id,
                                   LeadId = viewModel.LeadId,
                                   Start = viewModel.Start,
-                                  End = viewModel.End
+                                  End = viewModel.End,
+                                  ConsultantId = viewModel.ConsultantId
                               };
 
             _bus.Send(command).Register<ReturnCode>(status =>
@@ -87,13 +131,24 @@ namespace Sales.UI.Controllers
                                                         });
         }
 
-        public ActionResult LogCompleted(ReturnCode returnCode, bool resultedInDeal, Guid leadId)
+        public ActionResult BookCompleted(ReturnCode returnCode, Guid leadId)
         {
-            if (resultedInDeal)
-            {
-                return RedirectToAction("Register", "Deal", new { leadId });
-            }
+            return RedirectToAction("Index", new { leadId });
+        }
 
+        public void CompleteAsync(Guid visitId, Guid leadId)
+        {
+            AsyncManager.Parameters["leadId"] = leadId;
+            var command = new CompleteVisit {Id = visitId};
+
+            _bus.Send(command).Register<ReturnCode>(status =>
+                                                        {
+                                                            AsyncManager.Parameters["returnCode"] = status;
+                                                        });
+        }
+
+        public ActionResult CompleteCompleted(ReturnCode returnCode, Guid leadId)
+        {
             return RedirectToAction("Index", new { leadId });
         }
     }

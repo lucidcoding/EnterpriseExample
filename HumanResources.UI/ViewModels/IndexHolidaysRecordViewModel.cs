@@ -1,13 +1,12 @@
 ﻿using System;
 
-namespace Sales.UI.ViewModels
+namespace HumanResources.UI.ViewModels
 {
-    public class LogVisitViewModel
+    public class IndexHolidaysRecordViewModel
     {
         public Guid Id { get; set; }
-        public Guid LeadId { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        public bool ResultedInDeal { get; set; }
+        public string Description { get; set; }
     }
 }

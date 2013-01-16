@@ -59,7 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandlers\LogVisitHandler.cs" />
+    <Compile Include="CommandHandlers\BookVisitHandler.cs" />
+    <Compile Include="CommandHandlers\CompleteVisitHandler.cs" />
     <Compile Include="CommandHandlers\RegisterDealHandler.cs" />
     <Compile Include="Core\MessageModule.cs" />
     <Compile Include="Core\MessageHandlersRegistry.cs" />

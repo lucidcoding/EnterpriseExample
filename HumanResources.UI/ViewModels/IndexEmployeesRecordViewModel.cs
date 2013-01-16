@@ -9,5 +9,7 @@ namespace HumanResources.UI.ViewModels
         public string FullName { get; set; }
         public string Department { get; set; }
         public int HolidayEntitlement { get; set; }
+        public int TotalHolidays { get; set; }
+        public int RemainingHolidays { get; set; }
     }
 }

@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\BookHolidayHandler.cs" />
     <Compile Include="CommandHandlers\MarkEmployeeAsLeftHandler.cs" />
     <Compile Include="Core\MessageModule.cs" />
     <Compile Include="Core\MessageHandlersRegistry.cs" />

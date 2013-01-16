@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Visits for @Model.LeadName</h2>
+<h2>Booked Visits for @Model.LeadName</h2>
 
 <p>
-    @Html.ActionLink("Log New", "Log", new { leadId = Model.LeadId})
+    @Html.ActionLink("Book New Visit", "Book", new { leadId = Model.LeadId})
 </p>
 <table>
     <tr>
@@ -17,15 +17,58 @@
         <th>
             End
         </th>
+        <th>
+            Consultant
+        </th>
+        <th>
+            
+        </th>
     </tr>
 
-@foreach (var item in Model.Records) {
+    @foreach (var item in Model.BookedVisits) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Start)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.End)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultantName)
+            </td>
+            <td>
+                @Html.ActionLink("Complete", "Complete", new { visitId = item.Id, leadId = Model.LeadId }) 
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h2>Completed Visits for @Model.LeadName</h2>
+
+<table>
+    <tr>
+        <th>
+            Start
+        </th>
+        <th>
+            End
+        </th>
+        <th>
+            Consultant
+        </th>
+    </tr>
+
+@foreach (var item in Model.CompletedVisits) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Start)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.End)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConsultantName)
         </td>
     </tr>
 }

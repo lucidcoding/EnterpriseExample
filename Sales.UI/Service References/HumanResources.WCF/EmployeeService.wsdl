@@ -26,6 +26,12 @@
   <wsdl:message name="IEmployeeService_GetById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IEmployeeService_GetCurrentByDepartmentId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentByDepartmentId" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_GetCurrentByDepartmentId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentByDepartmentIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IEmployeeService">
     <wsdl:operation name="GetAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetAll" message="tns:IEmployeeService_GetAll_InputMessage" />
@@ -38,6 +44,10 @@
     <wsdl:operation name="GetById">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetById" message="tns:IEmployeeService_GetById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetByIdResponse" message="tns:IEmployeeService_GetById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentByDepartmentId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetCurrentByDepartmentId" message="tns:IEmployeeService_GetCurrentByDepartmentId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetCurrentByDepartmentIdResponse" message="tns:IEmployeeService_GetCurrentByDepartmentId_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IEmployeeService" type="tns:IEmployeeService">
@@ -62,6 +72,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetById">
       <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentByDepartmentId">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetCurrentByDepartmentId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

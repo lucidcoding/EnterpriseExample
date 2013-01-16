@@ -43,7 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\LogVisit.cs" />
+    <Compile Include="Commands\BookVisit.cs" />
+    <Compile Include="Commands\CompleteVisit.cs" />
     <Compile Include="Commands\RegisterDeal.cs" />
     <Compile Include="Events\DealRegistered.cs" />
     <Compile Include="Events\LeadSignedUp.cs" />

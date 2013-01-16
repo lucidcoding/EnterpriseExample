@@ -83,6 +83,7 @@
     <Compile Include="Mappers\DepartmentDtoMapper.cs" />
     <Compile Include="Mappers\EmployeeDtoMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\ValidateBookRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

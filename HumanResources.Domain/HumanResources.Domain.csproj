@@ -50,9 +50,12 @@
     <Compile Include="Common\ValidationMessageCollection.cs" />
     <Compile Include="Entities\Department.cs" />
     <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Entities\Holiday.cs" />
     <Compile Include="Events\EmployeeLeftEvent.cs" />
     <Compile Include="Events\EmployeeRegisteredEvent.cs" />
+    <Compile Include="Events\HolidayBookedEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryContracts\IHolidayRepository.cs" />
     <Compile Include="RepositoryContracts\IEmployeeRepository.cs" />
   </ItemGroup>
   <ItemGroup />

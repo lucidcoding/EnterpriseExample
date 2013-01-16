@@ -8,11 +8,10 @@ using NServiceBus;
 using Sales.Domain.Entities;
 using Sales.Domain.RepositoryContracts;
 using Sales.Messages.Commands;
+using Sales.Messages.Replies;
 using Sales.UI.ClientServices.WCF;
 using Sales.UI.HumanResources.WCF;
 using Sales.UI.ViewModels;
-using ClientServiceReplies = ClientServices.Messages.Replies;
-using SalesReplies = Sales.Messages.Replies;
 
 namespace Sales.UI.Controllers
 {
@@ -25,7 +24,7 @@ namespace Sales.UI.Controllers
         private readonly IServiceService _serviceService;
 
         public DealController(
-            IBus bus, 
+            IBus bus,
             ILeadRepository leadRepository,
             IDealRepository dealRepository,
             IEmployeeService employeeService,
@@ -94,12 +93,12 @@ namespace Sales.UI.Controllers
             var correlationId = Guid.NewGuid();
 
             var registerDeal = new RegisterDeal
-                              {
-                                  CorrelationId = correlationId,
-                                  DealId = viewModel.Id,
-                                  LeadId = viewModel.LeadId,
-                                  Value = viewModel.Value
-                              };
+                                   {
+                                       CorrelationId = correlationId,
+                                       DealId = viewModel.Id,
+                                       LeadId = viewModel.LeadId,
+                                       Value = viewModel.Value
+                                   };
 
             var initializeClient = new InitializeAgreement
                                        {
@@ -112,7 +111,7 @@ namespace Sales.UI.Controllers
                                            ClientId = viewModel.LeadId
                                        };
 
-            _bus.Send(registerDeal).Register<SalesReplies.ReturnCode>(status =>
+            _bus.Send(registerDeal).Register<ReturnCode>(status =>
                                                                           {
                                                                               AsyncManager.Parameters["registerDealReturnCode"] = status;
                                                                           });
@@ -122,7 +121,7 @@ namespace Sales.UI.Controllers
 
         public ActionResult RegisterCompleted(
             Guid leadId,
-            SalesReplies.ReturnCode registerDealReturnCode)
+            ReturnCode registerDealReturnCode)
         {
             return RedirectToAction("Index", new { leadId });
         }

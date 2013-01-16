@@ -18,9 +18,14 @@
             Department
         </th>
         <th>
-            HolidayEntitlement
+            Holiday Entitlement
         </th>
-        <th></th>
+        <th>
+            Total Holidays
+        </th>
+        <th>
+            Remaining Holidays
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -35,6 +40,13 @@
             @Html.DisplayFor(modelItem => item.HolidayEntitlement)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.TotalHolidays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RemainingHolidays)
+        </td>
+        <td>
+            @Html.ActionLink("Show Holidays", "Index", "Holiday", new { employeeId = item.Id }, null) | 
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Mark As Left", "MarkAsLeft", new { id=item.Id })
         </td>

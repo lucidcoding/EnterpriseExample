@@ -7,6 +7,7 @@ namespace Sales.Domain.RepositoryContracts
 {
     public interface IVisitRepository : IRepository<Visit, Guid>
     {
-        IList<Visit> GetByLeadId(Guid leadId);
+        IList<Visit> GetBookedByLeadId(Guid leadId);
+        IList<Visit> GetCompletedByLeadId(Guid leadId);
     }
 }

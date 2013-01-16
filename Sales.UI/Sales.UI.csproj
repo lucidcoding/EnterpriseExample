@@ -106,7 +106,7 @@
     <Compile Include="ViewModels\IndexLeadsRecordViewModel.cs" />
     <Compile Include="ViewModels\IndexVisitsRecordViewModel.cs" />
     <Compile Include="ViewModels\IndexVisitsViewModel.cs.cs" />
-    <Compile Include="ViewModels\LogVisitViewModel.cs" />
+    <Compile Include="ViewModels\BookVisitViewModel.cs" />
     <Compile Include="ViewModels\RegisterDealViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -189,7 +189,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <Content Include="Views\Lead\Index.cshtml" />
-    <Content Include="Views\Visit\Log.cshtml" />
+    <Content Include="Views\Visit\Book.cshtml" />
     <Content Include="Views\Visit\Index.cshtml" />
     <Content Include="Views\Deal\Register.cshtml" />
     <Content Include="Views\Deal\Index.cshtml" />

@@ -8,13 +8,13 @@ using Sales.Messages.Replies;
 
 namespace Sales.MessageHandlers.CommandHandlers
 {
-    public class LogVisitHandler : IHandleMessages<LogVisit>
+    public class BookVisitHandler : IHandleMessages<BookVisit>
     {
         private readonly IBus _bus;
         private readonly IVisitRepository _visitRepository;
         private readonly ILeadRepository _leadRepository;
 
-        public LogVisitHandler(
+        public BookVisitHandler(
             IBus bus, 
             IVisitRepository visitRepository, 
             ILeadRepository leadRepository)
@@ -24,16 +24,16 @@ namespace Sales.MessageHandlers.CommandHandlers
             _leadRepository = leadRepository;
         }
 
-        public void Handle(LogVisit message)
+        public void Handle(BookVisit message)
         {
-            DomainEvents.Register<VisitMadeEvent>(VisitMadeEventHandler);
+            DomainEvents.Register<VisitBookedEvent>(VisitBookedEventHandler);
             var lead = _leadRepository.GetById(message.LeadId);
-            Visit.Log(message.Id, lead, message.Start, message.End);
+            Visit.Book(message.Id, lead, message.Start, message.End, message.ConsultantId);
             _visitRepository.Flush();
             _bus.Return(ReturnCode.OK);
         }
 
-        private void VisitMadeEventHandler(VisitMadeEvent @event)
+        private void VisitBookedEventHandler(VisitBookedEvent @event)
         {
             _visitRepository.Save(@event.Source);
         }

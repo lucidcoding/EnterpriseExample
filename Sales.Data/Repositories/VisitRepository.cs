@@ -15,12 +15,23 @@ namespace Sales.Data.Repositories
         {
         }
 
-        public IList<Visit> GetByLeadId(Guid leadId)
+        public IList<Visit> GetBookedByLeadId(Guid leadId)
         {
             return _sessionProvider
                 .GetCurrent()
                 .CreateCriteria<Visit>()
                 .Add(Restrictions.Eq("Lead.Id", leadId))
+                .Add(Restrictions.Eq("Completed", false))
+                .List<Visit>();
+        }
+
+        public IList<Visit> GetCompletedByLeadId(Guid leadId)
+        {
+            return _sessionProvider
+                .GetCurrent()
+                .CreateCriteria<Visit>()
+                .Add(Restrictions.Eq("Lead.Id", leadId))
+                .Add(Restrictions.Eq("Completed", true))
                 .List<Visit>();
         }
     }

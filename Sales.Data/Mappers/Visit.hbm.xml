@@ -9,5 +9,7 @@
     <property name="Start" column="`Start`" type="DateTime"/>
     <property name="End" column="`End`" type="DateTime"/>
     <many-to-one name="Lead" class="Lead" column="LeadId" />
+	<property name="ConsultantId" />
+	<property name="Completed" />
   </class>
 </hibernate-mapping>

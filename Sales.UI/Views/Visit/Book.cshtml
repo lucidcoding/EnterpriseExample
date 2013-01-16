@@ -1,16 +1,17 @@
-﻿@model Sales.UI.ViewModels.LogVisitViewModel
+﻿@model Sales.UI.ViewModels.BookVisitViewModel
 
 @{
-    ViewBag.Title = "Log";
+    ViewBag.Title = "Book";
 }
 
 <h2>Log Visit</h2>
 
-@using (Html.BeginForm("Log", "Visit"))
+@using (Html.BeginForm("Book", "Visit"))
 {
     @Html.ValidationSummary(true)
     @Html.HiddenFor(model => model.Id)
     @Html.HiddenFor(model => model.LeadId)
+
     <div class="editor-label">
         @Html.LabelFor(model => model.Start)
     </div>
@@ -30,11 +31,13 @@
     </div>
 
     <div class="editor-label">
-        @Html.LabelFor(model => model.ResultedInDeal)
+        @Html.LabelFor(model => model.ConsultantId)
     </div>
     <div class="editor-field">
-        @Html.EditorFor(model => model.ResultedInDeal)
+        @Html.DropDownListFor(model => model.ConsultantId, Model.Consultants, "[Please Select...]")
+        @Html.ValidationMessageFor(model => model.ConsultantId)
     </div>
+
     
     <p>
         <input type="submit" value="Create" />

@@ -12,12 +12,6 @@ using NServiceBus;
 
 namespace HumanResources.UI.Controllers
 {
-    /// <remarks>
-    /// I'm well aware that there are some design issues here, such as the fact that it needs to get the employee entity
-    /// twice, once to display holiday entitlement/remaining, and another time to get calendar entries. Also,
-    /// when getting the list of employees, it gets all calendar entries for each one. This can be avoided but I'm leaving
-    /// it for the sake of speed and simplicity. It's EDA I'm demonstrating here, not fine tuning NHibernate behavior.
-    /// </remarks>
     public class EmployeeController : AsyncController
     {
         private readonly IBus _bus;
@@ -39,15 +33,17 @@ namespace HumanResources.UI.Controllers
                 transactionScope.Complete();
             }
 
-            var viewModel = employees.Select(x => new IndexEmployeesRecordViewModel
-                                                      {
-                                                          Id = x.Id.Value,
-                                                          FullName = x.FullName,
-                                                          Department = x.Department != null
-                                                                           ? x.Department.Name
-                                                                           : null,
-                                                          HolidayEntitlement = x.HolidayEntitlement
-                                                      }).ToList();
+            var viewModel = employees.Select(employee => new IndexEmployeesRecordViewModel
+                                                             {
+                                                                 Id = employee.Id.Value,
+                                                                 FullName = employee.FullName,
+                                                                 Department = employee.Department != null
+                                                                                  ? employee.Department.Name
+                                                                                  : null,
+                                                                 HolidayEntitlement = employee.HolidayEntitlement,
+                                                                 TotalHolidays = employee.TotalHolidays,
+                                                                 RemainingHolidays = employee.RemainingHolidays
+                                                             }).ToList();
 
             return View(viewModel);
         }
@@ -65,7 +61,7 @@ namespace HumanResources.UI.Controllers
         public void MarkAsLeftAsync(Guid id)
         {
             var command = new MarkEmployeeAsLeft {Id = id};
-            _bus.Send(command).Register<ReturnCode>(status => AsyncManager.Parameters["returnCode"] = status);
+            _bus.Send(command).Register<ReturnCode>(returnCode => AsyncManager.Parameters["returnCode"] = returnCode);
         }
 
         public ActionResult MarkAsLeftCompleted(ReturnCode returnCode)

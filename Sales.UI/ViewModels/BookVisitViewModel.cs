@@ -1,13 +1,15 @@
 ﻿using System;
-using NServiceBus;
+using System.Web.Mvc;
 
-namespace Sales.Messages.Commands
+namespace Sales.UI.ViewModels
 {
-    public class LogVisit : IMessage
+    public class BookVisitViewModel
     {
         public Guid Id { get; set; }
         public Guid LeadId { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
+        public SelectList Consultants { get; set; }
+        public Guid? ConsultantId { get; set; }
     }
 }

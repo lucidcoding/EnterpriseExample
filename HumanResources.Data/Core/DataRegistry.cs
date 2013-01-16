@@ -11,11 +11,12 @@ namespace HumanResources.Data.Core
         public DataRegistry()
         {
             Configure(x =>
-            {
-                For<IEmployeeRepository>().Use<EmployeeRepository>();
-                For<ISessionProvider>().Use<SessionProvider>();
-                For<ISessionFactory>().Singleton().Use(SessionFactoryFactory.GetSessionFactory());
-            });
+                          {
+                              For<IEmployeeRepository>().Use<EmployeeRepository>();
+                              For<IHolidayRepository>().Use<HolidayRepository>();
+                              For<ISessionProvider>().Use<SessionProvider>();
+                              For<ISessionFactory>().Singleton().Use(SessionFactoryFactory.GetSessionFactory());
+                          });
         }
     }
 }

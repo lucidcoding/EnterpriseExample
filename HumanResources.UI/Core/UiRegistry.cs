@@ -1,4 +1,5 @@
 ﻿using HumanResources.Data.Core;
+using HumanResources.Validation.Core;
 using StructureMap.Configuration.DSL;
 
 namespace HumanResources.UI.Core
@@ -9,7 +10,7 @@ namespace HumanResources.UI.Core
         {
             Configure(x =>
             {
-                //For<IBus>().Use(MvcApplication.Bus);
+                x.ImportRegistry(typeof(ValidationRegistry));
                 x.ImportRegistry(typeof(DataRegistry));
             });
         }
