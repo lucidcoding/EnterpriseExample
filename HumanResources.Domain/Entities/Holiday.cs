@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using HumanResources.Domain.Common;
 using HumanResources.Domain.Events;
 
@@ -10,14 +7,9 @@ namespace HumanResources.Domain.Entities
     public class Holiday : Entity<Guid>
     {
         public virtual Employee Employee { get; set; }
-        public virtual DateTime Start { get; set; }
-        public virtual DateTime End { get; set; }
+        public virtual Guid? AppointmentId { get; set; }
+        public virtual int Length { get; set; }
         public virtual string Description { get; set; }
-
-        public virtual int Length
-        {
-            get { return (End - Start).Days + 1; }
-        }
 
         public static ValidationMessageCollection ValidateBook(Employee employee, DateTime start, DateTime end, string description)
         {
@@ -33,14 +25,14 @@ namespace HumanResources.Domain.Entities
             return messages;
         }
 
-        public static void Book(Guid id, Employee employee, DateTime start, DateTime end, string description)
+        public static void Book(Guid id, Employee employee, Guid appointmentId, DateTime start, DateTime end, string description)
         {
             var holiday = new Holiday
                               {
                                   Id = id,
                                   Employee = employee,
-                                  Start = start,
-                                  End = end,
+                                  AppointmentId = appointmentId,
+                                  Length = (end - start).Days + 1,
                                   Description = description
                               };
 

@@ -32,6 +32,7 @@ namespace HumanResources.MessageHandlers.CommandHandlers
             Holiday.Book(
                 message.Id,
                 employee,
+                message.AppointmentId,
                 message.Start,
                 message.End,
                 message.Description);

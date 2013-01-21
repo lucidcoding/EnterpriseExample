@@ -3,29 +3,36 @@
 IF EXISTS (SELECT * FROM sys.databases WHERE NAME = 'HumanResources')
 BEGIN
 	EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'HumanResources'
-	ALTER DATABASE [HumanResources] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
+	ALTER DATABASE [HumanResources] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
 	DROP DATABASE [HumanResources]
 END
 
 IF EXISTS (SELECT * FROM sys.databases WHERE NAME = 'Sales')
 BEGIN
 	EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'Sales'
-	ALTER DATABASE [Sales] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
+	ALTER DATABASE [Sales] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
 	DROP DATABASE [Sales]
 END
 
 IF EXISTS (SELECT * FROM sys.databases WHERE NAME = 'ClientServices')
 BEGIN
 	EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'ClientServices'
-	ALTER DATABASE [ClientServices] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
+	ALTER DATABASE [ClientServices] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
 	DROP DATABASE [ClientServices]
 END
 
 IF EXISTS (SELECT * FROM sys.databases WHERE NAME = 'Finance')
 BEGIN
 	EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'Finance'
-	ALTER DATABASE [Finance] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
+	ALTER DATABASE [Finance] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
 	DROP DATABASE [Finance]
+END
+
+IF EXISTS (SELECT * FROM sys.databases WHERE NAME = 'Calendar')
+BEGIN
+	EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'Calendar'
+	ALTER DATABASE [Calendar] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+	DROP DATABASE [Calendar]
 END
 
 CREATE DATABASE [HumanResources] 
@@ -38,6 +45,9 @@ CREATE DATABASE [ClientServices]
 GO
 
 CREATE DATABASE [Finance]
+GO
+
+CREATE DATABASE [Calendar]
 GO
 
 USE [HumanResources]
@@ -86,9 +96,9 @@ IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Holida
 BEGIN
 	CREATE TABLE [dbo].[Holiday](
 		[Id] uniqueidentifier NOT NULL,
-		[EmployeeId] uniqueidentifier NOT NULL,
-		[Start] datetime NULL,
-		[End] datetime NULL,
+		[EmployeeId] uniqueidentifier NULL,
+		[AppointmentId] uniqueidentifier NULL,
+		[Length] int NULL,
 		[Description] nvarchar(100) NULL
 		CONSTRAINT [PK_Holiday] PRIMARY KEY CLUSTERED 
 		(
@@ -106,8 +116,7 @@ BEGIN
 	CREATE TABLE [dbo].[Visit](
 		[Id] uniqueidentifier NOT NULL,
 		[ConsultantId] uniqueidentifier NULL,
-		[Start] datetime  NOT NULL,
-		[End] datetime NOT NULL,
+		[AppointmentId] uniqueidentifier NULL,
 		[LeadId] uniqueidentifier NULL,
 		[Completed] bit NOT NULL,
 		CONSTRAINT [PK_Visit] PRIMARY KEY CLUSTERED 
@@ -256,6 +265,25 @@ BEGIN
 		[Amount] int NULL,
 		[Paid] bit NULL
 		CONSTRAINT [PK_Installment] PRIMARY KEY CLUSTERED 
+		(
+			[Id] ASC
+		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+END
+GO
+
+USE [Calendar]
+GO
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Appointment')
+BEGIN
+	CREATE TABLE [dbo].[Appointment](
+		[Id] uniqueidentifier NOT NULL,
+		[EmployeeId] uniqueidentifier NULL,
+		[DepartmentId] uniqueidentifier NULL,
+		[Start] datetime NULL,
+		[End] datetime NULL
+		CONSTRAINT [PK_Appointment] PRIMARY KEY CLUSTERED 
 		(
 			[Id] ASC
 		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]

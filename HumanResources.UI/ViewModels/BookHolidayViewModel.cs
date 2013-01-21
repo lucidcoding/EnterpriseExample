@@ -5,6 +5,7 @@ namespace HumanResources.UI.ViewModels
     public class BookHolidayViewModel
     {
         public Guid Id { get; set; }
+        public Guid AppointmentId { get; set; }
         public Guid EmployeeId { get; set; }
         public string EmployeeFullName { get; set; }
         public DateTime Start { get; set; }

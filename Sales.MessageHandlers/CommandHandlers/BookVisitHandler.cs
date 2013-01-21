@@ -28,7 +28,13 @@ namespace Sales.MessageHandlers.CommandHandlers
         {
             DomainEvents.Register<VisitBookedEvent>(VisitBookedEventHandler);
             var lead = _leadRepository.GetById(message.LeadId);
-            Visit.Book(message.Id, lead, message.Start, message.End, message.ConsultantId);
+
+            Visit.Book(
+                message.Id, 
+                message.AppointmentId,
+                lead, 
+                message.ConsultantId);
+
             _visitRepository.Flush();
             _bus.Return(ReturnCode.OK);
         }

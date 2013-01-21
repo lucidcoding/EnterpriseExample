@@ -11,6 +11,9 @@
 <table>
     <tr>
         <th>
+            Appointment Type
+        </th>
+        <th>
             Start
         </th>
         <th>
@@ -23,6 +26,9 @@
 
 @foreach (var item in Model.Records) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointmentType)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Start)
         </td>

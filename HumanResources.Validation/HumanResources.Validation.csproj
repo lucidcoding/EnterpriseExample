@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Contracts\IHolidayValidator.cs" />
     <Compile Include="Core\ValidationRegistry.cs" />
     <Compile Include="Implemetations\HolidayValidator.cs" />

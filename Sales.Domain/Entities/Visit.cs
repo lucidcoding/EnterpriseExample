@@ -6,35 +6,18 @@ namespace Sales.Domain.Entities
 {
     public class Visit : Entity<Guid>
     {
-        public virtual DateTime Start { get; set; }
-        public virtual DateTime End { get; set; }
+        public virtual Guid? AppointmentId { get; set; }
         public virtual Lead Lead { get; set; }
         public virtual Guid? ConsultantId { get; set; }
         public virtual bool Completed { get; set; }
 
-        public virtual DateTime Date
-        {
-            get { return Start.Date; }
-        }
-
-        public virtual TimeSpan StartTime
-        {
-            get { return Start.TimeOfDay; }
-        }
-
-        public virtual TimeSpan EndTime
-        {
-            get { return End.TimeOfDay; }
-        }
-
-        public static void Book(Guid id, Lead lead, DateTime start, DateTime end, Guid? consultantId)
+        public static void Book(Guid id, Guid? appointmentId, Lead lead, Guid? consultantId)
         {
             var visit = new Visit
                             {
                                 Id = id,
+                                AppointmentId = appointmentId,
                                 Lead = lead,
-                                Start = start,
-                                End = end,
                                 ConsultantId = consultantId,
                                 Completed = false
                             };

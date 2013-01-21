@@ -91,6 +91,11 @@
     </Compile>
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\Calendar.WCF\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ClientServices.WCF\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -143,6 +148,31 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <None Include="Service References\Calendar.WCF\AppointmentService.wsdl" />
+    <None Include="Service References\Calendar.WCF\AppointmentService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Calendar.WCF\AppointmentService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Calendar.WCF\AppointmentService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Calendar.WCF\AppointmentService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Calendar.WCF\AppointmentService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Calendar.WCF\AppointmentService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Calendar.WCF\Sales.UI.Calendar.WCF.AppointmentDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Calendar.WCF\Sales.UI.Calendar.WCF.ValidationMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ClientServices.WCF\Sales.UI.ClientServices.WCF.ServiceDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -174,6 +204,13 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Scripts\jquery-ui-1.8.17.custom.min.js" />
+    <None Include="Service References\Calendar.WCF\AppointmentService.disco" />
+    <None Include="Service References\Calendar.WCF\configuration91.svcinfo" />
+    <None Include="Service References\Calendar.WCF\configuration.svcinfo" />
+    <None Include="Service References\Calendar.WCF\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -223,6 +260,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Calendar.WCF\" />
     <WCFMetadataStorage Include="Service References\ClientServices.WCF\" />
     <WCFMetadataStorage Include="Service References\HumanResources.WCF\" />
   </ItemGroup>

@@ -7,8 +7,8 @@
       <generator class="assigned"/>
     </id>
 	<many-to-one name="Employee" class="Employee" column="`EmployeeId`" />
-	<property name="Start" column="`Start`" />
-    <property name="End" column="`End`" />
+	<property name="AppointmentId" column="`AppointmentId`" />
+    <property name="Length" column="`Length`" />
     <property name="Description" column="`Description`" /> 
   </class>
 </hibernate-mapping>

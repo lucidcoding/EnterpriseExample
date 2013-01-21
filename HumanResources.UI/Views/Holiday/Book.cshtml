@@ -3,15 +3,17 @@
 @{
     ViewBag.Title = "Book";
 }
-@Html.HiddenFor(model => model.Id)
-@Html.HiddenFor(model => model.EmployeeId)
-<h2>Book Holiday For @Html.DisplayFor(model => model.EmployeeFullName)</h2>
+<h2>Book Holiday For @Model.EmployeeFullName</h2>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.AppointmentId)
+    @Html.HiddenFor(model => model.EmployeeId)
+    @Html.HiddenFor(model => model.EmployeeFullName)
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>BookHolidayViewModel</legend>
