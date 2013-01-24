@@ -36,7 +36,7 @@ namespace HumanResources.UI
             Configure.With()
                 .StructureMapBuilder()
                 .ForMvc()
-                .JsonSerializer()
+                .XmlSerializer()
                 .Log4Net()
                 .MsmqTransport()
                     .IsTransactional(false)

@@ -106,7 +106,7 @@ namespace Sales.UI.Controllers
                                            DealId = viewModel.Id,
                                            Commencement = viewModel.Commencement,
                                            Expiry = viewModel.Expiry,
-                                           ServiceIds = viewModel.ServiceIds,
+                                           ServiceIds = viewModel.ServiceIds.ToList(),
                                            Value = viewModel.Value,
                                            ClientId = viewModel.LeadId
                                        };

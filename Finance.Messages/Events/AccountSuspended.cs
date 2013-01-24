@@ -6,5 +6,6 @@ namespace Finance.Messages.Events
     public class AccountSuspended : IEvent
     {
         public Guid Id { get; set; }
+        public Guid AgreementId { get; set; }
     }
 }

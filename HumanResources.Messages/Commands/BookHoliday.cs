@@ -1,8 +1,9 @@
 ﻿using System;
+using NServiceBus;
 
 namespace HumanResources.Messages.Commands
 {
-    public class BookHoliday
+    public class BookHoliday : IMessage
     {
         public Guid Id { get; set; }
         public Guid AppointmentId { get; set; }

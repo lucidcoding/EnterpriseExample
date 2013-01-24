@@ -33,7 +33,7 @@ namespace Finance.MessageHandlers.CommandHandlers
         public void AccountSuspendedEventHandler(AccountSuspendedEvent @event)
         {
             _accountRepository.Save(@event.Source);
-            _bus.Publish(new AccountSuspended { Id = @event.Source.AgreementId });
+            _bus.Publish(new AccountSuspended { Id = @event.Source.Id.Value, AgreementId = @event.Source.AgreementId });
         }
     }
 }

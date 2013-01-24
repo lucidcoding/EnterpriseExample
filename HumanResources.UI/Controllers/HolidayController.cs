@@ -24,9 +24,9 @@ namespace HumanResources.UI.Controllers
         private readonly IAppointmentService _appointmentService;
 
         public HolidayController(
-            IBus bus, 
+            IBus bus,
             IEmployeeRepository employeeRepository,
-            IHolidayValidator holidayValidator, 
+            IHolidayValidator holidayValidator,
             IAppointmentService appointmentService)
         {
             _bus = bus;
@@ -38,7 +38,6 @@ namespace HumanResources.UI.Controllers
         public ActionResult Index(Guid employeeId)
         {
             var appointments = _appointmentService.GetByEmployeeId(employeeId);
-
             Employee employee;
 
             using (var transactionScope = new TransactionScope())
@@ -51,21 +50,40 @@ namespace HumanResources.UI.Controllers
                                 {
                                     EmployeeId = employee.Id.Value,
                                     EmployeeFullName = employee.FullName,
-                                    Records = appointments.Select(appointment => new IndexHolidaysRecordViewModel
-                                                                                     {
-                                                                                         Id = employee.Holidays.FirstOrDefault(x => x.AppointmentId ==  appointment.Id) != null
-                                                                                             ? employee.Holidays.Single(x => x.AppointmentId == appointment.Id).Id
-                                                                                             : null,
-                                                                                         AppointmentType = employee.Holidays.FirstOrDefault(x => x.AppointmentId == appointment.Id) != null
-                                                                                             ? "Holiday"
-                                                                                             : "Other",
-                                                                                         Start = appointment.Start,
-                                                                                         End = appointment.End,
-                                                                                         Description = employee.Holidays.FirstOrDefault(x => x.AppointmentId ==appointment.Id) !=null
-                                                                                             ? employee.Holidays.Single(x => x.AppointmentId == appointment.Id).Description
-                                                                                             : null,
-                                                                                     }).ToList()
+                                    Records = (from appointment in appointments
+                                               join joinHoliday in employee.Holidays
+                                                   on appointment.Id equals joinHoliday.AppointmentId
+                                                   into joinHolidays
+                                               from holiday in joinHolidays.DefaultIfEmpty()
+                                               select new IndexHolidaysRecordViewModel
+                                                          {
+                                                              Id = holiday != null ? holiday.Id : null,
+                                                              AppointmentType = holiday != null ? "Holiday" : "Other",
+                                                              Start = appointment.Start,
+                                                              End = appointment.End,
+                                                              Description = holiday != null ? holiday.Description : null
+                                                          }).ToList()
                                 };
+
+            //var viewModel = new IndexHolidaysViewModel
+            //                    {
+            //                        EmployeeId = employee.Id.Value,
+            //                        EmployeeFullName = employee.FullName,
+            //                        Records = appointments.Select(appointment => new IndexHolidaysRecordViewModel
+            //                                                                         {
+            //                                                                             Id = employee.Holidays.FirstOrDefault(x => x.AppointmentId == appointment.Id) != null
+            //                                                                                 ? employee.Holidays.Single(x => x.AppointmentId == appointment.Id).Id
+            //                                                                                 : null,
+            //                                                                             AppointmentType = employee.Holidays.FirstOrDefault(x => x.AppointmentId == appointment.Id) != null
+            //                                                                                 ? "Holiday"
+            //                                                                                 : "Other",
+            //                                                                             Start = appointment.Start,
+            //                                                                             End = appointment.End,
+            //                                                                             Description = employee.Holidays.FirstOrDefault(x => x.AppointmentId == appointment.Id) != null
+            //                                                                                 ? employee.Holidays.Single(x => x.AppointmentId == appointment.Id).Description
+            //                                                                                 : null,
+            //                                                                         }).ToList()
+            //                    };
 
             //var viewModel = new IndexHolidaysViewModel
             //                    {
@@ -126,7 +144,7 @@ namespace HumanResources.UI.Controllers
                 viewModel.End,
                 viewModel.Description);
 
-            if(humanResourcesValidationMessages.Any())
+            if (humanResourcesValidationMessages.Any())
             {
                 humanResourcesValidationMessages.ForEach(message => ModelState.AddModelError("", message.Text));
                 return;
@@ -176,7 +194,7 @@ namespace HumanResources.UI.Controllers
             HumanResourcesReplies.ReturnCode bookHolidayReturnCode,
             CalendarReplies.ReturnCode calendarReturnCode)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(viewModel);
             }

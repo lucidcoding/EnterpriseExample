@@ -12,6 +12,6 @@ namespace ClientServices.Messages.Commands
         public DateTime Commencement { get; set; }
         public DateTime Expiry { get; set; }
         public int Value { get; set; }
-        public IList<Guid> ServiceIds { get; set; }
+        public List<Guid> ServiceIds { get; set; }
     }
 }

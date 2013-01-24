@@ -54,7 +54,7 @@ namespace Finance.MessageHandlers.Sagas
 
                 Account.Open(
                     Data.ClientId,
-                    Data.Id,
+                    Data.AgreementId,
                     Data.Commencement,
                     Data.Expiry,
                     Data.Value);

@@ -36,7 +36,7 @@ namespace Sales.UI
             Bus = Configure.With()
                 .StructureMapBuilder()
                 .ForMvc()
-                .JsonSerializer()
+                .XmlSerializer()
                 .Log4Net()
                 .MsmqTransport()
                     .IsTransactional(false)

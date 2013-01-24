@@ -18,7 +18,7 @@ namespace ClientServices.MessageHandlers.EventHandlers
         public void Handle(AccountSuspended message)
         {
             DomainEvents.Register<AgreementSuspendedEvent>(AgreementSuspendedEventHandler);
-            var agreement = _agreementRepository.GetById(message.Id);
+            var agreement = _agreementRepository.GetById(message.AgreementId);
             agreement.Suspend();
             _agreementRepository.Flush();
         }

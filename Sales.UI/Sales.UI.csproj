@@ -239,6 +239,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Calendar.Messages\Calendar.Messages.csproj">
+      <Project>{F092CC73-EEBD-405A-9674-8B1AE9B23081}</Project>
+      <Name>Calendar.Messages</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClientServices.Messages\ClientServices.Messages.csproj">
       <Project>{3032E714-A212-4EDD-BC97-D917498AFF02}</Project>
       <Name>ClientServices.Messages</Name>

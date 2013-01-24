@@ -10,8 +10,8 @@ namespace Sales.MessageHandlers
         {
             Configure.With()
                 .StructureMapBuilder()
-                .JsonSerializer()
-                .MsmqSubscriptionStorage()
+                .XmlSerializer()
+                .InMemorySubscriptionStorage()
                 .UnicastBus()
                     .DoNotAutoSubscribe();
 

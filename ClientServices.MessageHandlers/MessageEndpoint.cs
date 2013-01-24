@@ -1,6 +1,5 @@
-﻿using ClientServices.Domain.RepositoryContracts;
+﻿using ClientServices.MessageHandlers.Core;
 using NServiceBus;
-using ClientServices.MessageHandlers.Core;
 using StructureMap;
 
 namespace ClientServices.MessageHandlers
@@ -13,8 +12,8 @@ namespace ClientServices.MessageHandlers
 
             Configure.With()
                 .StructureMapBuilder()
-                .JsonSerializer()
-                .MsmqSubscriptionStorage() 
+                .XmlSerializer()
+                .InMemorySubscriptionStorage() 
                 .Sagas()  
                 .InMemorySagaPersister()
                 .UnicastBus()

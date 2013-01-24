@@ -12,8 +12,8 @@ namespace Finance.MessageHandlers
 
             Configure.With()
                 .StructureMapBuilder()
-                .JsonSerializer()
-                .MsmqSubscriptionStorage()
+                .XmlSerializer()
+                .InMemorySubscriptionStorage()
                 .Sagas()
                 .InMemorySagaPersister()
                 .UnicastBus()

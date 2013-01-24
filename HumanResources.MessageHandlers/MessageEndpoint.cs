@@ -10,8 +10,8 @@ namespace HumanResources.MessageHandlers
         {
             Configure.With()
                 .StructureMapBuilder()
-                .JsonSerializer()
-                .MsmqSubscriptionStorage()
+                .XmlSerializer()
+                .InMemorySubscriptionStorage()
                 .UnicastBus()
                     .DoNotAutoSubscribe();
 
