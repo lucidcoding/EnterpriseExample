@@ -58,7 +58,7 @@ namespace ClientServices.MessageHandlers.Sagas
         {
             if(Data.LeadSignedUpReceived && Data.InitializeClientReceived)
             {
-                DomainEvents.Register<ClientInitializedEvent>(ClientInitializedEventHandler);
+                DomainEvents.Register<ClientInitializedDomainEvent>(ClientInitializedDomainEventHandler);
                 var services = ServiceRepository.GetByIds(Data.AgreementServiceIds);
 
                 Client.Initialize(
@@ -78,7 +78,7 @@ namespace ClientServices.MessageHandlers.Sagas
             }
         }
 
-        private void ClientInitializedEventHandler(ClientInitializedEvent @event)
+        private void ClientInitializedDomainEventHandler(ClientInitializedDomainEvent @event)
         {
             ClientRepository.Save(@event.Source);
         }

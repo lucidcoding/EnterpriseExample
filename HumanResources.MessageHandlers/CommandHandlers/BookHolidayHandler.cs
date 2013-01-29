@@ -26,7 +26,7 @@ namespace HumanResources.MessageHandlers.CommandHandlers
 
         public void Handle(BookHoliday message)
         {
-            DomainEvents.Register<HolidayBookedEvent>(HolidayBookedEventHandler);
+            DomainEvents.Register<HolidayBookedDomainEvent>(HolidayBookedDomainEventHandler);
             var employee = _employeeRepository.GetById(message.EmployeeId);
 
             Holiday.Book(
@@ -41,7 +41,7 @@ namespace HumanResources.MessageHandlers.CommandHandlers
             _bus.Return(ReturnCode.OK);
         }
 
-        public void HolidayBookedEventHandler(HolidayBookedEvent @event)
+        public void HolidayBookedDomainEventHandler(HolidayBookedDomainEvent @event)
         {
             _holidayRepository.Save(@event.Source);
         }

@@ -3,9 +3,9 @@ using HumanResources.Domain.Entities;
 
 namespace HumanResources.Domain.Events
 {
-    public class EmployeeLeftEvent : DomainEvent<Employee>
+    public class EmployeeRegisteredDomainEvent : DomainEvent<Employee>
     {
-        public EmployeeLeftEvent(Employee employee)
+        public EmployeeRegisteredDomainEvent(Employee employee)
             : base(employee)
         {
         }

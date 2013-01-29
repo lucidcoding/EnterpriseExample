@@ -39,19 +39,19 @@ namespace ClientServices.Domain.Entities
         public virtual void Activate()
         {
             Status = AgreementStatus.Active;
-            DomainEvents.Raise(new AgreementActivatedEvent(this));
+            DomainEvents.Raise(new AgreementActivatedDomainEvent(this));
         }
 
         public virtual void Cancel()
         {
             Status = AgreementStatus.Cancelled;
-            DomainEvents.Raise(new AgreementCancelledEvent(this));
+            DomainEvents.Raise(new AgreementCancelledDomainEvent(this));
         }
 
         public virtual void Suspend()
         {
             Status = AgreementStatus.Suspended;
-            DomainEvents.Raise(new AgreementSuspendedEvent(this));
+            DomainEvents.Raise(new AgreementSuspendedDomainEvent(this));
         }
     }
 }

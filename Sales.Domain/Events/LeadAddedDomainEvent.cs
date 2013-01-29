@@ -3,9 +3,9 @@ using Sales.Domain.Entities;
 
 namespace Sales.Domain.Events
 {
-    public class LeadAddedEvent : DomainEvent<Lead>
+    public class LeadAddedDomainEvent : DomainEvent<Lead>
     {
-        public LeadAddedEvent(Lead lead)
+        public LeadAddedDomainEvent(Lead lead)
             : base(lead)
         {
         }

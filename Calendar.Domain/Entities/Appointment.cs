@@ -59,7 +59,7 @@ namespace Calendar.Domain.Entities
                 End = end
             };
 
-            DomainEvents.Raise(new AppointmentBookedEvent(appointment));
+            DomainEvents.Raise(new AppointmentBookedDomainEvent(appointment));
             return appointment;
         }
 
@@ -72,7 +72,7 @@ namespace Calendar.Domain.Entities
         {
             Start = start;
             End = end;
-            DomainEvents.Raise(new AppointmentMovedEvent(this));
+            DomainEvents.Raise(new AppointmentMovedDomainEvent(this));
         }
     }
 }

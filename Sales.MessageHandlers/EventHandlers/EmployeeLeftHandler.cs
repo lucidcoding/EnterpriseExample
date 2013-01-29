@@ -17,7 +17,7 @@ namespace Sales.MessageHandlers.EventHandlers
 
         public void Handle(EmployeeLeft @event)
         {
-            DomainEvents.Register<LeadUnassignedEvent>(LeadUnassignedEventHandler);
+            DomainEvents.Register<LeadUnassignedDomainEvent>(LeadUnassignedDomainEventHandler);
             var leads = _leadRepository.GetUnsignedByAssignedToConsultantId(@event.Id);
 
             foreach (var lead in leads)
@@ -26,7 +26,7 @@ namespace Sales.MessageHandlers.EventHandlers
             }
         }
 
-        private void LeadUnassignedEventHandler(LeadUnassignedEvent @event)
+        private void LeadUnassignedDomainEventHandler(LeadUnassignedDomainEvent @event)
         {
             _leadRepository.Save(@event.Source);
         }

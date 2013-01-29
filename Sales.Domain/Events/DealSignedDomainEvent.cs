@@ -3,9 +3,9 @@ using Sales.Domain.Entities;
 
 namespace Sales.Domain.Events
 {
-    public class DealSignedEvent : DomainEvent<Deal>
+    public class DealSignedDomainEvent : DomainEvent<Deal>
     {
-        public DealSignedEvent(Deal deal)
+        public DealSignedDomainEvent(Deal deal)
             : base(deal)
         {
         }

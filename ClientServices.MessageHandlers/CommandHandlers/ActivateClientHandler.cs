@@ -23,8 +23,8 @@ namespace ClientServices.MessageHandlers.CommandHandlers
 
         public void Handle(ActivateClient message)
         {
-            DomainEvents.Register<ClientActivatedEvent>(ClientActivatedEventHandler);
-            DomainEvents.Register<AgreementActivatedEvent>(AgreementActivatedEventHandler);
+            DomainEvents.Register<ClientActivatedDomainEvent>(ClientActivatedDomainEventHandler);
+            DomainEvents.Register<AgreementActivatedDomainEvent>(AgreementActivatedDomainEventHandler);
             var clientDetails = _clientRepository.GetById(message.Id);
 
             clientDetails.Activate(
@@ -40,12 +40,12 @@ namespace ClientServices.MessageHandlers.CommandHandlers
             _bus.Return(ReturnCode.OK);
         }
 
-        public void ClientActivatedEventHandler(ClientActivatedEvent @event)
+        public void ClientActivatedDomainEventHandler(ClientActivatedDomainEvent @event)
         {
             _clientRepository.Save(@event.Source);
         }
 
-        public void AgreementActivatedEventHandler(AgreementActivatedEvent @event)
+        public void AgreementActivatedDomainEventHandler(AgreementActivatedDomainEvent @event)
         {
             var agreementActivated = new AgreementActivated
                                          {

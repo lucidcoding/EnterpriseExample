@@ -82,7 +82,6 @@
       <Name>Calendar.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Mappers\Appointment.hbm.xml" />
   </ItemGroup>

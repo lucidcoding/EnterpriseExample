@@ -3,9 +3,9 @@ using HumanResources.Domain.Entities;
 
 namespace HumanResources.Domain.Events
 {
-    public class HolidayBookedEvent : DomainEvent<Holiday>
+    public class HolidayBookedDomainEvent : DomainEvent<Holiday>
     {
-        public HolidayBookedEvent(Holiday holiday)
+        public HolidayBookedDomainEvent(Holiday holiday)
             : base(holiday)
         {
         }

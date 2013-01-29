@@ -26,7 +26,7 @@ namespace Sales.MessageHandlers.CommandHandlers
 
         public void Handle(BookVisit message)
         {
-            DomainEvents.Register<VisitBookedEvent>(VisitBookedEventHandler);
+            DomainEvents.Register<VisitBookedDomainEvent>(VisitBookedDomainEventHandler);
             var lead = _leadRepository.GetById(message.LeadId);
 
             Visit.Book(
@@ -39,7 +39,7 @@ namespace Sales.MessageHandlers.CommandHandlers
             _bus.Return(ReturnCode.OK);
         }
 
-        private void VisitBookedEventHandler(VisitBookedEvent @event)
+        private void VisitBookedDomainEventHandler(VisitBookedDomainEvent @event)
         {
             _visitRepository.Save(@event.Source);
         }

@@ -3,9 +3,9 @@ using ClientServices.Domain.Entities;
 
 namespace ClientServices.Domain.Events
 {
-    public class AgreementActivatedEvent : DomainEvent<Agreement>
+    public class AgreementSuspendedDomainEvent : DomainEvent<Agreement>
     {
-        public AgreementActivatedEvent(Agreement agreement)
+        public AgreementSuspendedDomainEvent(Agreement agreement)
             : base(agreement)
         {
         }

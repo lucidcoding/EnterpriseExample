@@ -23,14 +23,14 @@ namespace Finance.MessageHandlers.CommandHandlers
 
         public void Handle(SuspendAccount message)
         {
-            DomainEvents.Register<AccountSuspendedEvent>(AccountSuspendedEventHandler);
+            DomainEvents.Register<AccountSuspendedDomainEvent>(AccountSuspendedDomainEventHandler);
             var account = _accountRepository.GetById(message.Id);
             account.Suspend();
             _accountRepository.Flush();
             _bus.Return(ReturnCode.OK);
         }
 
-        public void AccountSuspendedEventHandler(AccountSuspendedEvent @event)
+        public void AccountSuspendedDomainEventHandler(AccountSuspendedDomainEvent @event)
         {
             _accountRepository.Save(@event.Source);
             _bus.Publish(new AccountSuspended { Id = @event.Source.Id.Value, AgreementId = @event.Source.AgreementId });

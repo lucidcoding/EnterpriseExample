@@ -45,7 +45,7 @@ namespace ClientServices.Domain.Entities
                 agreementExpiry,
                 agreementServices);
 
-            DomainEvents.Raise(new ClientInitializedEvent(client));
+            DomainEvents.Raise(new ClientInitializedDomainEvent(client));
         }
 
         public virtual void Activate(
@@ -65,13 +65,13 @@ namespace ClientServices.Domain.Entities
             PhoneNumber = phoneNumber;
             LiasonEmployeeId = liasonEmployeeId;
             CurrentAgreement.Activate();
-            DomainEvents.Raise(new ClientActivatedEvent(this));
+            DomainEvents.Raise(new ClientActivatedDomainEvent(this));
         }
 
         public virtual void UnassignLiason()
         {
             LiasonEmployeeId = null;
-            DomainEvents.Raise(new ClientLiasonUnassignedEvent(this));
+            DomainEvents.Raise(new ClientLiasonUnassignedDomainEvent(this));
         }
     }
 }

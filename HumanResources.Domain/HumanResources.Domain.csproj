@@ -51,9 +51,9 @@
     <Compile Include="Entities\Department.cs" />
     <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\Holiday.cs" />
-    <Compile Include="Events\EmployeeLeftEvent.cs" />
-    <Compile Include="Events\EmployeeRegisteredEvent.cs" />
-    <Compile Include="Events\HolidayBookedEvent.cs" />
+    <Compile Include="Events\EmployeeLeftDomainEvent.cs" />
+    <Compile Include="Events\EmployeeRegisteredDomainEvent.cs" />
+    <Compile Include="Events\HolidayBookedDomainEvent.cs" />
     <Compile Include="Globals\Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryContracts\IHolidayRepository.cs" />

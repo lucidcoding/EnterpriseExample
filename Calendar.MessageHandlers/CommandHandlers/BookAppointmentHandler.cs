@@ -23,7 +23,7 @@ namespace Calendar.MessageHandlers.CommandHandlers
 
         public void Handle(BookAppointment message)
         {
-            DomainEvents.Register<AppointmentBookedEvent>(AppointmentBookedEventHandler);
+            DomainEvents.Register<AppointmentBookedDomainEvent>(AppointmentBookedDomainEventHandler);
             var employeesOtherAppointments = _appointmentRepository.GetByEmployeeId(message.EmployeeId);
 
             Appointment.Book(
@@ -38,7 +38,7 @@ namespace Calendar.MessageHandlers.CommandHandlers
             _bus.Return(ReturnCode.OK);
         }
 
-        public void AppointmentBookedEventHandler(AppointmentBookedEvent @event)
+        public void AppointmentBookedDomainEventHandler(AppointmentBookedDomainEvent @event)
         {
             _appointmentRepository.Save(@event.Source);
         }

@@ -36,7 +36,7 @@ namespace HumanResources.Domain.Entities
                                   Description = description
                               };
 
-            DomainEvents.Raise(new HolidayBookedEvent(holiday));
+            DomainEvents.Raise(new HolidayBookedDomainEvent(holiday));
         }
     }
 }

@@ -24,14 +24,14 @@ namespace HumanResources.MessageHandlers.CommandHandlers
 
         public void Handle(MarkEmployeeAsLeft message)
         {
-            DomainEvents.Register<EmployeeLeftEvent>(EmployeeLeftEventHandler);
+            DomainEvents.Register<EmployeeLeftDomainEvent>(EmployeeLeftDomainEventHandler);
             var employee = _employeeRepository.GetById(message.Id);
             employee.MarkAsLeft();
             _employeeRepository.Flush();
             _bus.Return(ReturnCode.OK);
         }
 
-        private void EmployeeLeftEventHandler(EmployeeLeftEvent @event)
+        private void EmployeeLeftDomainEventHandler(EmployeeLeftDomainEvent @event)
         {
             _employeeRepository.Save(@event.Source);
 

@@ -131,6 +131,7 @@
     <Content Include="Global.asax" />
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\Finance.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />

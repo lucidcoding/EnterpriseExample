@@ -3,9 +3,9 @@ using Finance.Domain.Entities;
 
 namespace Finance.Domain.Events
 {
-    public class InstallmentPaidEvent : DomainEvent<Installment>
+    public class InstallmentPaidDomainEvent : DomainEvent<Installment>
     {
-        public InstallmentPaidEvent(Installment installment)
+        public InstallmentPaidDomainEvent(Installment installment)
             : base(installment)
         {
         }

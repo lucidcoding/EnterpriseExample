@@ -45,19 +45,19 @@ namespace Finance.Domain.Entities
                 account.Installments.Add(installment);
             }
 
-            DomainEvents.Raise(new AccountOpenedEvent(account));
+            DomainEvents.Raise(new AccountOpenedDomainEvent(account));
         }
 
         public virtual void Suspend()
         {
             Status = AccountStatus.Suspended;
-            DomainEvents.Raise(new AccountSuspendedEvent(this));
+            DomainEvents.Raise(new AccountSuspendedDomainEvent(this));
         }
 
         public virtual void Close()
         {
             Status = AccountStatus.Closed;
-            DomainEvents.Raise(new AccountClosedEvent(this));
+            DomainEvents.Raise(new AccountClosedDomainEvent(this));
         }
     }
 }

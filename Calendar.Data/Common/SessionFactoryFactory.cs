@@ -1,4 +1,5 @@
 ﻿using NHibernate;
+using NHibernate.Cfg;
 
 namespace Calendar.Data.Common
 {
@@ -6,7 +7,7 @@ namespace Calendar.Data.Common
     {
         public static ISessionFactory GetSessionFactory()
         {
-            var configuration = new NHibernate.Cfg.Configuration();
+            var configuration = new Configuration();
             configuration.Configure();
             configuration.AddAssembly(typeof(SessionFactoryFactory).Assembly.GetName().Name);
             log4net.Config.XmlConfigurator.Configure();

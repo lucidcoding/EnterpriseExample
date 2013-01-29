@@ -22,14 +22,14 @@ namespace Finance.MessageHandlers.CommandHandlers
 
         public void Handle(MarkInstallmentAsPaid message)
         {
-            DomainEvents.Register<InstallmentPaidEvent>(InstallmentPaidEventHandler);
+            DomainEvents.Register<InstallmentPaidDomainEvent>(InstallmentPaidDomainEventHandler);
             var installment = _installmentRepository.GetById(message.Id);
             installment.MarkAsPaid();
             _installmentRepository.Flush();
             _bus.Return(ReturnCode.OK);
         }
 
-        public void InstallmentPaidEventHandler(InstallmentPaidEvent @event)
+        public void InstallmentPaidDomainEventHandler(InstallmentPaidDomainEvent @event)
         {
             _installmentRepository.Save(@event.Source);
         }

@@ -1,4 +1,5 @@
 ﻿using NHibernate;
+using NHibernate.Cfg;
 
 namespace Finance.Data.Common
 {

@@ -23,14 +23,14 @@ namespace ClientServices.MessageHandlers.CommandHandlers
 
         public void Handle(CancelAgreement message)
         {
-            DomainEvents.Register<AgreementCancelledEvent>(AgreementCancelledEventHandler);
+            DomainEvents.Register<AgreementCancelledDomainEvent>(AgreementCancelledDomainEventHandler);
             var agreement = _agreementRepository.GetById(message.Id);
             agreement.Cancel();
             _agreementRepository.Flush();
             _bus.Return(ReturnCode.OK);
         }
 
-        public void AgreementCancelledEventHandler(AgreementCancelledEvent @event)
+        public void AgreementCancelledDomainEventHandler(AgreementCancelledDomainEvent @event)
         {
             _agreementRepository.Update(@event.Source);
 

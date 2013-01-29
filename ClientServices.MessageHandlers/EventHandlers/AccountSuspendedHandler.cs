@@ -17,13 +17,13 @@ namespace ClientServices.MessageHandlers.EventHandlers
 
         public void Handle(AccountSuspended message)
         {
-            DomainEvents.Register<AgreementSuspendedEvent>(AgreementSuspendedEventHandler);
+            DomainEvents.Register<AgreementSuspendedDomainEvent>(AgreementSuspendedDomainEventHandler);
             var agreement = _agreementRepository.GetById(message.AgreementId);
             agreement.Suspend();
             _agreementRepository.Flush();
         }
 
-        public void AgreementSuspendedEventHandler(AgreementSuspendedEvent @event)
+        public void AgreementSuspendedDomainEventHandler(AgreementSuspendedDomainEvent @event)
         {
             _agreementRepository.Update(@event.Source);
         }

@@ -43,13 +43,13 @@ namespace HumanResources.Domain.Entities
                 Department = department
             };
 
-            DomainEvents.Raise(new EmployeeRegisteredEvent(employee));
+            DomainEvents.Raise(new EmployeeRegisteredDomainEvent(employee));
         }
 
         public virtual void MarkAsLeft()
         {
             Left = DateTime.Now;
-            DomainEvents.Raise(new EmployeeLeftEvent(this));
+            DomainEvents.Raise(new EmployeeLeftDomainEvent(this));
         }
     }
 }

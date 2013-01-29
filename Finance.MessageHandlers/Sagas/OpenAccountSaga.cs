@@ -50,7 +50,7 @@ namespace Finance.MessageHandlers.Sagas
         {
             if (Data.DealRegisteredReceived && Data.AgreementActivatedReceived)
             {
-                DomainEvents.Register<AccountOpenedEvent>(AccountOpenedEventHandler);
+                DomainEvents.Register<AccountOpenedDomainEvent>(AccountOpenedDomainEventHandler);
 
                 Account.Open(
                     Data.ClientId,
@@ -64,7 +64,7 @@ namespace Finance.MessageHandlers.Sagas
             }
         }
 
-        public void AccountOpenedEventHandler(AccountOpenedEvent @event)
+        public void AccountOpenedDomainEventHandler(AccountOpenedDomainEvent @event)
         {
             AccountRepository.Save(@event.Source);
         }

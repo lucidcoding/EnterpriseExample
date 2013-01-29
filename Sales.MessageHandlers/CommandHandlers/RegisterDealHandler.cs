@@ -29,8 +29,8 @@ namespace Sales.MessageHandlers.CommandHandlers
 
         public void Handle(RegisterDeal message)
         {
-            DomainEvents.Register<DealSignedEvent>(DealSignedEventHandler);
-            DomainEvents.Register<LeadSignedUpEventEvent>(LeadSignedUpEventHandler);
+            DomainEvents.Register<DealSignedDomainEvent>(DealSignedDomainEventHandler);
+            DomainEvents.Register<LeadSignedUpEventEvent>(LeadSignedUpDomainEventHandler);
             _correlationId = message.CorrelationId;
             var lead = _leadRepository.GetById(message.LeadId);
             Deal.Register(message.DealId, lead, message.Value);
@@ -38,7 +38,7 @@ namespace Sales.MessageHandlers.CommandHandlers
             _bus.Return(ReturnCode.OK);
         }
 
-        private void DealSignedEventHandler(DealSignedEvent @event)
+        private void DealSignedDomainEventHandler(DealSignedDomainEvent @event)
         {
             _dealRepository.Save(@event.Source);
 
@@ -52,7 +52,7 @@ namespace Sales.MessageHandlers.CommandHandlers
                              });
         }
 
-        private void LeadSignedUpEventHandler(LeadSignedUpEventEvent @event)
+        private void LeadSignedUpDomainEventHandler(LeadSignedUpEventEvent @event)
         {
             _bus.Publish(new LeadSignedUp
                              {

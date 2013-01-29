@@ -64,7 +64,6 @@
     <Compile Include="Core\MessageModule.cs" />
     <Compile Include="Core\SubscriberEndpoint.cs" />
     <Compile Include="EventHandlers\AccountSuspendedHandler.cs" />
-    <Compile Include="EventHandlers\LeadSignedUpHandler.cs" />
     <Compile Include="EventHandlers\EmployeeLeftHandler.cs" />
     <Compile Include="MessageEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +73,7 @@
   <ItemGroup>
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

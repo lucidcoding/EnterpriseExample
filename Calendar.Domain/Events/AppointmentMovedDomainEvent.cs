@@ -3,9 +3,9 @@ using Calendar.Domain.Entities;
 
 namespace Calendar.Domain.Events
 {
-    public class AppointmentBookedEvent : DomainEvent<Appointment>
+    public class AppointmentMovedDomainEvent : DomainEvent<Appointment>
     {
-        public AppointmentBookedEvent(Appointment appointment) 
+        public AppointmentMovedDomainEvent(Appointment appointment)
             : base(appointment)
         {
         }

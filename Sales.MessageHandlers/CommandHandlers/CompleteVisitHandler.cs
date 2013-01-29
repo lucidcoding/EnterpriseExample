@@ -22,14 +22,14 @@ namespace Sales.MessageHandlers.CommandHandlers
 
         public void Handle(CompleteVisit message)
         {
-            DomainEvents.Register<VisitCompletedEvent>(VisitCompletedEventHandler);
+            DomainEvents.Register<VisitCompletedDomainEvent>(VisitCompletedDomainEventHandler);
             var visit = _visitRepository.GetById(message.Id);
             visit.Complete();
             _visitRepository.Flush();
             _bus.Return(ReturnCode.OK);
         }
 
-        public void VisitCompletedEventHandler(VisitCompletedEvent @event)
+        public void VisitCompletedDomainEventHandler(VisitCompletedDomainEvent @event)
         {
             _visitRepository.Update(@event.Source);
         }

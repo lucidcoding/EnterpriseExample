@@ -27,7 +27,7 @@ namespace Sales.Domain.Entities
                                SignedUp = false
                            };
 
-            DomainEvents.Raise(new LeadAddedEvent(lead));
+            DomainEvents.Raise(new LeadAddedDomainEvent(lead));
         }
 
         public virtual void MarkAsSignedUp()

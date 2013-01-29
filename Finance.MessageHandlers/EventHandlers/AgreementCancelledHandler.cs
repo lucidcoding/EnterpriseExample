@@ -17,13 +17,13 @@ namespace Finance.MessageHandlers.EventHandlers
 
         public void Handle(AgreementCancelled message)
         {
-            DomainEvents.Register<AccountClosedEvent>(AccountClosedEventHandler);
+            DomainEvents.Register<AccountClosedDomainEvent>(AccountClosedDomainEventHandler);
             var account = _accountRepository.GetByAgreementId(message.Id);
             account.Close();
             _accountRepository.Flush();
         }
 
-        public void AccountClosedEventHandler(AccountClosedEvent @event)
+        public void AccountClosedDomainEventHandler(AccountClosedDomainEvent @event)
         {
             _accountRepository.Update(@event.Source);
         }

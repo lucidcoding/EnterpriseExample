@@ -63,7 +63,6 @@
     <Compile Include="Core\MessageHandlersRegistry.cs" />
     <Compile Include="Core\MessageModule.cs" />
     <Compile Include="Core\SubscriberEndpoint.cs" />
-    <Compile Include="EventHandlers\AgreementActivatedHandler.cs" />
     <Compile Include="EventHandlers\AgreementCancelledHandler.cs" />
     <Compile Include="MessageEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +99,7 @@
   <ItemGroup>
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -23,7 +23,7 @@ namespace Sales.Domain.Entities
                            };
 
             lead.MarkAsSignedUp();
-            DomainEvents.Raise(new DealSignedEvent(deal));
+            DomainEvents.Raise(new DealSignedDomainEvent(deal));
         }
     }
 }

@@ -17,7 +17,7 @@ namespace ClientServices.MessageHandlers.EventHandlers
 
         public void Handle(EmployeeLeft @event)
         {
-            DomainEvents.Register<ClientLiasonUnassignedEvent>(ClientLiasonUnassignedEventHandler);
+            DomainEvents.Register<ClientLiasonUnassignedDomainEvent>(ClientLiasonUnassignedDomainEventHandler);
             var clients = _clientRepository.GetByLiasonEmployeeId(@event.Id);
 
             foreach (var client in clients)
@@ -26,7 +26,7 @@ namespace ClientServices.MessageHandlers.EventHandlers
             }
         }
 
-        private void ClientLiasonUnassignedEventHandler(ClientLiasonUnassignedEvent @event)
+        private void ClientLiasonUnassignedDomainEventHandler(ClientLiasonUnassignedDomainEvent @event)
         {
             _clientRepository.Save(@event.Source);
         }

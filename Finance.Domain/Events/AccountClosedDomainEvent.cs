@@ -3,9 +3,9 @@ using Finance.Domain.Entities;
 
 namespace Finance.Domain.Events
 {
-    public class AccountSuspendedEvent : DomainEvent<Account>
+    public class AccountClosedDomainEvent : DomainEvent<Account>
     {
-        public AccountSuspendedEvent(Account account)
+        public AccountClosedDomainEvent(Account account)
             : base(account)
         {
         }

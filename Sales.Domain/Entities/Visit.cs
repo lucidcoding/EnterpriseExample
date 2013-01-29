@@ -22,13 +22,13 @@ namespace Sales.Domain.Entities
                                 Completed = false
                             };
 
-            DomainEvents.Raise(new VisitBookedEvent(visit));
+            DomainEvents.Raise(new VisitBookedDomainEvent(visit));
         }
 
         public virtual void Complete()
         {
             Completed = true;
-            DomainEvents.Raise(new VisitCompletedEvent(this));
+            DomainEvents.Raise(new VisitCompletedDomainEvent(this));
         }
     }
 }

@@ -94,8 +94,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendar.WCF", "Calendar.WC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendar.Validation", "Calendar.Validation\Calendar.Validation.csproj", "{F0484891-273A-436C-9C7B-27B9AE753B30}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GlobalSettings", "GlobalSettings", "{7084BC11-EB2C-4237-B26F-61DFD5C98B84}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
