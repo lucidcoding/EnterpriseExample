@@ -62,7 +62,8 @@ namespace Sales.MessageHandlers.CommandHandlers
                                  Address1 = @event.Source.Address1,
                                  Address2 = @event.Source.Address2,
                                  Address3 = @event.Source.Address3,
-                                 PhoneNumber = @event.Source.PhoneNumber
+                                 PhoneNumber = @event.Source.PhoneNumber,
+                                 EmailAddress = @event.Source.EmailAddress
                              });
         }
     }

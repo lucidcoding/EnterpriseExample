@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Finance.WCF.DataTransferObjects" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Finance.WCF.DataTransferObjects" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:58460/InstallmentService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:58460/InstallmentService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Finance.Domain.Enumerations" />
+  <xs:complexType name="InstallmentDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Account" nillable="true" type="tns:AccountDto" />
+      <xs:element minOccurs="0" name="Amount" type="xs:int" />
+      <xs:element minOccurs="0" name="DueDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="Paid" type="xs:boolean" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Finance.Domain.Enumerations" minOccurs="0" name="Status" type="q1:InstallmentStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InstallmentDto" nillable="true" type="tns:InstallmentDto" />
+  <xs:complexType name="AccountDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AgreementId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ClientId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Expiry" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="Installments" nillable="true" type="tns:ArrayOfInstallmentDto" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Finance.Domain.Enumerations" minOccurs="0" name="Status" type="q2:AccountStatus" />
+      <xs:element minOccurs="0" name="Value" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccountDto" nillable="true" type="tns:AccountDto" />
+  <xs:complexType name="ArrayOfInstallmentDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InstallmentDto" nillable="true" type="tns:InstallmentDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInstallmentDto" nillable="true" type="tns:ArrayOfInstallmentDto" />
+</xs:schema>

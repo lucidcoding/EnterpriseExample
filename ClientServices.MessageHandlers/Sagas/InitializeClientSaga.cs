@@ -38,6 +38,7 @@ namespace ClientServices.MessageHandlers.Sagas
             Data.ClientAddress2 = message.Address2;
             Data.ClientAddress3 = message.Address3;
             Data.ClientPhoneNumber = message.PhoneNumber;
+            Data.ClientEmailAddress = message.EmailAddress;
             CompleteIfPossible();
         }
 
@@ -68,6 +69,7 @@ namespace ClientServices.MessageHandlers.Sagas
                     Data.ClientAddress2,
                     Data.ClientAddress3,
                     Data.ClientPhoneNumber,
+                    Data.ClientEmailAddress,
                     Data.DealId,
                     Data.AgreementCommencement,
                     Data.AgreementExpiry,

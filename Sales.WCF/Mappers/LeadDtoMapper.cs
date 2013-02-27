@@ -16,6 +16,7 @@ namespace Sales.WCF.Mappers
                            Address2 = entity.Address2,
                            Address3 = entity.Address3,
                            PhoneNumber = entity.PhoneNumber,
+                           EmailAddress = entity.EmailAddress,
                            AssignedToConsultantId = entity.AssignedToConsultantId,
                            SignedUp = entity.SignedUp
                        };

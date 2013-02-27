@@ -171,6 +171,7 @@
     </None>
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Installment\Index.cshtml" />
+    <Content Include="Views\Installment\SendInvoiceCompleted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -190,6 +191,10 @@
     <ProjectReference Include="..\Finance.Messages\Finance.Messages.csproj">
       <Project>{7AAA1AD0-416A-41EF-B5FB-C6D5CCE636CC}</Project>
       <Name>Finance.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ItOps.Messages\ItOps.Messages.csproj">
+      <Project>{498F27B0-3875-4173-96C2-9DF107F1A16B}</Project>
+      <Name>ItOps.Messages</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

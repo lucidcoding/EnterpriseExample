@@ -13,6 +13,7 @@ namespace ClientServices.Domain.Entities
         public virtual string Address2 { get; set; }
         public virtual string Address3 { get; set; }
         public virtual string PhoneNumber { get; set; }
+        public virtual string EmailAddress { get; set; }
         public virtual Guid? LiasonEmployeeId { get; set; }
         public virtual Agreement CurrentAgreement { get; set; }
  
@@ -23,6 +24,7 @@ namespace ClientServices.Domain.Entities
             string clientAddress2,
             string clientAddress3,
             string clientPhoneNumber,
+            string emailAddress,
             Guid dealId,
             DateTime agreementCommencement,
             DateTime agreementExpiry,
@@ -35,7 +37,8 @@ namespace ClientServices.Domain.Entities
                                  Address1 = clientAddress1,
                                  Address2 = clientAddress2,
                                  Address3 = clientAddress3,
-                                 PhoneNumber = clientPhoneNumber
+                                 PhoneNumber = clientPhoneNumber,
+                                 EmailAddress = emailAddress
                              };
 
             client.CurrentAgreement = Agreement.Initialize(

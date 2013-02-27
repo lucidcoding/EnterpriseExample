@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/ClientServices.WCF.DataTransferObjects" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ClientServices.WCF.DataTransferObjects" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51935/ClientService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ClientDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="LiasonEmployeeId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Reference" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClientDto" nillable="true" type="tns:ClientDto" />
+  <xs:complexType name="ArrayOfClientDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClientDto" nillable="true" type="tns:ClientDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClientDto" nillable="true" type="tns:ArrayOfClientDto" />
+</xs:schema>

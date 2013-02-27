@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/HumanResources.WCF.DataTransferObjects" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/HumanResources.WCF.DataTransferObjects" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:62771/DepartmentService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="DepartmentDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="Manager" nillable="true" type="tns:EmployeeDto" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DepartmentDto" nillable="true" type="tns:DepartmentDto" />
+  <xs:complexType name="EmployeeDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Department" nillable="true" type="tns:DepartmentDto" />
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Forename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HolidayEntitlement" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="Joined" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Left" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Surname" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeDto" nillable="true" type="tns:EmployeeDto" />
+</xs:schema>

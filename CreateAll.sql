@@ -57,16 +57,17 @@ IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Depart
 BEGIN
 	CREATE TABLE [dbo].[Department](
 		[Id] uniqueidentifier NOT NULL,
-		[Name] nvarchar(100) NULL
+		[Name] nvarchar(100) NULL,
+		[ManagerEmployeeId] uniqueidentifier NULL
 		CONSTRAINT [PK_Department] PRIMARY KEY CLUSTERED 
 		(
 			[Id] ASC
 		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 	) ON [PRIMARY]
 
-	INSERT INTO [Department] ([Id], [Name]) VALUES ('30efbfda-f3b5-42fb-906e-098fb32be79d', 'Sales')
-	INSERT INTO [Department] ([Id], [Name]) VALUES ('f7367187-406d-47db-931e-b9e4fa8a4774', 'Human Resources')
-	INSERT INTO [Department] ([Id], [Name]) VALUES ('42c25da5-7c04-4adc-a9c2-6bf8a9ff5c89', 'Client Services')
+	INSERT INTO [Department] ([Id], [Name], [ManagerEmployeeId]) VALUES ('30efbfda-f3b5-42fb-906e-098fb32be79d', 'Sales', '9c375ab8-778e-4f58-9464-a66b6cfd0ca9')
+	INSERT INTO [Department] ([Id], [Name], [ManagerEmployeeId]) VALUES ('f7367187-406d-47db-931e-b9e4fa8a4774', 'Human Resources', NULL)
+	INSERT INTO [Department] ([Id], [Name], [ManagerEmployeeId]) VALUES ('42c25da5-7c04-4adc-a9c2-6bf8a9ff5c89', 'Client Services', '4e6328cf-2c03-4c1c-a816-06fc1b59aaed')
 END
 GO
 
@@ -79,16 +80,19 @@ BEGIN
 		[Joined] datetime NULL,
 		[Left] datetime NULL,
 		[HolidayEntitlement] int NULL,
-		[DepartmentId] uniqueidentifier NULL
+		[DepartmentId] uniqueidentifier NULL,
+		[EmailAddress] nvarchar(100) NULL,
 		CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED 
 		(
 			[Id] ASC
 		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 	) ON [PRIMARY]
 
-	INSERT INTO [Employee] ([Id], [Forename], [Surname], [Joined], [Left], [HolidayEntitlement], [DepartmentId]) VALUES ('54b26de9-2dae-4168-a66c-281b6f03f1b5', 'Barry', 'Blue', '2012-01-01 00:00:00', NULL, 21, '30efbfda-f3b5-42fb-906e-098fb32be79d')
-	INSERT INTO [Employee] ([Id], [Forename], [Surname], [Joined], [Left], [HolidayEntitlement], [DepartmentId]) VALUES ('4f738440-258f-4539-8ac0-387836815361', 'Rachel', 'Red', '2012-03-01 00:00:00', NULL, 23, 'f7367187-406d-47db-931e-b9e4fa8a4774')
-	INSERT INTO [Employee] ([Id], [Forename], [Surname], [Joined], [Left], [HolidayEntitlement], [DepartmentId]) VALUES ('2ea69309-0818-4b40-a740-fe22e2d4dfcb', 'Gary', 'Green', '2012-03-01 00:00:00', NULL, 23, '42c25da5-7c04-4adc-a9c2-6bf8a9ff5c89')
+	INSERT INTO [Employee] ([Id], [Forename], [Surname], [Joined], [Left], [HolidayEntitlement], [DepartmentId], [EmailAddress]) VALUES ('54b26de9-2dae-4168-a66c-281b6f03f1b5', 'Barry', 'Blue', '2012-01-01 00:00:00', NULL, 21, '30efbfda-f3b5-42fb-906e-098fb32be79d', NULL)
+	INSERT INTO [Employee] ([Id], [Forename], [Surname], [Joined], [Left], [HolidayEntitlement], [DepartmentId], [EmailAddress]) VALUES ('4f738440-258f-4539-8ac0-387836815361', 'Rachel', 'Red', '2012-03-01 00:00:00', NULL, 23, 'f7367187-406d-47db-931e-b9e4fa8a4774', NULL)
+	INSERT INTO [Employee] ([Id], [Forename], [Surname], [Joined], [Left], [HolidayEntitlement], [DepartmentId], [EmailAddress]) VALUES ('2ea69309-0818-4b40-a740-fe22e2d4dfcb', 'Gary', 'Green', '2012-03-01 00:00:00', NULL, 23, '42c25da5-7c04-4adc-a9c2-6bf8a9ff5c89', NULL)
+	INSERT INTO [Employee] ([Id], [Forename], [Surname], [Joined], [Left], [HolidayEntitlement], [DepartmentId], [EmailAddress]) VALUES ('9c375ab8-778e-4f58-9464-a66b6cfd0ca9', 'Mark', 'Mauve', '2012-04-01 00:00:00', NULL, 23, '30efbfda-f3b5-42fb-906e-098fb32be79d', 'mark.mauve@nowhere')
+	INSERT INTO [Employee] ([Id], [Forename], [Surname], [Joined], [Left], [HolidayEntitlement], [DepartmentId], [EmailAddress]) VALUES ('4e6328cf-2c03-4c1c-a816-06fc1b59aaed', 'Wendy', 'White', '2012-04-01 00:00:00', NULL, 23, '42c25da5-7c04-4adc-a9c2-6bf8a9ff5c89', 'mark.mauve@nowhere')
 END
 GO
 
@@ -136,6 +140,7 @@ BEGIN
 		[Address2] nvarchar(100) NULL,
 		[Address3] nvarchar(100) NULL,
 		[PhoneNumber] nvarchar(100) NULL,
+		[EmailAddress] nvarchar(100) NULL,
 		[AssignedToConsultantId] uniqueidentifier NULL,
 		[SignedUp] bit NOT NULL,
 		CONSTRAINT [PK_Lead] PRIMARY KEY CLUSTERED 
@@ -144,8 +149,8 @@ BEGIN
 		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 	) ON [PRIMARY]
 
-	INSERT INTO [Lead] ([Id], [Name], [Address1], [Address2], [Address3], [PhoneNumber], [AssignedToConsultantId], [SignedUp]) VALUES ('c81a69b9-40be-4553-abbf-e334b64e5f8a', 'The Orange Company', '6 Orange Road', 'Orangeborough', 'Orangeshire', '01234 567890', '54b26de9-2dae-4168-a66c-281b6f03f1b5', 0)
-	INSERT INTO [Lead] ([Id], [Name], [Address1], [Address2], [Address3], [PhoneNumber], [AssignedToConsultantId], [SignedUp]) VALUES ('f346bcc5-b2d1-4b4e-9359-f810d1880fcb', 'Purple Inc.', '1 Purple Street', 'Purpleton', 'Purpleshire', '07890 123456', '54b26de9-2dae-4168-a66c-281b6f03f1b5', 0)
+	INSERT INTO [Lead] ([Id], [Name], [Address1], [Address2], [Address3], [PhoneNumber], [EmailAddress], [AssignedToConsultantId], [SignedUp]) VALUES ('c81a69b9-40be-4553-abbf-e334b64e5f8a', 'The Orange Company', '6 Orange Road', 'Orangeborough', 'Orangeshire', '01234 567890', 'info@theorangecompany', '54b26de9-2dae-4168-a66c-281b6f03f1b5', 0)
+	INSERT INTO [Lead] ([Id], [Name], [Address1], [Address2], [Address3], [PhoneNumber], [EmailAddress], [AssignedToConsultantId], [SignedUp]) VALUES ('f346bcc5-b2d1-4b4e-9359-f810d1880fcb', 'Purple Inc.', '1 Purple Street', 'Purpleton', 'Purpleshire', '07890 123456', 'info@purpleinc', '54b26de9-2dae-4168-a66c-281b6f03f1b5', 0)
 END
 GO
 
@@ -178,6 +183,7 @@ BEGIN
 		[Address2] nvarchar(100) NULL,
 		[Address3] nvarchar(100) NULL,
 		[PhoneNumber] nvarchar(100) NULL,
+		[EmailAddress] nvarchar(100) NULL,
 		[LiasonEmployeeId] uniqueidentifier NULL,
 		[CurrentAgreementId] uniqueidentifier NULL
 		CONSTRAINT [PK_Client] PRIMARY KEY CLUSTERED 

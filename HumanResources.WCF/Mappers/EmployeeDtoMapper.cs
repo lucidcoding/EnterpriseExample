@@ -18,6 +18,7 @@ namespace HumanResources.WCF.Mappers
                            HolidayEntitlement = entity.HolidayEntitlement,
                            Department =
                                entity.Department != null ? new DepartmentDtoMapper().Map(entity.Department) : null,
+                           EmailAddress = entity.EmailAddress,
                            FullName = entity.FullName
                        };
         }

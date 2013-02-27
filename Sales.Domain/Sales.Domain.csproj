@@ -53,7 +53,7 @@
     <Compile Include="Entities\Lead.cs" />
     <Compile Include="Events\VisitBookedDomainEvent.cs" />
     <Compile Include="Events\LeadSignedDomainUpEvent.cs" />
-    <Compile Include="Events\LeadUnassignedDomainEvent.cs" />
+    <Compile Include="Events\LeadsUnassignedDomainEvent.cs" />
     <Compile Include="Events\DealSignedDomainEvent.cs" />
     <Compile Include="Events\VisitCompletedDomainEvent.cs" />
     <Compile Include="Events\LeadAddedDomainEvent.cs" />
@@ -62,6 +62,7 @@
     <Compile Include="RepositoryContracts\IDealRepository.cs" />
     <Compile Include="RepositoryContracts\ILeadRepository.cs" />
     <Compile Include="RepositoryContracts\IVisitRepository.cs" />
+    <Compile Include="Services\UnassignLeadsDomainService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

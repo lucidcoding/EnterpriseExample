@@ -14,6 +14,7 @@ namespace HumanResources.Data.Core
                           {
                               For<IEmployeeRepository>().Use<EmployeeRepository>();
                               For<IHolidayRepository>().Use<HolidayRepository>();
+                              For<IDepartmentRepository>().Use<DepartmentRepository>();
                               For<ISessionProvider>().Use<SessionProvider>();
                               For<ISessionFactory>().Singleton().Use(SessionFactoryFactory.GetSessionFactory());
                           });

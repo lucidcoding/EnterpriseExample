@@ -6,5 +6,6 @@ namespace HumanResources.WCF.DataTransferObjects
     {
         public Guid? Id { get; set; }
         public string Name { get; set; }
+        public EmployeeDto Manager { get; set; }
     }
 }

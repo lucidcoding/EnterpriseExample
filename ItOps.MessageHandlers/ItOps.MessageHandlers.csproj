@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3567FBE3-0F52-4359-AC70-83E1F979487A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ItOps.MessageHandlers</RootNamespace>
+    <AssemblyName>ItOps.MessageHandlers</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus">
+      <HintPath>..\Library\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\Library\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Host">
+      <HintPath>..\Library\NServiceBus.Host.exe</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.ObjectBuilder.StructureMap">
+      <HintPath>..\Library\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\Library\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommandHandlers\SendInvoiceHandler.cs" />
+    <Compile Include="Core\MessageHandlersRegistry.cs" />
+    <Compile Include="Core\MessageModule.cs" />
+    <Compile Include="Core\SubscriberEndpoint.cs" />
+    <Compile Include="EventHandlers\LeadsUnassignedHandler.cs" />
+    <Compile Include="Functionality\Emails\ConsoleFakeEmailSender.cs" />
+    <Compile Include="Functionality\Emails\IEmailSender.cs" />
+    <Compile Include="Globals\Constants.cs" />
+    <Compile Include="MessageEndpoint.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ClientServices.WCF\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Finance.WCF\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\HumanResources.WCF\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Sales.WCF\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ItOps.Messages\ItOps.Messages.csproj">
+      <Project>{498F27B0-3875-4173-96C2-9DF107F1A16B}</Project>
+      <Name>ItOps.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sales.Messages\Sales.Messages.csproj">
+      <Project>{9A2441B1-F3BA-4E9E-A21D-2D0DB61E86EA}</Project>
+      <Name>Sales.Messages</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Service References\ClientServices.WCF\ClientService.wsdl" />
+    <None Include="Service References\ClientServices.WCF\ClientService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ClientServices.WCF\ClientService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ClientServices.WCF\ClientService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ClientServices.WCF\ClientService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ClientServices.WCF\ItOps.MessageHandlers.ClientServices.WCF.ClientDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Finance.WCF\InstallmentService.wsdl" />
+    <None Include="Service References\Finance.WCF\InstallmentService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Finance.WCF\InstallmentService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Finance.WCF\InstallmentService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Finance.WCF\InstallmentService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Finance.WCF\ItOps.MessageHandlers.Finance.WCF.InstallmentDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HumanResources.WCF\DepartmentService.wsdl" />
+    <None Include="Service References\HumanResources.WCF\DepartmentService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HumanResources.WCF\DepartmentService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HumanResources.WCF\DepartmentService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HumanResources.WCF\ItOps.MessageHandlers.HumanResources.WCF.DepartmentDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sales.WCF\ItOps.MessageHandlers.Sales.WCF.LeadDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sales.WCF\LeadService.wsdl" />
+    <None Include="Service References\Sales.WCF\LeadService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Sales.WCF\LeadService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Sales.WCF\LeadService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Sales.WCF\LeadService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ClientServices.WCF\" />
+    <WCFMetadataStorage Include="Service References\Finance.WCF\" />
+    <WCFMetadataStorage Include="Service References\HumanResources.WCF\" />
+    <WCFMetadataStorage Include="Service References\Sales.WCF\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Sales.WCF\LeadService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Sales.WCF\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Sales.WCF\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Sales.WCF\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HumanResources.WCF\DepartmentService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HumanResources.WCF\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HumanResources.WCF\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HumanResources.WCF\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ClientServices.WCF\ClientService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ClientServices.WCF\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ClientServices.WCF\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ClientServices.WCF\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Finance.WCF\InstallmentService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Finance.WCF\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Finance.WCF\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Finance.WCF\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

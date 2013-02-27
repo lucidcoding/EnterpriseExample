@@ -12,9 +12,10 @@
     <property name="Left" column="`Left`" type="DateTime"/>
     <property name="HolidayEntitlement"/>
     <many-to-one name="Department" class="Department" column="DepartmentId" />
-	  <bag name="Holidays" cascade="all">
-		  <key column="EmployeeId"/>
-		  <one-to-many class="Holiday" />
-	  </bag>
+	<bag name="Holidays" cascade="all">
+      <key column="EmployeeId"/>
+	  <one-to-many class="Holiday" />
+	</bag>
+	<property name="EmailAddress" />
   </class>
 </hibernate-mapping>

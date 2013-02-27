@@ -8,6 +8,7 @@ using Finance.Domain.RepositoryContracts;
 using Finance.Messages.Commands;
 using Finance.Messages.Replies;
 using Finance.UI.ViewModel;
+using ItOps.Messages.Commands;
 using NServiceBus;
 
 namespace Finance.UI.Controllers
@@ -48,6 +49,18 @@ namespace Finance.UI.Controllers
                                 };
 
             return View(viewModel);
+        }
+
+        public void SendInvoiceAsync(Guid installmentId, Guid accountId)
+        {
+            AsyncManager.Parameters["accountId"] = accountId;
+            var command = new SendInvoice { InstallmentId = installmentId };
+            _bus.Send(command).Register<ReturnCode>(status => AsyncManager.Parameters["returnCode"] = status);
+        }
+
+        public ActionResult SendInvoiceCompleted(Guid accountId, ReturnCode returnCode)
+        {
+            return View();
         }
 
         public void MarkAsPaidAsync(Guid installmentId, Guid accountId)

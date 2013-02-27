@@ -15,6 +15,7 @@ namespace HumanResources.Domain.Entities
         public virtual int HolidayEntitlement { get; set; }
         public virtual Department Department { get; set; }
         public virtual IList<Holiday> Holidays { get; set; }
+        public virtual string EmailAddress { get; set; }
 
         public virtual string FullName
         {

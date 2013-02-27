@@ -17,6 +17,7 @@ namespace ClientServices.WCF.Mappers
                            Address2 = entity.Address2,
                            Address3 = entity.Address3,
                            PhoneNumber = entity.PhoneNumber,
+                           EmailAddress = entity.EmailAddress,
                            LiasonEmployeeId = entity.LiasonEmployeeId
                        };
         }

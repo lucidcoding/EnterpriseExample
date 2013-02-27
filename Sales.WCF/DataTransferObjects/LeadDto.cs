@@ -10,6 +10,7 @@ namespace Sales.WCF.DataTransferObjects
         public string Address2 { get; set; }
         public string Address3 { get; set; }
         public string PhoneNumber { get; set; }
+        public string EmailAddress { get; set; }
         public Guid? AssignedToConsultantId { get; set; }
         public bool SignedUp { get; set; }
     }

@@ -50,6 +50,7 @@
     <Compile Include="Commands\RegisterDeal.cs" />
     <Compile Include="Events\DealRegistered.cs" />
     <Compile Include="Events\LeadSignedUp.cs" />
+    <Compile Include="Events\LeadsUnassigned.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Replies\ReturnCode.cs" />
   </ItemGroup>

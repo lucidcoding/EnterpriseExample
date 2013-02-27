@@ -56,6 +56,7 @@
     <Compile Include="Events\HolidayBookedDomainEvent.cs" />
     <Compile Include="Globals\Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryContracts\IDepartmentRepository.cs" />
     <Compile Include="RepositoryContracts\IHolidayRepository.cs" />
     <Compile Include="RepositoryContracts\IEmployeeRepository.cs" />
   </ItemGroup>

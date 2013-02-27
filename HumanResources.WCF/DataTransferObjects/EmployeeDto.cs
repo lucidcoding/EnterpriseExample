@@ -11,6 +11,7 @@ namespace HumanResources.WCF.DataTransferObjects
         public DateTime? Left { get; set; }
         public int HolidayEntitlement { get; set; }
         public DepartmentDto Department { get; set; }
+        public string EmailAddress { get; set; } 
         public string FullName { get; set; }
     }
 }

@@ -11,6 +11,7 @@
 	<property name="Address2" />
 	<property name="Address3" />
 	<property name="PhoneNumber" />
+	<property name="EmailAddress" />
     <property name="AssignedToConsultantId" />
 	<property name="SignedUp" />
   </class>

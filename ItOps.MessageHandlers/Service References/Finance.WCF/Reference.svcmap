@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="eef25ffb-7d06-43f7-863d-24581ed5454f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:58460/InstallmentService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="InstallmentService.disco" MetadataType="Disco" ID="a1de36ca-a868-41c0-9efd-ca0f7695a932" SourceId="1" SourceUrl="http://localhost:58460/InstallmentService.svc?disco" />
+    <MetadataFile FileName="InstallmentService.wsdl" MetadataType="Wsdl" ID="43eb2554-f386-49f9-850e-5310de22b765" SourceId="1" SourceUrl="http://localhost:58460/InstallmentService.svc?wsdl" />
+    <MetadataFile FileName="InstallmentService.xsd" MetadataType="Schema" ID="872031e0-33d1-4fe3-91ff-67ce38c42164" SourceId="1" SourceUrl="http://localhost:58460/InstallmentService.svc?xsd=xsd3" />
+    <MetadataFile FileName="InstallmentService1.xsd" MetadataType="Schema" ID="1c8d7562-2b46-461d-a6c3-6da1a15881a8" SourceId="1" SourceUrl="http://localhost:58460/InstallmentService.svc?xsd=xsd2" />
+    <MetadataFile FileName="InstallmentService2.xsd" MetadataType="Schema" ID="21b3b0b0-a1d5-45bb-8517-bbc5980c5156" SourceId="1" SourceUrl="http://localhost:58460/InstallmentService.svc?xsd=xsd1" />
+    <MetadataFile FileName="InstallmentService3.xsd" MetadataType="Schema" ID="581bf86c-43f6-406c-a82d-45c692d5f0d9" SourceId="1" SourceUrl="http://localhost:58460/InstallmentService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

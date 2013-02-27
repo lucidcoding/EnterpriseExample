@@ -12,6 +12,7 @@
 		<property name="Address2" />
 		<property name="Address3" />
 		<property name="PhoneNumber" />
+		<property name="EmailAddress" />
 		<property name="LiasonEmployeeId" />
 		<many-to-one name="CurrentAgreement" class="Agreement" column="CurrentAgreementId" cascade="all" />
 	</class>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2623c9d2-4ebd-43e2-912d-120fa8dce115" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:53093/LeadService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="LeadService.disco" MetadataType="Disco" ID="fd9601a8-3828-4349-b4b8-8ca162710576" SourceId="1" SourceUrl="http://localhost:53093/LeadService.svc?disco" />
+    <MetadataFile FileName="LeadService.xsd" MetadataType="Schema" ID="ad663243-98ff-4047-8938-c4789f77afb7" SourceId="1" SourceUrl="http://localhost:53093/LeadService.svc?xsd=xsd1" />
+    <MetadataFile FileName="LeadService1.xsd" MetadataType="Schema" ID="b325ad17-caa1-44b4-9d19-aa10e41ab9ff" SourceId="1" SourceUrl="http://localhost:53093/LeadService.svc?xsd=xsd3" />
+    <MetadataFile FileName="LeadService2.xsd" MetadataType="Schema" ID="17c76004-b8f1-421a-bc32-f70ab5b9988c" SourceId="1" SourceUrl="http://localhost:53093/LeadService.svc?xsd=xsd0" />
+    <MetadataFile FileName="LeadService.wsdl" MetadataType="Wsdl" ID="9f73577b-b1f0-41be-a43d-88db9d57ec86" SourceId="1" SourceUrl="http://localhost:53093/LeadService.svc?wsdl" />
+    <MetadataFile FileName="LeadService3.xsd" MetadataType="Schema" ID="d1cc28c3-f182-4920-9fc5-8ab0c5680e87" SourceId="1" SourceUrl="http://localhost:53093/LeadService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

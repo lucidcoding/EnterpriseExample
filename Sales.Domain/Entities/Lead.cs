@@ -10,7 +10,8 @@ namespace Sales.Domain.Entities
         public virtual string Address1 { get; set; }
         public virtual string Address2 { get; set; }
         public virtual string Address3 { get; set; }
-        public virtual string PhoneNumber { get; set; } 
+        public virtual string PhoneNumber { get; set; }
+        public virtual string EmailAddress { get; set; }
         public virtual Guid? AssignedToConsultantId { get; set; }
         public virtual bool SignedUp { get; set; }
 

@@ -12,5 +12,6 @@ namespace Sales.Messages.Events
         public string Address2 { get; set; }
         public string Address3 { get; set; }
         public string PhoneNumber { get; set; }
+        public string EmailAddress { get; set; }
     }
 }
